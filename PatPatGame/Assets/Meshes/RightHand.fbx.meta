@@ -31,8 +31,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|Relaxed (1)
-      takeName: Armature|Relaxed
+      name: Armature|Fist
+      takeName: Armature|Fist
       internalID: 5978651762570310600
       firstFrame: 0
       lastFrame: 0
