@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b9e62f01f6502b44b83e9a2f616f18f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  cooldownTime: 0.5
 --- !u!1 &1396735435
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6398506484677247284, guid: 5886d8bdd566bee4d9be95d8a90644c3, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Hand
       objectReference: {fileID: 0}
     - target: {fileID: 8324579792825955695, guid: 5886d8bdd566bee4d9be95d8a90644c3, type: 3}
       propertyPath: m_IsTrigger
@@ -1035,6 +1036,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4501021977203631073, guid: 2d90fafe4b2f1c342a9222185a36b1ae, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5005949149803443654, guid: 2d90fafe4b2f1c342a9222185a36b1ae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.6772184
