@@ -26,16 +26,16 @@ public class AnimalVisualFeedback : MonoBehaviour
 
     private IEnumerator SquishEffect()
     {
-        transform.localScale = new Vector3(0.7f, 0.25f, originalScale.z);
+        transform.localScale = new Vector3(originalScale.x * 1.7f, originalScale.y * 0.4f, originalScale.z);
         yield return new WaitForSeconds(0.3f);
 
-        transform.localScale = new Vector3(0.6f, 0.35f, originalScale.z);
+        transform.localScale = new Vector3(originalScale.x * 1.6f, originalScale.y * 0.7f, originalScale.z);
         yield return new WaitForSeconds(0.2f);
 
-        transform.localScale = new Vector3(0.4f, 0.6f, originalScale.z);
+        transform.localScale = new Vector3(originalScale.x * 0.6f, originalScale.y * 1.2f, originalScale.z);
         yield return new WaitForSeconds(0.2f);
 
-        transform.localScale = new Vector3(0.5f, 0.5f, originalScale.z);
+        transform.localScale = new Vector3(originalScale.x * 0.7f, originalScale.y * 1.1f, originalScale.z);
         yield return new WaitForSeconds(0.2f);
 
         transform.localScale = originalScale;
