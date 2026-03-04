@@ -9,6 +9,7 @@ public class SaveManager : MonoBehaviour
     [SerializeField] private int autosaveTimeSeconds;
     private SaveData saveData;
     [SerializeField] private SaveDummy saveDummy; // for testing
+    [SerializeField] private TimeKeeper timeKeeper;
 
     //---------------------------------------------------------------------------
     // Helper struct and methods for save/load integration of specific classes
@@ -19,18 +20,21 @@ public class SaveManager : MonoBehaviour
     public struct SaveData 
     {
         public SaveDummyData saveDummyData; // for testing
+        public TimeKeeperData timeKeeperData;
     }
 
     // Use this to call the load method(s) for every class instance
     private void HandleLoadData() 
     {
         saveDummy?.Load(saveData.saveDummyData); // for testing
+        timeKeeper.Load(saveData.timeKeeperData);
     }
 
     // Use this to call the save method for every class instance
     public void HandleSaveData() 
     {
         saveData.saveDummyData = saveDummy?.Save() ?? new SaveDummyData(); // for testing
+        saveData.timeKeeperData = timeKeeper.Save();
     }
 
 
