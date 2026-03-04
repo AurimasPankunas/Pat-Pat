@@ -78,6 +78,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a198c482e12d8fa4b8601ec408a8071a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5637440611552292266}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a198c482e12d8fa4b8601ec408a8071a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7021648379686578811}
   m_SourcePrefab: {fileID: 100100000, guid: a198c482e12d8fa4b8601ec408a8071a, type: 3}
 --- !u!1 &440886727297120880 stripped
 GameObject:
@@ -129,3 +132,15 @@ CapsuleCollider:
   m_Height: 2.5331848
   m_Direction: 1
   m_Center: {x: 0, y: 1.2734077, z: 0.23}
+--- !u!114 &7021648379686578811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440886727297120880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b9e62f01f6502b44b83e9a2f616f18f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalVisualFeedback
