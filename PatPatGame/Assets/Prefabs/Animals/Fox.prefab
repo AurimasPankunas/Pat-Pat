@@ -78,6 +78,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 357f4e0279f254245ab513d741cc031d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 920382501363691084}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 357f4e0279f254245ab513d741cc031d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5226547392980867112}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 357f4e0279f254245ab513d741cc031d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9156183912130440854}
   m_SourcePrefab: {fileID: 100100000, guid: 357f4e0279f254245ab513d741cc031d, type: 3}
 --- !u!1 &3615940427258119925 stripped
 GameObject:
@@ -129,3 +135,35 @@ CapsuleCollider:
   m_Height: 3.7634048
   m_Direction: 2
   m_Center: {x: 0, y: 1.8600023, z: 0.6733557}
+--- !u!114 &5226547392980867112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3615940427258119925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1124a5e3b9226848a1b225923ef7be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalGraphicalFeedback
+  floatSpeed: 1
+  displayDuration: 1.5
+  fontSize: 5
+  textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  player: {fileID: 0}
+  message: 'Money earned: '
+  money: 10
+--- !u!114 &9156183912130440854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3615940427258119925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b9e62f01f6502b44b83e9a2f616f18f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalVisualFeedback
+  cooldownTime: 0.5

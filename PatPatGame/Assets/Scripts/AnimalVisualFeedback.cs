@@ -7,10 +7,12 @@ public class AnimalVisualFeedback : MonoBehaviour
     private Vector3 originalScale;
     private bool isBeingPatted = false;
     [SerializeField] private float cooldownTime = 0.5f;
+    private AnimalGraphicalFeedback animalGraphicalFeedback;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         originalScale = transform.localScale;
+        animalGraphicalFeedback = GetComponent<AnimalGraphicalFeedback>();
     }
 
 
@@ -38,6 +40,7 @@ public class AnimalVisualFeedback : MonoBehaviour
         transform.localScale = new Vector3(originalScale.x * 0.7f, originalScale.y * 1.1f, originalScale.z);
         yield return new WaitForSeconds(0.075f);
 
+        animalGraphicalFeedback.ShowFeedback();
         transform.localScale = originalScale;
         yield return new WaitForSeconds(cooldownTime);
         isBeingPatted = false;
