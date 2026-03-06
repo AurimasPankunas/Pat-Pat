@@ -81,6 +81,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 30c46a550ae542d4aaba653314e79324, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3548176713356693727}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 30c46a550ae542d4aaba653314e79324, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 445237148226073798}
   m_SourcePrefab: {fileID: 100100000, guid: 30c46a550ae542d4aaba653314e79324, type: 3}
 --- !u!1 &8908753549382509069 stripped
 GameObject:
@@ -144,3 +147,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b9e62f01f6502b44b83e9a2f616f18f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalVisualFeedback
+  cooldownTime: 0.5
+--- !u!114 &445237148226073798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8908753549382509069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1124a5e3b9226848a1b225923ef7be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalGraphicalFeedback
+  floatSpeed: 1
+  displayDuration: 1
+  fontSize: 3
+  textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  player: {fileID: 0}
+  message: 'Money earned: '
+  money: 0
