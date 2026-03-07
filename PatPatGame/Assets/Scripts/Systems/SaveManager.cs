@@ -75,7 +75,6 @@ public class SaveManager : MonoBehaviour
 
     void Awake() 
     {
-        DontDestroyOnLoad(gameObject);
         if (File.Exists(SaveFileName()))
             Load();
         InvokeRepeating(nameof(Save), autosaveTimeSeconds, autosaveTimeSeconds);
