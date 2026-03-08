@@ -37,10 +37,10 @@
     margin-right: 0;
     margin-bottom: 0;
     margin-left: 0;
-    border-top-left-radius: 0;
+    border-top-left-radius: 34px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+    border-bottom-left-radius: 34px;
 }
 
 #HappyBar {
