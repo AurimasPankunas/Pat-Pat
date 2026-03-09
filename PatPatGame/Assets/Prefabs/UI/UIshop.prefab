@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4558001259417470446}
   - component: {fileID: 808616904444989295}
+  - component: {fileID: 90360280484662079}
   m_Layer: 5
   m_Name: UIshop
   m_TagString: Untagged
@@ -55,3 +56,15 @@ MonoBehaviour:
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
+--- !u!114 &90360280484662079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3492333896445796466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c54e4b9d37d621418337218bc29d52c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIShopFunc
