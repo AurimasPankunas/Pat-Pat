@@ -1,33 +1,41 @@
-using NUnit.Framework;
 using System;
-using UnityEngine.InputSystem;
+using UnityEngine;
 
 [System.Serializable]
-public class Animal
+public class Animal: MonoBehaviour
 {
-    private const double minimumHappiness = 0.01;
+    private const double MinimumHappiness = 0.01;
 
-    public int rarity { get; private set; }
-    public int level {  get; private set; }
-    public double happiness{ get; private set; }
-    public double food { get; private set; }
-    public double water { get; private set; }
-    public double bond { get; private set; }
-    public int Likes { get; private set; }
+    [field: SerializeField] public int Rarity { get; private set; }
+    public int Level { get; private set; }
+    public double Happiness { get; private set; }
+    public double Food { get; private set; }
+    public double Water { get; private set; }
+    public double Bond { get; private set; }
+    public int Likes => (int)(1 +
+        1 *
+        (RarityMultiplier(Rarity) * 1.50) *
+        (1 + Math.Pow(Level, 0.6)) *
+        (1 + Math.Pow(Happiness, 3)) *
+        (1 + Math.Pow(Bond, 0.4)) *
+        Math.Pow(NeedsEffect(Food, Water), 3));
 
-    public Animal(int rarity = 1, double food = 1, double water = 1, double bond = 0, int level = 1, double happiness = 1, int likes = 1)
+    public void Initialize(int rarity = 1, double food = 1, double water = 1, double bond = 0, int level = 1, double happiness = 1)
     {
-        this.level = level;
-        this.happiness = happiness;
-        this.food = food;
-        this.water = water;
-        this.bond = bond;
-        this.Likes = likes;
+        if (rarity < 1) throw new ArgumentException("Rarity must be >= 1", nameof(rarity));
+        if (level < 1) throw new ArgumentException("Level must be >= 1", nameof(level));
+
+        Level = level;
+        Happiness = Math.Clamp(happiness, MinimumHappiness, 1.0);
+        Food = Math.Clamp(food, 0.0, 1.0);
+        Water = Math.Clamp(water, 0.0, 1.0);
+        Bond = Math.Clamp(bond, 0.0, 4.0);
+        Rarity = rarity;
     }
 
-    private static double rarityMultiplier(int rarity) => Math.Pow(1.3, rarity - 1);
-    private static double levelMultiplier(int level) => Math.Pow(level, 1.03);
-    private static double needsEffect(double food, double water) => 0.5 + (food * 0.5 + water * 0.5) / 2.0;
+    private static double RarityMultiplier(int rarity) => Math.Pow(1.3, rarity - 1);
+    private static double LevelMultiplier(int level) => Math.Pow(level, 1.03);
+    private static double NeedsEffect(double food, double water) => 0.5 + (food * 0.5 + water * 0.5) / 2.0;
 
 
     public void UpdateHappiness(bool isOnline, double afkProgeress = 0, double dt = 1)
@@ -43,53 +51,29 @@ public class Animal
             happinessUpdateMultiplier = 0.0000045 + (0.0000035 * afkProgeress);
         }
 
-        double newHappiness = happiness - happinessUpdateMultiplier * dt * Math.Pow(happiness, 1.15);
+        double newHappiness = Happiness - happinessUpdateMultiplier * dt * Math.Pow(Happiness, 1.15);
 
-        if(newHappiness < minimumHappiness)
+        if(newHappiness < MinimumHappiness)
         {
-            this.happiness = minimumHappiness;
+            this.Happiness = MinimumHappiness;
         }
         else
         {
-            this.happiness = newHappiness;
+            this.Happiness = newHappiness;
         }
     }
 
     public void UpdateBond(double dt = 1)
     {
-        double bondIncreaseVariable = 0.00001 * dt * Math.Pow(happiness, 1.5);
+        double bondIncreaseVariable = 0.00001 * dt * Math.Pow(Happiness, 1.5);
 
-        if (bond + bondIncreaseVariable > 4)
+        if (Bond + bondIncreaseVariable > 4)
         {
-            bond = 4;
+            Bond = 4;
         }
         else
         {
-            bond += bondIncreaseVariable;
-        }
-    }
-
-    public void UpdateLikes()
-    {
-        this.Likes = (int)(1 +
-            1 *
-            (rarityMultiplier(this.rarity) * 1.50) *
-            (1 + Math.Pow(this.level, 0.6)) *
-            (1 + Math.Pow(this.happiness, 3)) *
-            (1 + Math.Pow(this.bond, 0.4)) *
-            Math.Pow(needsEffect(this.food, this.water), 3));
-    }
-
-    public void PettingHappinessIncrease(int gloveRarity)
-    {
-        double happinessBonusPercent = 0.20 + 0.10 * (gloveRarity - 1);
-        if (happiness + happinessBonusPercent < 1)
-        {
-            happiness += happinessBonusPercent;
-        }
-        else
-        {
-            happiness = 1;
+            Bond += bondIncreaseVariable;
         }
     }
 
@@ -101,51 +85,37 @@ public class Animal
 
         double income =
             @base *
-            rarityMultiplier(this.rarity) *
-            levelMultiplier(this.level) *
-            (1 + this.happiness) *
-            (1 + this.bond * 0.10) *
+            RarityMultiplier(this.Rarity) *
+            LevelMultiplier(this.Level) *
+            (1 + this.Happiness) *
+            (1 + this.Bond * 0.10) *
             (1 + Math.Pow(gloveRarity, 1.25)) *
-            needsEffect(this.food, this.water);
+            NeedsEffect(this.Food, this.Water);
 
         return Math.Round(income, 2);
     }
 
     public void LevelUp()
     {
-        this.level += 1;
+        this.Level += 1;
     }
 
 
-    public void updateFood(double foodAmount)
+    public void UpdateFood(double foodAmount)
     {
-        if(this.food + foodAmount < 0)
-        {
-            this.food = 0;
-        }
-        else
-        {
-            this.food += foodAmount;
-        }
+        Food = Math.Clamp(Food + foodAmount, 0.0, 1.0);
     }
 
-    public void updateWater(double waterAmount)
+    public void UpdateWater(double waterAmount)
     {
-        if (this.water + waterAmount < 0)
-        {
-            this.water = 0;
-        }
-        else
-        {
-            this.water += waterAmount;
-        }
+        Water = Math.Clamp(Water + waterAmount, 0.0, 1.0);
     }
 
     public double IncomeCalculation(bool isOnline, double @base = 0.1, double afkProgress = 0)
     {
-        double rarityVariable = rarityMultiplier(this.rarity);
-        double levelVariable = levelMultiplier(this.level);
-        double needs = needsEffect(this.food, this.water);
+        double rarityVariable = RarityMultiplier(this.Rarity);
+        double levelVariable = LevelMultiplier(this.Level);
+        double needs = NeedsEffect(this.Food, this.Water);
 
         double onlineMultiplier;
         if (isOnline)
@@ -157,8 +127,21 @@ public class Animal
             onlineMultiplier = Math.Exp(-3.2 * afkProgress);
         }
 
-        return @base * rarityVariable * levelVariable * this.happiness *
-               (1 + Math.Pow(this.bond, 2)) *
+        return @base * rarityVariable * levelVariable * this.Happiness *
+               (1 + Math.Pow(this.Bond, 2)) *
                onlineMultiplier * needs;
+    }
+
+    public void PettingHappinessIncrease(int gloveRarity)
+    {
+        double happinessBonusPercent = 0.20 + 0.10 * (gloveRarity - 1);
+        if (Happiness + happinessBonusPercent < 1)
+        {
+            Happiness += happinessBonusPercent;
+        }
+        else
+        {
+            Happiness = 1;
+        }
     }
 }
