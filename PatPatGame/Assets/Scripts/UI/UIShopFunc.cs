@@ -12,7 +12,6 @@ public class UIShopFunc : MonoBehaviour
 
         // Grabbing UI elements from the document
         _moneyAmount = _document.rootVisualElement.Q<Label>("MoneyAmount");
-        SetMoneyAmount(1000.532);
     }
 
     /// <summary>
