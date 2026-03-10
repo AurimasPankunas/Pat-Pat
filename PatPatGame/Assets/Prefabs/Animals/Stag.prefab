@@ -87,6 +87,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e4d7599ffa0e9a749b7f24d59bed536a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9168091589247710666}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e4d7599ffa0e9a749b7f24d59bed536a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8784056669455152701}
   m_SourcePrefab: {fileID: 100100000, guid: e4d7599ffa0e9a749b7f24d59bed536a, type: 3}
 --- !u!1 &5634958155235700604 stripped
 GameObject:
@@ -193,3 +196,16 @@ MonoBehaviour:
   player: {fileID: 0}
   message: 'Money earned: '
   money: 0
+--- !u!114 &8784056669455152701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5634958155235700604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f6e7b7478ec12546a67c33192fb4ce4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Animal
+  <Rarity>k__BackingField: 1

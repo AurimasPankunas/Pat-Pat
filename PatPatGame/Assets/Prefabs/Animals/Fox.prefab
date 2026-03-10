@@ -84,6 +84,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 357f4e0279f254245ab513d741cc031d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9156183912130440854}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 357f4e0279f254245ab513d741cc031d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3092082108583382964}
   m_SourcePrefab: {fileID: 100100000, guid: 357f4e0279f254245ab513d741cc031d, type: 3}
 --- !u!1 &3615940427258119925 stripped
 GameObject:
@@ -167,3 +170,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalVisualFeedback
   cooldownTime: 0.5
+--- !u!114 &3092082108583382964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3615940427258119925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f6e7b7478ec12546a67c33192fb4ce4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Animal
+  <Rarity>k__BackingField: 1
