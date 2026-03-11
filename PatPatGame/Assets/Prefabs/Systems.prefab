@@ -137,6 +137,7 @@ MonoBehaviour:
   autosaveTimeSeconds: 60
   saveDummy: {fileID: 0}
   timeKeeper: {fileID: 2989526269022583445}
+  playerBalance: {fileID: 5588511990750435169}
 --- !u!1 &8047763040432634985
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,6 +29,11 @@ public class TimeKeeper : MonoBehaviour
     {
         return (DateTime.Now - lastLogin).TotalSeconds;
     }
+    
+    public double GetHoursSinceLastSave()
+    {
+        return (DateTime.Now - lastLogin).TotalHours;
+    }
 
     public TimeKeeperData Save()
     {

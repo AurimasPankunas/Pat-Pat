@@ -15,11 +15,15 @@ public class PlayerBalance : MonoBehaviour
         // For now the animal list is initialized in this class
         // It would be better to have a separate animal manager that keeps a list of all animals
         
-        animals = Resources.FindObjectsOfTypeAll<Animal>().ToList();
-        foreach(Animal animal in animals)
+        if (animals == null)
         {
-            animal.Initialize();
+            animals = Resources.FindObjectsOfTypeAll<Animal>().ToList();
+            foreach(Animal animal in animals)
+            {
+                animal.Initialize();
+            }
         }
+
 
         // Calculate income once every second
         InvokeRepeating(nameof(CalculateOneSecondIncomeForPets), 0, 1);
@@ -60,6 +64,7 @@ public class PlayerBalance : MonoBehaviour
         money += amount;
     }
 
+    // Simulate income and stats change for a SINGLE animal in a given time period (hours)
     private double SimulateIncomeForPet(Animal pet, double hours, bool isOnline, double @base = 0.1)
     {
         if (!isOnline)
@@ -95,6 +100,7 @@ public class PlayerBalance : MonoBehaviour
         return Math.Round(totalIncome, 2);
     }
 
+    // Simulate income and stats change for ALL animals in a given time period (hours)
     private double SimulateShelter(List<Animal> pets, double hours, bool isOnline, double baseIncome = 0.01)
     {
         // var report = new List<PetReport>();
@@ -121,4 +127,32 @@ public class PlayerBalance : MonoBehaviour
 
         return Math.Round(totalIncome, 2);
     }
+
+    public PlayerBalanceData Save()
+    {
+        PlayerBalanceData data = new PlayerBalanceData();
+        data.money = this.money;
+        return data;
+    }
+
+    public void Load(PlayerBalanceData data, double hours)
+    {
+        if (animals == null)
+        {
+            animals = Resources.FindObjectsOfTypeAll<Animal>().ToList();
+            foreach(Animal animal in animals)
+            {
+                animal.Initialize();
+            }
+        }
+        double savedMoney = data.money;
+        double earnedMoney = SimulateShelter(animals, hours, false);
+        this.money = savedMoney + earnedMoney;
+    }
+}
+
+[System.Serializable]
+public struct PlayerBalanceData
+{
+    public double money;
 }
