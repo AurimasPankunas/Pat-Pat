@@ -10,15 +10,28 @@ public class AnimalGraphicalFeedback : MonoBehaviour
     [SerializeField] private Color textColor = Color.yellow;
     [SerializeField] private GameObject player;
     [SerializeField] private string message = "Money earned: ";
-    [SerializeField] private double money;
+    private double money = 0.0;
+    private Animal animal;
+    private PlayerBalance playerBalance;
 
     public void ShowFeedback()
     {
+        //Time.timeScale = 20;
+        animal = GetComponent<Animal>();
+        playerBalance = FindFirstObjectByType<PlayerBalance>();
         StartCoroutine(SpawnFloatingText(message));
     }
 
     private IEnumerator SpawnFloatingText(string message)
     {
+        if(animal != null)
+        {
+            money = playerBalance.AddPettingMoney(animal);
+        } else
+        {
+            money = -99999.99;
+        }
+
         //Create the object entirely in code
         GameObject textObj = new GameObject("FloatingText");
         textObj.transform.position = transform.position + Vector3.up;

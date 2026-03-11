@@ -10,13 +10,14 @@ public class UIAnimalStatsFunc : MonoBehaviour
     private ProgressBar _foodBar;
     private ProgressBar _bondBar;
     private Label _levelAmount;
+    [SerializeField] private Animal animal;
 
     private string[] rarityColors = {"#000000", "#A15505", "#727D8E", "#BF9304", "#A42DCB" };
-    void Awake()
+    void Start()
     {
         // Gets the document on the gameObject that has the UI elements 
         _document = GetComponent<UIDocument>();
-
+        
         // Grabbing UI elements from the document
         _animalName = _document.rootVisualElement.Q<Label>("NameLabel");
         _happyBar = _document.rootVisualElement.Q<ProgressBar>("HappyBar");
@@ -24,6 +25,17 @@ public class UIAnimalStatsFunc : MonoBehaviour
         _foodBar = _document.rootVisualElement.Q<ProgressBar>("FoodBar");
         _bondBar = _document.rootVisualElement.Q<ProgressBar>("BondBar");
         _levelAmount = _document.rootVisualElement.Q<Label>("LvlAmount");
+    }
+
+    void Update()
+    {
+        SetName(animal.AnimalName);
+        SetHappiness(animal.Happiness);
+        SetWater(animal.Water);
+        SetFood(animal.Food);
+        SetBond(animal.Bond);
+        SetLevel(animal.Level);
+        SetRarity(animal.Rarity);
     }
 
 

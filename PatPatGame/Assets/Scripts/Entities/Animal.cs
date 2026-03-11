@@ -6,6 +6,7 @@ public class Animal: MonoBehaviour
 {
     private const double MinimumHappiness = 0.01;
 
+    [field: SerializeField]public string AnimalName {get; private set;}
     [field: SerializeField] public int Rarity { get; private set; }
     public int Level { get; private set; }
     public double Happiness { get; private set; }
@@ -143,5 +144,10 @@ public class Animal: MonoBehaviour
         {
             Happiness = 1;
         }
+    }
+
+    public void SetAnimalName(string name)
+    {
+        AnimalName = name;
     }
 }
