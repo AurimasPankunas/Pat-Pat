@@ -156,7 +156,6 @@ MonoBehaviour:
   textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   player: {fileID: 0}
   message: 'Money earned: '
-  money: 10
 --- !u!114 &9156183912130440854
 MonoBehaviour:
   m_ObjectHideFlags: 0
