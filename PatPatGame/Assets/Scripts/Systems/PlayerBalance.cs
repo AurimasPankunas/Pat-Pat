@@ -39,9 +39,15 @@ public class PlayerBalance : MonoBehaviour
         money += amount;
     }
 
-    public void AddPettingMoney(Animal animal, int gloveRarity)
+    public double AddPettingMoney(Animal animal)
     {
-        money += animal.PettingIncome(gloveRarity);
+        // PlayerBalance should probably have a reference so some sort of player class
+        // that contains equiped glove rarity and get the value from there
+        // That class doesn't exist yet, so rarity is hardcoded to 1
+        int gloveRarity = 1;
+        double amount = animal.PettingIncome(gloveRarity);
+        money += amount;
+        return amount;
     }
 
     private void CalculateOneSecondIncomeForPets()
