@@ -11,7 +11,7 @@ public class SaveManager : MonoBehaviour
     [SerializeField] private SaveDummy saveDummy; // for testing
     [SerializeField] private TimeKeeper timeKeeper;
     [SerializeField] private PlayerBalance playerBalance;
-    [SerializeField] private Animal[] animals;
+    private Animal[] animals;
 
 
 
@@ -100,7 +100,17 @@ public class SaveManager : MonoBehaviour
         animals = FindObjectsByType<Animal>(FindObjectsSortMode.None);
 
         if (File.Exists(SaveFileName()))
+        {
             Load();
+        }
+        else
+        {
+            // No save file → initialize animals with default values
+            foreach (Animal animal in animals)
+            {
+                animal.Initialize(animal.Rarity);
+            }
+        }
         InvokeRepeating(nameof(Save), autosaveTimeSeconds, autosaveTimeSeconds);
     }
 

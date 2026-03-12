@@ -14,15 +14,8 @@ public class PlayerBalance : MonoBehaviour
     {
         // For now the animal list is initialized in this class
         // It would be better to have a separate animal manager that keeps a list of all animals
-        
-        if (animals == null)
-        {
-            animals = Resources.FindObjectsOfTypeAll<Animal>().ToList();
-            foreach(Animal animal in animals)
-            {
-                animal.Initialize();
-            }
-        }
+
+        animals = FindObjectsByType<Animal>(FindObjectsSortMode.None).ToList();
 
 
         // Calculate income once every second
@@ -139,11 +132,7 @@ public class PlayerBalance : MonoBehaviour
     {
         if (animals == null)
         {
-            animals = Resources.FindObjectsOfTypeAll<Animal>().ToList();
-            foreach(Animal animal in animals)
-            {
-                animal.Initialize();
-            }
+            animals = FindObjectsByType<Animal>(FindObjectsSortMode.None).ToList();
         }
         double savedMoney = data.money;
         double earnedMoney = SimulateShelter(animals, hours, false);
