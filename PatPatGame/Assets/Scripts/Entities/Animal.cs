@@ -150,4 +150,33 @@ public class Animal: MonoBehaviour
     {
         AnimalName = name;
     }
+
+    public AnimalData Save()
+    {
+        AnimalData data = new AnimalData();
+
+        data.animalName = this.AnimalName;
+        data.rarity = this.Rarity;
+        data.level = this.Level;
+        data.happiness = this.Happiness;
+        data.food = this.Food;
+        data.water = this.Water;
+        data.bond = this.Bond;
+
+        return data;
+    }
+
+    public void Load(AnimalData data)
+    {
+        SetAnimalName(data.animalName);
+
+        Initialize(
+            data.rarity,
+            data.food,
+            data.water,
+            data.bond,
+            data.level,
+            data.happiness
+        );
+    }
 }

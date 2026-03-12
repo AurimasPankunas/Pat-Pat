@@ -11,6 +11,9 @@ public class SaveManager : MonoBehaviour
     [SerializeField] private SaveDummy saveDummy; // for testing
     [SerializeField] private TimeKeeper timeKeeper;
     [SerializeField] private PlayerBalance playerBalance;
+    [SerializeField] private Animal[] animals;
+
+
 
     //---------------------------------------------------------------------------
     // Helper struct and methods for save/load integration of specific classes
@@ -23,13 +26,21 @@ public class SaveManager : MonoBehaviour
         public SaveDummyData saveDummyData; // for testing
         public TimeKeeperData timeKeeperData;
         public PlayerBalanceData playerBalanceData;
+        public AnimalData[] animals;
     }
 
     // Use this to call the load method(s) for every class instance
-    private void HandleLoadData() 
+    private void HandleLoadData()
     {
         saveDummy?.Load(saveData.saveDummyData); // for testing
         timeKeeper.Load(saveData.timeKeeperData);
+        if (saveData.animals != null)
+        {
+            for (int i = 0; i < animals.Length && i < saveData.animals.Length; i++)
+            {
+                animals[i].Load(saveData.animals[i]);
+            }
+        }
         playerBalance.Load(saveData.playerBalanceData, timeKeeper.GetHoursSinceLastSave());
     }
 
@@ -39,6 +50,13 @@ public class SaveManager : MonoBehaviour
         saveData.saveDummyData = saveDummy?.Save() ?? new SaveDummyData(); // for testing
         saveData.timeKeeperData = timeKeeper.Save();
         saveData.playerBalanceData = playerBalance.Save();
+
+        saveData.animals = new AnimalData[animals.Length];
+
+        for(int i = 0; i < animals.Length; i++) 
+        {
+            saveData.animals[i] = animals[i].Save();
+        }
     }
 
 
@@ -79,6 +97,8 @@ public class SaveManager : MonoBehaviour
 
     void Awake() 
     {
+        animals = FindObjectsByType<Animal>(FindObjectsSortMode.None);
+
         if (File.Exists(SaveFileName()))
             Load();
         InvokeRepeating(nameof(Save), autosaveTimeSeconds, autosaveTimeSeconds);
