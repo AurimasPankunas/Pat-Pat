@@ -10,6 +10,7 @@ public class SaveManager : MonoBehaviour
     private SaveData saveData;
     [SerializeField] private SaveDummy saveDummy; // for testing
     [SerializeField] private TimeKeeper timeKeeper;
+    [SerializeField] private PlayerBalance playerBalance;
 
     //---------------------------------------------------------------------------
     // Helper struct and methods for save/load integration of specific classes
@@ -21,6 +22,7 @@ public class SaveManager : MonoBehaviour
     {
         public SaveDummyData saveDummyData; // for testing
         public TimeKeeperData timeKeeperData;
+        public PlayerBalanceData playerBalanceData;
     }
 
     // Use this to call the load method(s) for every class instance
@@ -28,6 +30,7 @@ public class SaveManager : MonoBehaviour
     {
         saveDummy?.Load(saveData.saveDummyData); // for testing
         timeKeeper.Load(saveData.timeKeeperData);
+        playerBalance.Load(saveData.playerBalanceData, timeKeeper.GetHoursSinceLastSave());
     }
 
     // Use this to call the save method for every class instance
@@ -35,6 +38,7 @@ public class SaveManager : MonoBehaviour
     {
         saveData.saveDummyData = saveDummy?.Save() ?? new SaveDummyData(); // for testing
         saveData.timeKeeperData = timeKeeper.Save();
+        saveData.playerBalanceData = playerBalance.Save();
     }
 
 
