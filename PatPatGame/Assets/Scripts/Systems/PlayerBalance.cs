@@ -8,28 +8,18 @@ public class PlayerBalance : MonoBehaviour
     [field: SerializeField] public double money { get; private set; }
     [SerializeField] private float MAX_AFK_HOURS = 15 * 24;
     private List<Animal> animals;
-    
 
     void Awake()
     {
-        // For now the animal list is initialized in this class
-        // It would be better to have a separate animal manager that keeps a list of all animals
-
         animals = FindObjectsByType<Animal>(FindObjectsSortMode.None).ToList();
 
-
-        // Calculate income once every second
+        // Online pajamų skaičiavimas: kas sekundę
         InvokeRepeating(nameof(CalculateOneSecondIncomeForPets), 0, 1);
     }
 
-    void Update()
-    {
-        // Alternatively, income can be calculated every frame
-
-        // foreach(Animal animal in animals)
-            // money += animal.IncomeCalculation(true) * Time.deltaTime;
-    }
-
+    // =============================
+    // MONEY
+    // =============================
 
     public void AddMoney(double amount)
     {
@@ -38,105 +28,99 @@ public class PlayerBalance : MonoBehaviour
 
     public double AddPettingMoney(Animal animal)
     {
-        // PlayerBalance should probably have a reference so some sort of player class
-        // that contains equiped glove rarity and get the value from there
-        // That class doesn't exist yet, so rarity is hardcoded to 1
+        // TODO: pakeisti kai bus žaidėjo pirštinė
         int gloveRarity = 1;
         double amount = animal.PettingIncome(gloveRarity);
         money += amount;
         return amount;
     }
 
+    // =============================
+    // ONLINE — pajamos per sekundę (visi gyvūnai)
+    // =============================
+
     private void CalculateOneSecondIncomeForPets()
     {
-        double amount = 0;
-        foreach(Animal animal in animals)
+        double total = 0;
+        foreach (Animal animal in animals)
         {
-            amount += animal.IncomeCalculation(true);
+            // Atnaujiname kintamuosius
+            animal.UpdateHappiness(isOnline: true, dt: 1);
+            animal.UpdateNeeds(dt: 1);
+            animal.UpdateBond(dt: 1);
+
+            total += animal.IncomeCalculation(isOnline: true);
         }
-        money += amount;
+        money += total;
     }
 
-    // Simulate income and stats change for a SINGLE animal in a given time period (hours)
-    private double SimulateIncomeForPet(Animal pet, double hours, bool isOnline, double @base = 0.1)
+    // =============================
+    // OFFLINE — simuliacija
+    // =============================
+
+    private double SimulateIncomeForPet(Animal pet, double hours, bool isOnline, double @base = 0.01)
     {
         if (!isOnline)
             hours = Math.Min(hours, MAX_AFK_HOURS);
 
-        double totalIncome = 0;
-        int fullHours = (int)hours;
+        double totalIncome    = 0;
+        double dtHour         = 3600;
+        int    fullHours      = (int)hours;
         double remainingHours = hours - fullHours;
-        double dtHour = 3600;
-
-        double lastHourIncome = 0;
 
         for (int t = 0; t < fullHours; t++)
         {
-            double afkProgress = (double)t / MAX_AFK_HOURS;
+            double afkProgress = isOnline ? 0 : (double)t / MAX_AFK_HOURS;
 
             pet.UpdateHappiness(isOnline, afkProgress, dtHour);
-
-            pet.UpdateFood(-0.000008 * dtHour);
-            pet.UpdateWater(-0.000008 * dtHour);
-
+            pet.UpdateNeeds(dtHour);
             pet.UpdateBond(dtHour);
 
             double inc = pet.IncomeCalculation(isOnline, @base, afkProgress);
-
-            lastHourIncome = inc * dtHour;
-            totalIncome += lastHourIncome;
+            totalIncome += inc * dtHour;
         }
 
-        if (remainingHours > 0 && fullHours > 0)
-            totalIncome += lastHourIncome * remainingHours;
+        // Pataisyta: veikia ir kai offline < 1 valanda
+        if (remainingHours > 0)
+        {
+            double afkProgress = isOnline ? 0 : (double)fullHours / MAX_AFK_HOURS;
+            double dtRemaining = remainingHours * 3600;
+
+            pet.UpdateHappiness(isOnline, afkProgress, dtRemaining);
+            pet.UpdateNeeds(dtRemaining);
+            pet.UpdateBond(dtRemaining);
+
+            double inc = pet.IncomeCalculation(isOnline, @base, afkProgress);
+            totalIncome += inc * dtRemaining;
+        }
 
         return Math.Round(totalIncome, 2);
     }
 
-    // Simulate income and stats change for ALL animals in a given time period (hours)
     private double SimulateShelter(List<Animal> pets, double hours, bool isOnline, double baseIncome = 0.01)
     {
-        // var report = new List<PetReport>();
         double totalIncome = 0;
-
         foreach (Animal pet in pets)
-        {
-            double income = SimulateIncomeForPet(pet, hours, isOnline, baseIncome);
-
-            // report.Add(new PetReport
-            // {
-            //     PetId = i + 1,
-            //     Rarity = pet.Rarity,
-            //     Level = pet.Level,
-            //     Income = income,
-            //     Bond = Math.Round(pet.Bond, 4),
-            //     Happiness = Math.Round(pet.Happiness, 4),
-            //     Food = Math.Round(pet.Food, 4),
-            //     Water = Math.Round(pet.Water, 4)
-            // });
-
-            totalIncome += income;
-        }
-
+            totalIncome += SimulateIncomeForPet(pet, hours, isOnline, baseIncome);
         return Math.Round(totalIncome, 2);
     }
+
+    // =============================
+    // SAVE / LOAD
+    // =============================
 
     public PlayerBalanceData Save()
     {
-        PlayerBalanceData data = new PlayerBalanceData();
-        data.money = this.money;
-        return data;
+        return new PlayerBalanceData { money = this.money };
     }
 
     public void Load(PlayerBalanceData data, double hours)
     {
         if (animals == null)
-        {
             animals = FindObjectsByType<Animal>(FindObjectsSortMode.None).ToList();
-        }
-        double savedMoney = data.money;
+
         double earnedMoney = SimulateShelter(animals, hours, false);
-        this.money = savedMoney + earnedMoney;
+        this.money = data.money + earnedMoney;
     }
 }
 
