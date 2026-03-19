@@ -8,7 +8,6 @@ public class SaveManager : MonoBehaviour
 {
     [SerializeField] private int autosaveTimeSeconds;
     private SaveData saveData;
-    [SerializeField] private SaveDummy saveDummy; // for testing
     [SerializeField] private TimeKeeper timeKeeper;
     [SerializeField] private PlayerBalance playerBalance;
     private Animal[] animals;
@@ -23,7 +22,6 @@ public class SaveManager : MonoBehaviour
     [System.Serializable]
     public struct SaveData 
     {
-        public SaveDummyData saveDummyData; // for testing
         public TimeKeeperData timeKeeperData;
         public PlayerBalanceData playerBalanceData;
         public AnimalData[] animals;
@@ -32,7 +30,6 @@ public class SaveManager : MonoBehaviour
     // Use this to call the load method(s) for every class instance
     private void HandleLoadData()
     {
-        saveDummy?.Load(saveData.saveDummyData); // for testing
         timeKeeper.Load(saveData.timeKeeperData);
         if (saveData.animals != null)
         {
@@ -47,7 +44,6 @@ public class SaveManager : MonoBehaviour
     // Use this to call the save method for every class instance
     public void HandleSaveData() 
     {
-        saveData.saveDummyData = saveDummy?.Save() ?? new SaveDummyData(); // for testing
         saveData.timeKeeperData = timeKeeper.Save();
         saveData.playerBalanceData = playerBalance.Save();
 
