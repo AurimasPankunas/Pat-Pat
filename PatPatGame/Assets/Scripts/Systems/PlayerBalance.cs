@@ -7,6 +7,8 @@ public class PlayerBalance : MonoBehaviour
 {
     [field: SerializeField] public double money { get; private set; }
     [SerializeField] private float MAX_AFK_HOURS = 15 * 24;
+    public int gloveRarity { get; private set; } = 0;
+    public event Action<int> OnGloveRarityChanged;
     private List<Animal> animals;
 
     void Awake()
@@ -28,11 +30,32 @@ public class PlayerBalance : MonoBehaviour
 
     public double AddPettingMoney(Animal animal)
     {
-        // TODO: pakeisti kai bus žaidėjo pirštinė
-        int gloveRarity = 1;
         double amount = animal.PettingIncome(gloveRarity);
         money += amount;
         return amount;
+    }
+
+    // =============================    
+    // GLOVES
+    // =============================
+
+    // Set the rarity for gloves directly
+    public void SetGloveRarity(int rarity)
+    {
+        rarity = Math.Clamp(rarity, 0, 5);
+        this.gloveRarity = rarity;
+        OnGloveRarityChanged?.Invoke(rarity);
+    }
+
+    // Increase glove rarity by one
+    public void IncrementGloveRarity()
+    {
+        int rarity = Math.Clamp(gloveRarity + 1, 1, 5);
+        if (rarity != this.gloveRarity)
+        {
+            this.gloveRarity = rarity;
+            OnGloveRarityChanged?.Invoke(rarity);
+        }
     }
 
     // =============================
@@ -111,7 +134,7 @@ public class PlayerBalance : MonoBehaviour
 
     public PlayerBalanceData Save()
     {
-        return new PlayerBalanceData { money = this.money };
+        return new PlayerBalanceData { money = this.money, gloveRarity = this.gloveRarity };
     }
 
     public void Load(PlayerBalanceData data, double hours)
@@ -121,6 +144,7 @@ public class PlayerBalance : MonoBehaviour
 
         double earnedMoney = SimulateShelter(animals, hours, false);
         this.money = data.money + earnedMoney;
+        SetGloveRarity(data.gloveRarity);
     }
 }
 
@@ -128,4 +152,5 @@ public class PlayerBalance : MonoBehaviour
 public struct PlayerBalanceData
 {
     public double money;
+    public int gloveRarity;
 }
