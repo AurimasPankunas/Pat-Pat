@@ -49,8 +49,8 @@ public class TimeKeeper : MonoBehaviour
         firstLogin = DateTime.Parse(data.firstLoginDate);
         lastLogin = DateTime.Parse(data.saveDate);
         totalPlayTime = TimeSpan.Parse(data.playTime).TotalSeconds;
-        Debug.Log(string.Format("TimeKeeper data loaded: First login at {0};  Last login at {1};  Total playtime {2}",
-            data.firstLoginDate, data.saveDate, data.playTime));
+        // Debug.Log(string.Format("TimeKeeper data loaded: First login at {0};  Last login at {1};  Total playtime {2}",
+        //     data.firstLoginDate, data.saveDate, data.playTime));
     }
 }
 
