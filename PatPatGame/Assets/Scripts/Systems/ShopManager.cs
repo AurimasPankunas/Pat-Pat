@@ -51,9 +51,9 @@ public class ShopManager : MonoBehaviour
                     Debug.Log(gitem.type);
                     // Do thing for glove item
 
-                    // Update Glove attributes in UI
+                    // Update Glove upgrade attributes in UI
                     shopUI.ClearList();
-                    shopUI.AddToList(shopItemDatabase.GetGlove(playerBalance.gloveRarity));
+                    SetGloveUpgradeElement();
                     break;
             }
         }
@@ -80,10 +80,26 @@ public class ShopManager : MonoBehaviour
                 break;
             case "CategoryGloves":
                 shopUI.ClearList();
-                shopUI.AddToList(shopItemDatabase.GetGlove(playerBalance.gloveRarity));
-                //shopList = new List<ShopItem>(shopItemDatabase.glovePrices);
-                //shopUI.GenerateList(shopList);
+                SetGloveUpgradeElement();
+                    //shopList = new List<ShopItem>(shopItemDatabase.glovePrices);
+                    //shopUI.GenerateList(shopList);
                 break;
+        }
+    }
+
+    /// <summary>
+    /// Show next glove upgrade. If glove rarity is max (5), show current glove
+    /// without Upgrade button.
+    /// </summary>
+    public void SetGloveUpgradeElement()
+    {
+        if (playerBalance.gloveRarity < 5)
+        {
+            shopUI.AddToList(shopItemDatabase.GetGlove(playerBalance.gloveRarity + 1));
+        }
+        else
+        {
+            shopUI.AddToList(shopItemDatabase.GetGlove(playerBalance.gloveRarity));
         }
     }
 }

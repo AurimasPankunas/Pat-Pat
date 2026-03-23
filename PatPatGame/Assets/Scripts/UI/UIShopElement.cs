@@ -73,6 +73,10 @@ public class UIShopElement
 
                 if (_rarity != null){
                     _rarity.text = gitem.rarity.ToString();
+                    // If player has max rarity glove, hide button
+                    if(gitem.rarity == shopManager.playerBalance.gloveRarity){
+                        _buyButton.style.visibility = Visibility.Hidden;
+                    }
                 }
                 break;
             default:
