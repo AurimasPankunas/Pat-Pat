@@ -1,6 +1,33 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="ShopContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.76); flex-direction: row;">
-        <ui:Label text="Money:" name="MoneyLabel" style="color: rgb(255, 255, 255); font-size: 50px;"/>
-        <ui:Label text="Stonks" name="MoneyAmount" style="color: rgb(255, 255, 255); font-size: 50px; width: 325px;"/>
+    <Style src="project://database/Assets/UI/PatPatStyle.uss?fileID=7433441132597879392&amp;guid=f5985b321d282874f97bacc2e9998abc&amp;type=3#PatPatStyle"/>
+    <Style src="project://database/Assets/UI/Pre-madeElementsStyles.uss?fileID=7433441132597879392&amp;guid=05a60a23150ba5f45b4e854efe011372&amp;type=3#Pre-madeElementsStyles"/>
+    <ui:VisualElement name="ShopContainer" class="PanelBackground" style="flex-grow: 0; flex-direction: column; display: flex; background-image: url(&quot;project://database/Assets/UI/Resources/Textures/GradientDownwards.png?fileID=2800000&amp;guid=50759faa553ddcc449dad8d8cc170baf&amp;type=3#GradientDownwards&quot;); width: 670px; height: 470px;">
+        <ui:VisualElement name="Header" class="HeaderStyle" style="flex-direction: row;">
+            <ui:VisualElement style="flex-grow: 0; width: 220px; right: 0; left: auto; top: 0; position: absolute; bottom: 0; background-color: rgb(242, 241, 239); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; flex-direction: row; padding-top: 5px; padding-right: 0; padding-bottom: 5px; padding-left: 7px; align-items: center;">
+                <ui:VisualElement style="flex-grow: 0; width: 30px; height: 30px; background-image: url(&quot;project://database/Assets/UI/Resources/Textures/Coin.svg?fileID=6192944022281365145&amp;guid=066fe45bb7c5eef40a23f06b579657f3&amp;type=3#Coin&quot;);"/>
+                <ui:Label text="Stonks" name="MoneyAmount" style="font-size: 18px; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-Medium.ttf?fileID=12800000&amp;guid=c17b6ee01c40d454e83c8c402f195778&amp;type=3#Livvic-Medium&quot;); -unity-text-align: middle-left; width: auto; flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 5px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;"/>
+            </ui:VisualElement>
+            <ui:Label text="-Stonks" name="MoneySpent" class="MoneySpent"/>
+            <ui:Label text="Shop" name="HeaderLabel"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-shrink: 1; flex-direction: row;">
+            <ui:VisualElement name="Categories" style="flex-grow: 1; width: initial;">
+                <ui:Button text="Food" name="CategoryFood" __unity-builder-selected-element="" class="CategoryButton">
+                    <ui:Image source="project://database/Assets/UI/Resources/Textures/Food.svg?fileID=6192944022281365145&amp;guid=7b4b637c79ecc794f889240702442306&amp;type=3#Food" enabled="true" style="width: 45px; height: 45px; align-self: flex-end;"/>
+                </ui:Button>
+                <ui:Button text="Water" name="CategoryWater" class="CategoryButton">
+                    <ui:Image source="project://database/Assets/UI/Resources/Textures/Water.svg?fileID=6192944022281365145&amp;guid=3fe8d34e716882448906f1762d1bcc6f&amp;type=3#Water" enabled="true" style="width: 45px; height: 45px; align-self: flex-end;"/>
+                </ui:Button>
+                <ui:Button text="Gloves" name="CategoryGloves" class="CategoryButton">
+                    <ui:Image source="project://database/Assets/UI/Resources/Textures/Glove.svg?fileID=6192944022281365145&amp;guid=3f222cf088844fb49a90bdc5fedecd79&amp;type=3#Glove" enabled="true" tint-color="rgb(207, 169, 19)" style="width: 45px; height: 45px; align-self: flex-end;"/>
+                </ui:Button>
+            </ui:VisualElement>
+            <ui:VisualElement name="Line" style="flex-grow: 0; background-color: rgb(255, 255, 255); width: 3px; flex-direction: column-reverse; margin-bottom: 13px;">
+                <ui:VisualElement style="flex-grow: 0; width: 24px; height: 14px; align-self: center; background-image: url(&quot;project://database/Assets/UI/Resources/Textures/Curve.svg?fileID=6192944022281365145&amp;guid=62c39823787588e4c8e497e7f5b2e4e0&amp;type=3#Curve&quot;); -unity-background-scale-mode: scale-to-fit; margin-bottom: -13px; -unity-background-image-tint-color: rgb(255, 255, 255); margin-right: 1px;"/>
+            </ui:VisualElement>
+            <ui:ScrollView horizontal-scroller-visibility="Hidden" style="width: 480px; flex-shrink: 0;">
+                <ui:VisualElement name="ListContainer" style="flex-grow: 1; flex-shrink: 1; padding-top: 5px; padding-right: 0; padding-bottom: 5px; padding-left: 5px; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-content: flex-start; visibility: visible; display: flex;"/>
+            </ui:ScrollView>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
