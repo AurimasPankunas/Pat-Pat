@@ -1,0 +1,11 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/PatPatStyle.uss?fileID=7433441132597879392&amp;guid=f5985b321d282874f97bacc2e9998abc&amp;type=3#PatPatStyle"/>
+    <ui:VisualElement name="ShopItemElement" class="ElementBackground SmallElementSize" style="justify-content: space-between; align-items: center;">
+        <ui:Label text="Label" name="ElementLabel" style="-unity-text-align: upper-center; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-Medium.ttf?fileID=12800000&amp;guid=c17b6ee01c40d454e83c8c402f195778&amp;type=3#Livvic-Medium&quot;); font-size: 16px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
+        <ui:Image source="project://database/Assets/UI/Resources/Textures/Food.svg?fileID=6192944022281365145&amp;guid=7b4b637c79ecc794f889240702442306&amp;type=3#Food" name="ElementImage" style="flex-grow: 1; width: 100%; padding-top: 5px; padding-bottom: 5px;"/>
+        <ui:Button text="" name="ElementBuyButton" class="ShopButton" style="height: 35px; width: auto; flex-direction: row; align-items: center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; justify-content: center; min-width: 110px; max-width: 130px;">
+            <ui:Image source="project://database/Assets/UI/Resources/Textures/Coin.svg?fileID=6192944022281365145&amp;guid=066fe45bb7c5eef40a23f06b579657f3&amp;type=3#Coin" style="height: 20px; width: 20px; flex-shrink: 0;"/>
+            <ui:Label text="price" name="ElementPriceLabel" style="margin-top: 2px; margin-right: 2px; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-Medium.ttf?fileID=12800000&amp;guid=c17b6ee01c40d454e83c8c402f195778&amp;type=3#Livvic-Medium&quot;); font-size: 18px;"/>
+        </ui:Button>
+    </ui:VisualElement>
+</ui:UXML>

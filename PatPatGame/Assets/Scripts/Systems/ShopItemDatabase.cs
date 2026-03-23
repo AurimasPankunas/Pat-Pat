@@ -22,6 +22,8 @@ public class GloveItem : ShopItem
 {
     public string type;
     public int    rarity;
+    public Texture2D image;
+    public Color imageTint;
 }
 
 // --- Maistas ---
@@ -31,6 +33,7 @@ public class FoodItem : ShopItem
     public string name;
     public int    rarity;
     public float  foodAmount;
+    public Texture2D image;
 }
 
 // --- Vanduo ---
@@ -40,6 +43,7 @@ public class WaterItem : ShopItem
     public string name;
     public int    rarity;
     public float  waterAmount;
+    public Texture2D image;
 }
 
 // --- Lygio kėlimas ---

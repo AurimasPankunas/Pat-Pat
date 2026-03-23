@@ -27,6 +27,10 @@ public class PlayerBalance : MonoBehaviour
     {
         money += amount;
     }
+    public void SubtractMoney(double amount)
+    {
+        money -= amount;
+    }
 
     public double AddPettingMoney(Animal animal)
     {
