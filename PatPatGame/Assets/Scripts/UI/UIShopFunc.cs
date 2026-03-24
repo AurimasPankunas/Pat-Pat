@@ -20,7 +20,6 @@ public class UIShopFunc : MonoBehaviour
     [SerializeField] private VisualTreeAsset ShopElementDescription;
     [SerializeField] private VisualTreeAsset ShopElementLong;
 
-    //private List<ShopItem> shopList;
     private List<UIShopElement> shopElements;
     void Awake()
     {
@@ -42,12 +41,6 @@ public class UIShopFunc : MonoBehaviour
         _categories[2].RegisterCallback<ClickEvent>(OnCategoryClick);
 
         shopElements = new List<UIShopElement>();
-        /*shopList = new List<ShopItem>();
-        shopList.Add(new FoodItem { name = "food" });
-        shopList.Add(new WaterItem { name = "water" });
-        shopList.Add(new GloveItem { type = "glove",rarity=1 });
-        shopElements = new List<UIShopElement>();
-        GenerateList(shopList);*/
     }
 
 

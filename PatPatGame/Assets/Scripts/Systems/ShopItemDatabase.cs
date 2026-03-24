@@ -34,6 +34,7 @@ public class FoodItem : ShopItem
     public int    rarity;
     public float  foodAmount;
     public Texture2D image;
+    public GameObject obj;
 }
 
 // --- Vanduo ---
@@ -44,6 +45,7 @@ public class WaterItem : ShopItem
     public int    rarity;
     public float  waterAmount;
     public Texture2D image;
+    public GameObject obj;
 }
 
 // --- Lygio kėlimas ---

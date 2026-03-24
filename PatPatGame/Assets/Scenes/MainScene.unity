@@ -345,6 +345,10 @@ PrefabInstance:
       propertyPath: shopUI
       value: 
       objectReference: {fileID: 2077473942}
+    - target: {fileID: 739652497397609025, guid: 6ba37659dbc651e8286d4f6b334e248b, type: 3}
+      propertyPath: shopItemDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: b133cc68de756ed4da7abfaa5da2a848, type: 2}
     - target: {fileID: 8047763040432634985, guid: 6ba37659dbc651e8286d4f6b334e248b, type: 3}
       propertyPath: m_Name
       value: Systems

@@ -88,6 +88,10 @@ public class UIShopElement
         SetEnabledIfBalanceIsEnough();
     }
 
+    /// <summary>
+    /// Sets shop element as enabled or disabled depending on
+    /// player balance (amount of money that the player has)
+    /// </summary>
     public void SetEnabledIfBalanceIsEnough()
     {
         VisualElement elementToDisable;
