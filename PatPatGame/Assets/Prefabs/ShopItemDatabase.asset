@@ -64,21 +64,21 @@ MonoBehaviour:
     rarity: 3
     foodAmount: 0.1
     image: {fileID: 0}
-    obj: {fileID: 0}
+    obj: {fileID: 5947992764154085807, guid: 08154c48c4e9f8740ac1b08869a566c8, type: 3}
   - gameObjectId: 2004
     price: 92
     name: Feast
     rarity: 4
     foodAmount: 0.1
     image: {fileID: 0}
-    obj: {fileID: 0}
+    obj: {fileID: 5947992764154085807, guid: b0eaf677719fa0a47bbe11dbfab82ef2, type: 3}
   - gameObjectId: 2005
     price: 150
     name: Delicacy
     rarity: 5
     foodAmount: 0.1
     image: {fileID: 0}
-    obj: {fileID: 0}
+    obj: {fileID: 1027504390973873576, guid: 7bf9ae9a0ba73004c88fe7ea2d9d8641, type: 3}
   waterPrices:
   - gameObjectId: 3001
     price: 25
@@ -86,35 +86,35 @@ MonoBehaviour:
     rarity: 1
     waterAmount: 0.1
     image: {fileID: 0}
-    obj: {fileID: 0}
+    obj: {fileID: 2653841085286044188, guid: c143d046d1a85654db8db4356ffeb7a4, type: 3}
   - gameObjectId: 3002
     price: 36
     name: Cup
     rarity: 2
     waterAmount: 0.1
     image: {fileID: 0}
-    obj: {fileID: 0}
+    obj: {fileID: 2653841085286044188, guid: a90ad23e7b9ee7e48aa3665b694fbc8d, type: 3}
   - gameObjectId: 3003
     price: 58
     name: Bottle
     rarity: 3
     waterAmount: 0.1
     image: {fileID: 0}
-    obj: {fileID: 0}
+    obj: {fileID: 2653841085286044188, guid: 6064abb1fa662e74e8102bfeaffcbc1d, type: 3}
   - gameObjectId: 3004
     price: 92
     name: Jug
     rarity: 4
     waterAmount: 0.1
     image: {fileID: 0}
-    obj: {fileID: 0}
+    obj: {fileID: 2653841085286044188, guid: ad8dfc9a4a964234f8bc2bad1e500fec, type: 3}
   - gameObjectId: 3005
     price: 150
     name: Spring
     rarity: 5
     waterAmount: 0.1
     image: {fileID: 0}
-    obj: {fileID: 0}
+    obj: {fileID: 2653841085286044188, guid: 1cb966ecd8c079743b955304d6679508, type: 3}
   levelUpPrices:
   - gameObjectId: 4201
     price: 680

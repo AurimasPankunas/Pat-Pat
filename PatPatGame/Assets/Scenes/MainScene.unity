@@ -259,6 +259,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
+--- !u!114 &255631873 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2498610124705318118, guid: 6f8fbd029dc9d574ab15a07f594c5771, type: 3}
+  m_PrefabInstance: {fileID: 3457848450626814494}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aff895b5b13a43e43ad371dd910e3aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &292877049 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6398506484677247286, guid: 5886d8bdd566bee4d9be95d8a90644c3, type: 3}
@@ -346,9 +357,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2077473942}
     - target: {fileID: 739652497397609025, guid: 6ba37659dbc651e8286d4f6b334e248b, type: 3}
-      propertyPath: shopItemDatabase
+      propertyPath: conveyorBelt
       value: 
-      objectReference: {fileID: 11400000, guid: b133cc68de756ed4da7abfaa5da2a848, type: 2}
+      objectReference: {fileID: 255631873}
+    - target: {fileID: 739652497397609025, guid: 6ba37659dbc651e8286d4f6b334e248b, type: 3}
+      propertyPath: buyCooldownTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8047763040432634985, guid: 6ba37659dbc651e8286d4f6b334e248b, type: 3}
       propertyPath: m_Name
       value: Systems
@@ -1250,6 +1265,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2498610124705318118, guid: 6f8fbd029dc9d574ab15a07f594c5771, type: 3}
+      propertyPath: speed
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 2498610124705318118, guid: 6f8fbd029dc9d574ab15a07f594c5771, type: 3}
       propertyPath: testObject
       value: 

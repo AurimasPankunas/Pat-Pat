@@ -13,9 +13,6 @@ public class UIShopFunc : MonoBehaviour
     public Button _selectedCategory;
     private VisualElement _ListContainer;
 
-    private float lastAnimationTime = 0f;
-    public float moneySpentCooldown = 0.15f;
-
     [SerializeField] private VisualTreeAsset ShopElement;
     [SerializeField] private VisualTreeAsset ShopElementDescription;
     [SerializeField] private VisualTreeAsset ShopElementLong;
@@ -164,10 +161,6 @@ public class UIShopFunc : MonoBehaviour
 
     public void SubtractMoneyAnimation(double price)
     {
-        if (Time.time < lastAnimationTime + moneySpentCooldown)
-        {
-            return;
-        }
         Label _moneySpentAnim = new Label("-" + price.ToString("N") + "$");
         _moneySpentAnim.AddToClassList("MoneySpent");
         _moneyAmount.Add(_moneySpentAnim);
@@ -179,7 +172,6 @@ public class UIShopFunc : MonoBehaviour
         _moneySpentAnim.schedule.Execute(() => {
             _moneySpentAnim.RemoveFromHierarchy();
         }).ExecuteLater(700);
-        lastAnimationTime = Time.time;
     }
 
     public void OnDisable()

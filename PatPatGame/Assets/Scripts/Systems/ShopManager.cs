@@ -1,4 +1,3 @@
-using Mono.Cecil;
 using System.Collections.Generic;
 using System.Dynamic;
 using Unity.VisualScripting;
@@ -11,6 +10,9 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private UIShopFunc shopUI;
     [SerializeField] private ShopItemDatabase shopItemDatabase;
     private List<ShopItem> shopList;
+
+    public float buyCooldownTime = 0.5f;
+    private float buyCooldown = 0.5f;
 
     void Start()
     {
@@ -26,6 +28,9 @@ public class ShopManager : MonoBehaviour
     void Update()
     {
         shopUI.SetMoneyAmount(playerBalance.money);
+        if (buyCooldown > 0){
+            buyCooldown -= Time.deltaTime;
+        }
     }
 
     /// <summary>
@@ -34,8 +39,9 @@ public class ShopManager : MonoBehaviour
     /// <param name="shopItem">Shop item that was clicked</param>
     public void ShopItemClicked(ShopItem shopItem)
     {
-        if (playerBalance.money >= shopItem.price)
+        if (playerBalance.money >= shopItem.price && buyCooldown <= 0)
         {
+            buyCooldown = buyCooldownTime;
             shopUI.SubtractMoneyAnimation(shopItem.price);
             playerBalance.SubtractMoney(shopItem.price);
             switch (shopItem)
