@@ -29,13 +29,17 @@ public class UIAnimalStatsFunc : MonoBehaviour
 
     void Update()
     {
-        SetName(animal.AnimalName);
-        SetHappiness(animal.Happiness);
-        SetWater(animal.Water);
-        SetFood(animal.Food);
-        SetBond(animal.Bond);
-        SetLevel(animal.Level);
-        SetRarity(animal.Rarity);
+        if (animal != null)
+        {
+            SetName(animal.AnimalName);
+            SetHappiness(animal.Happiness);
+            SetWater(animal.Water);
+            SetFood(animal.Food);
+            SetBond(animal.Bond);
+            SetLevel(animal.Level);
+            SetRarity(animal.Rarity);
+        }
+        
     }
 
 
