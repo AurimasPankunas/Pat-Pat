@@ -99,8 +99,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3456465284869039878}
-  - component: {fileID: -3961834702489088016}
-  - component: {fileID: 1205460116836846544}
   m_Layer: 0
   m_Name: Conveyor
   m_TagString: Untagged
@@ -126,42 +124,6 @@ Transform:
   - {fileID: 7844197066111249659}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3961834702489088016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2773898688103590385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aff895b5b13a43e43ad371dd910e3aa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ConveyorBelt
-  speed: 100
-  direction: {x: 0, y: 0, z: 0}
-  onBelt: []
---- !u!65 &1205460116836846544
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2773898688103590385}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.2, y: 1, z: 5}
-  m_Center: {x: 0.2, y: 0.5, z: -3}
 --- !u!1 &6577990845756740843
 GameObject:
   m_ObjectHideFlags: 0
