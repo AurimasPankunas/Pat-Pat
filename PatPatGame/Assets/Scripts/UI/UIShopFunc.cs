@@ -13,14 +13,10 @@ public class UIShopFunc : MonoBehaviour
     public Button _selectedCategory;
     private VisualElement _ListContainer;
 
-    private float lastAnimationTime = 0f;
-    public float moneySpentCooldown = 0.15f;
-
     [SerializeField] private VisualTreeAsset ShopElement;
     [SerializeField] private VisualTreeAsset ShopElementDescription;
     [SerializeField] private VisualTreeAsset ShopElementLong;
 
-    //private List<ShopItem> shopList;
     private List<UIShopElement> shopElements;
     void Awake()
     {
@@ -42,12 +38,6 @@ public class UIShopFunc : MonoBehaviour
         _categories[2].RegisterCallback<ClickEvent>(OnCategoryClick);
 
         shopElements = new List<UIShopElement>();
-        /*shopList = new List<ShopItem>();
-        shopList.Add(new FoodItem { name = "food" });
-        shopList.Add(new WaterItem { name = "water" });
-        shopList.Add(new GloveItem { type = "glove",rarity=1 });
-        shopElements = new List<UIShopElement>();
-        GenerateList(shopList);*/
     }
 
 
@@ -171,10 +161,6 @@ public class UIShopFunc : MonoBehaviour
 
     public void SubtractMoneyAnimation(double price)
     {
-        if (Time.time < lastAnimationTime + moneySpentCooldown)
-        {
-            return;
-        }
         Label _moneySpentAnim = new Label("-" + price.ToString("N") + "$");
         _moneySpentAnim.AddToClassList("MoneySpent");
         _moneyAmount.Add(_moneySpentAnim);
@@ -186,7 +172,6 @@ public class UIShopFunc : MonoBehaviour
         _moneySpentAnim.schedule.Execute(() => {
             _moneySpentAnim.RemoveFromHierarchy();
         }).ExecuteLater(700);
-        lastAnimationTime = Time.time;
     }
 
     public void OnDisable()

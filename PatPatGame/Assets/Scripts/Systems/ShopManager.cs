@@ -1,12 +1,18 @@
 using System.Collections.Generic;
+using System.Dynamic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
     [SerializeField] public PlayerBalance playerBalance;
+    [SerializeField] private ConveyorBelt conveyorBelt;
     [SerializeField] private UIShopFunc shopUI;
     [SerializeField] private ShopItemDatabase shopItemDatabase;
     private List<ShopItem> shopList;
+
+    public float buyCooldownTime = 0.5f;
+    private float buyCooldown = 0.5f;
 
     void Start()
     {
@@ -22,6 +28,9 @@ public class ShopManager : MonoBehaviour
     void Update()
     {
         shopUI.SetMoneyAmount(playerBalance.money);
+        if (buyCooldown > 0){
+            buyCooldown -= Time.deltaTime;
+        }
     }
 
     /// <summary>
@@ -30,27 +39,35 @@ public class ShopManager : MonoBehaviour
     /// <param name="shopItem">Shop item that was clicked</param>
     public void ShopItemClicked(ShopItem shopItem)
     {
-        if (playerBalance.money >= shopItem.price)
+        if (playerBalance.money >= shopItem.price && buyCooldown <= 0)
         {
+            buyCooldown = buyCooldownTime;
             shopUI.SubtractMoneyAnimation(shopItem.price);
             playerBalance.SubtractMoney(shopItem.price);
             switch (shopItem)
             {
                 case FoodItem:
                     FoodItem fitem = (FoodItem)shopItem;
-                    Debug.Log(fitem.name);
+                    //Debug.Log(fitem.name);
                     // Do thing for food item
+                    if (fitem.obj != null){
+                        conveyorBelt.SpawnItemOnBelt(Instantiate(fitem.obj));
+                    }
+                    else Debug.Log($"GameObject not assigned to FoodItem {fitem.name}");
                     break;
                 case WaterItem:
                     WaterItem witem = (WaterItem)shopItem;
-                    Debug.Log(witem.name);
+                    //Debug.Log(witem.name);
                     // Do thing for water item
-                    break;
+                    if (witem.obj != null){
+                        conveyorBelt.SpawnItemOnBelt(Instantiate(witem.obj));
+                    }
+                    else Debug.Log($"GameObject not assigned to WaterItem {witem.name}");
+                        break;
                 case GloveItem:
                     GloveItem gitem = (GloveItem)shopItem;
-                    Debug.Log(gitem.type);
                     // Do thing for glove item
-
+                    playerBalance.IncrementGloveRarity();
                     // Update Glove upgrade attributes in UI
                     shopUI.ClearList();
                     SetGloveUpgradeElement();
