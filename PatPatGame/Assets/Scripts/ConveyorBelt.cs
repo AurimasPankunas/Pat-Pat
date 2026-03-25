@@ -6,6 +6,7 @@ public class ConveyorBelt : MonoBehaviour
 {
     public float speed;
     public Vector3 direction;
+    public Transform spawnPosition;
     public List<GameObject> onBelt;
     private GameObject Item;
 
@@ -46,6 +47,6 @@ public class ConveyorBelt : MonoBehaviour
         Item = gameObject;
         Rigidbody rb = gameObject.GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
-        gameObject.transform.position = transform.position + Vector3.up;
+        gameObject.transform.position = spawnPosition.position;
     }
 }
