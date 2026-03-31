@@ -93,19 +93,9 @@ public class SaveManager : MonoBehaviour
 
     void Awake() 
     {
-        animals = FindObjectsByType<Animal>(FindObjectsSortMode.None);
-
         if (File.Exists(SaveFileName()))
         {
             Load();
-        }
-        else
-        {
-            // No save file → initialize animals with default values
-            foreach (Animal animal in animals)
-            {
-                animal.Initialize(animal.Rarity);
-            }
         }
         InvokeRepeating(nameof(Save), autosaveTimeSeconds, autosaveTimeSeconds);
     }
