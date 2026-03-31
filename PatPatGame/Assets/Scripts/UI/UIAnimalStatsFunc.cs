@@ -5,41 +5,99 @@ public class UIAnimalStatsFunc : MonoBehaviour
 {
     private UIDocument _document;
     private Label _animalName;
+    private VisualElement _containerStats;
+    private VisualElement _containerEmpty;
+    private Button _buttonSpotNotBought;
+    private Label _buttonSpotNotBoughtPrice;
     private ProgressBar _happyBar;
     private ProgressBar _waterBar;
     private ProgressBar _foodBar;
     private ProgressBar _bondBar;
     private Label _levelAmount;
+
+    /// Might not need serialize fields when SpotManager 
+    /// or something is implemented
     [SerializeField] private Animal animal;
+    [SerializeField] private PlayerBalance playerBalance;
+    private double spotPrice = 50;
+    private bool isBoughtSpot = false;
 
     private string[] rarityColors = {"#000000", "#A15505", "#727D8E", "#BF9304", "#A42DCB" };
     void Start()
     {
         // Gets the document on the gameObject that has the UI elements 
         _document = GetComponent<UIDocument>();
-        
+
         // Grabbing UI elements from the document
+        _containerStats = _document.rootVisualElement.Q<VisualElement>("StatsContainer");
         _animalName = _document.rootVisualElement.Q<Label>("NameLabel");
         _happyBar = _document.rootVisualElement.Q<ProgressBar>("HappyBar");
         _waterBar = _document.rootVisualElement.Q<ProgressBar>("WaterBar");
         _foodBar = _document.rootVisualElement.Q<ProgressBar>("FoodBar");
         _bondBar = _document.rootVisualElement.Q<ProgressBar>("BondBar");
         _levelAmount = _document.rootVisualElement.Q<Label>("LvlAmount");
+
+        _containerEmpty = _document.rootVisualElement.Q<VisualElement>("SpotEmptyContainer");
+        _buttonSpotNotBought = _document.rootVisualElement.Q<Button>("SpotBuyButton");
+        _buttonSpotNotBoughtPrice = _document.rootVisualElement.Q<Label>("SpotPriceLabel");
+
+        // Setting methods to buttons
+        _buttonSpotNotBought.RegisterCallback<ClickEvent>(OnClickBuySpot);
+
+        // Sets the initial visuals depending on if:
+        // There is(n't) an animal or the spot has been bought
+        if (animal != null){ 
+            SetName(animal.AnimalName);
+            SetLevel(animal.Level);
+            SetRarity(animal.Rarity);
+        }
+        else{
+            _containerStats.style.display = DisplayStyle.None;
+            if (isBoughtSpot){
+                _containerEmpty.style.display = DisplayStyle.Flex;
+            }
+            else {
+                SetButtonEnabledIfBalanceIsEnough(_buttonSpotNotBought, spotPrice);
+                _buttonSpotNotBought.style.display = DisplayStyle.Flex;
+            }
+        }
     }
 
     void Update()
     {
-        if (animal != null)
-        {
-            SetName(animal.AnimalName);
+        SetButtonEnabledIfBalanceIsEnough(_buttonSpotNotBought, spotPrice);
+        if (animal != null){
             SetHappiness(animal.Happiness);
             SetWater(animal.Water);
             SetFood(animal.Food);
             SetBond(animal.Bond);
-            SetLevel(animal.Level);
-            SetRarity(animal.Rarity);
         }
-        
+    }
+
+    /// <summary>
+    /// Sets buy button as enabled or disabled depending on price and
+    /// player balance (amount of money that the player has)
+    /// </summary>
+    public void SetButtonEnabledIfBalanceIsEnough(Button button, double price)
+    {
+        if (playerBalance == null){
+            return;
+        }
+        VisualElement elementToDisable = button;
+        if (playerBalance.money < price)
+        {
+            if (elementToDisable.enabledSelf)
+            {
+                elementToDisable.SetEnabled(false);
+            }
+        }
+        else
+        {
+            if (!elementToDisable.enabledSelf)
+            {
+                elementToDisable.SetEnabled(true);
+            }
+        }
     }
 
 
@@ -68,6 +126,8 @@ public class UIAnimalStatsFunc : MonoBehaviour
     /// <param name="value">value from 0 to 1</param>
     public void SetHappiness(double value)
     {
+        if (_happyBar.value == (float)value)
+            return;
         _happyBar.value = (float)value;
     }
 
@@ -77,6 +137,8 @@ public class UIAnimalStatsFunc : MonoBehaviour
     /// <param name="value">value from 0 to 1</param>
     public void SetWater(double value)
     {
+        if (_waterBar.value == (float)value)
+            return;
         _waterBar.value = (float)value;
     }
 
@@ -86,6 +148,8 @@ public class UIAnimalStatsFunc : MonoBehaviour
     /// <param name="value">value from 0 to 1</param>
     public void SetFood(double value)
     {
+        if (_foodBar.value == (float)value)
+            return;
         _foodBar.value = (float)value;
     }
 
@@ -95,6 +159,8 @@ public class UIAnimalStatsFunc : MonoBehaviour
     /// <param name="value">value from 0 to 4</param>
     public void SetBond(double value)
     {
+        if (_bondBar.value == (float)value)
+            return;
         _bondBar.value = (float)value;
     }
 
@@ -120,5 +186,100 @@ public class UIAnimalStatsFunc : MonoBehaviour
         }
         else
             SetNameColor(rarityColors[0]);
+    }
+
+    /// <summary>
+    /// Sets the price of the spot
+    /// </summary>
+    /// <param name="price"></param>
+    public void SetSpotPrice(double price)
+    {
+        spotPrice = price;
+        _buttonSpotNotBoughtPrice.text = price.ToString("N0");
+    }
+
+    /// <summary>
+    /// Set whether the spot has been bought or not
+    /// </summary>
+    /// <param name="isBought"></param>
+    public void SetIsBoughtSpot(bool isBought)
+    {
+        if (isBought != isBoughtSpot){
+            isBoughtSpot = isBought;
+
+            // Revert UI if false
+            if (!isBoughtSpot) {
+                _buttonSpotNotBought.RegisterCallback<ClickEvent>(OnClickBuySpot);
+                _containerStats.style.display = DisplayStyle.None;
+                _containerEmpty.style.display = DisplayStyle.None;
+                _buttonSpotNotBought.style.display = DisplayStyle.Flex;
+                return; 
+            }
+
+            // If animal is set, show stats
+            if (animal != null){
+                _containerEmpty.style.display = DisplayStyle.None;
+                _buttonSpotNotBought.style.display = DisplayStyle.None;
+                _containerStats.style.display = DisplayStyle.Flex;
+                SetName(animal.AnimalName);
+                SetLevel(animal.Level);
+                SetRarity(animal.Rarity);
+            }
+            else{
+                _containerStats.style.display = DisplayStyle.None;
+                _buttonSpotNotBought.style.display = DisplayStyle.None;
+                _containerEmpty.style.display = DisplayStyle.Flex;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Set the animal to show
+    /// </summary>
+    /// <param name="animal"></param>
+    public void SetAnimal(Animal animal)
+    {
+        this.animal = animal;
+        SetName(animal.AnimalName);
+        SetLevel(animal.Level);
+        SetRarity(animal.Rarity);
+        if (isBoughtSpot){
+            _containerEmpty.style.display = DisplayStyle.None;
+            _containerStats.style.display = DisplayStyle.Flex;
+        }
+    }
+
+    /// <summary>
+    /// Set player balance so buy button(s) can enable/disable
+    /// depending on player's balance
+    /// </summary>
+    /// <param name="playerBalance"></param>
+    public void SetPlayerBalance(PlayerBalance playerBalance)
+    {
+        this.playerBalance = playerBalance;
+    }
+
+    /// <summary>
+    /// Method to execute when the spot is being bought
+    /// </summary>
+    /// <param name="evt"></param>
+    public void OnClickBuySpot(ClickEvent evt)
+    {
+        // Implement SpotManager.OnBuySpot() or something 
+        // here instead of or along with the code below
+        if (playerBalance == null){
+            Debug.Log("PlayerBalance on UIAnimalStats is null, price will react to balance amount if it is set");
+            SetIsBoughtSpot(true);
+            return;
+        }
+        if (playerBalance.money >= spotPrice){
+            playerBalance.SubtractMoney(spotPrice);
+            SetIsBoughtSpot(true);
+        }
+    }
+
+    public void OnDisable()
+    {
+        _buttonSpotNotBought.UnregisterCallback<ClickEvent>(OnClickBuySpot);
     }
 }
