@@ -85,7 +85,7 @@
 
 .MoneySpent {
     font-size: 18px;
-    -unity-font-definition: url("project://database/Assets/UI/Fonts/Livvic/Livvic-Medium.ttf?fileID=12800000&guid=c17b6ee01c40d454e83c8c402f195778&type=3#Livvic-Medium");
+    -unity-font-definition: url("project://database/Assets/UI/Fonts/Livvic/Livvic-Bold.ttf?fileID=12800000&guid=a408a2f38d08b2a429d13a1db7e7460e&type=3#Livvic-Bold");
     -unity-text-align: middle-left;
     width: auto;
     margin-top: 0;

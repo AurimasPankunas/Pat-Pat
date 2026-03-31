@@ -78,7 +78,7 @@ public class UIShopFunc : MonoBehaviour
     /// <param name="value"></param>
     public void SetMoneyAmount(double value)
     {
-        string price = value.ToString("N") + "$";
+        string price = value.ToString("N");
         if (_moneyAmount.text != price)
         { _moneyAmount.text = price; 
             foreach(UIShopElement item in shopElements)
@@ -161,7 +161,7 @@ public class UIShopFunc : MonoBehaviour
 
     public void SubtractMoneyAnimation(double price)
     {
-        Label _moneySpentAnim = new Label("-" + price.ToString("N") + "$");
+        Label _moneySpentAnim = new Label("-" + price.ToString("N"));
         _moneySpentAnim.AddToClassList("MoneySpent");
         _moneyAmount.Add(_moneySpentAnim);
         // So that MoneySpent is added before MoneySpentAnimation is
