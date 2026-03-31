@@ -46,6 +46,7 @@ public class UIAnimalStatsFunc : MonoBehaviour
 
         // Sets the initial visuals depending on if:
         // There is(n't) an animal or the spot has been bought
+
         if (animal != null){ 
             SetName(animal.AnimalName);
             SetLevel(animal.Level);
@@ -53,19 +54,19 @@ public class UIAnimalStatsFunc : MonoBehaviour
         }
         else{
             _containerStats.style.display = DisplayStyle.None;
-            if (isBoughtSpot){
-                _containerEmpty.style.display = DisplayStyle.Flex;
-            }
-            else {
+            _containerEmpty.style.display = DisplayStyle.Flex;
+            if (!isBoughtSpot)
+            {
                 SetButtonEnabledIfBalanceIsEnough(_buttonSpotNotBought, spotPrice);
-                _buttonSpotNotBought.style.display = DisplayStyle.Flex;
+                ShowBuySpotUI();
             }
         }
     }
 
     void Update()
     {
-        SetButtonEnabledIfBalanceIsEnough(_buttonSpotNotBought, spotPrice);
+        if(!isBoughtSpot)
+            SetButtonEnabledIfBalanceIsEnough(_buttonSpotNotBought, spotPrice);
         if (animal != null){
             SetHappiness(animal.Happiness);
             SetWater(animal.Water);
@@ -188,6 +189,29 @@ public class UIAnimalStatsFunc : MonoBehaviour
             SetNameColor(rarityColors[0]);
     }
 
+    public void ShowBuySpotUI()
+    {
+        _buttonSpotNotBought.style.display = DisplayStyle.Flex;
+        _containerStats.style.display = DisplayStyle.None;
+        _containerEmpty.style.display = DisplayStyle.None;
+    }
+
+    /// <summary>
+    /// If no animal is present shows empty spot
+    /// </summary>
+    public void ShowAnimalStatsUI()
+    {
+        _buttonSpotNotBought.style.display = DisplayStyle.None;
+        if (animal == null){
+            _containerStats.style.display = DisplayStyle.None;
+            _containerEmpty.style.display = DisplayStyle.Flex;
+        }
+        else{
+            _containerStats.style.display = DisplayStyle.Flex;
+            _containerEmpty.style.display = DisplayStyle.None;
+        }
+    }
+
     /// <summary>
     /// Sets the price of the spot
     /// </summary>
@@ -209,27 +233,17 @@ public class UIAnimalStatsFunc : MonoBehaviour
 
             // Revert UI if false
             if (!isBoughtSpot) {
-                _buttonSpotNotBought.RegisterCallback<ClickEvent>(OnClickBuySpot);
-                _containerStats.style.display = DisplayStyle.None;
-                _containerEmpty.style.display = DisplayStyle.None;
-                _buttonSpotNotBought.style.display = DisplayStyle.Flex;
+                ShowBuySpotUI();
                 return; 
             }
 
             // If animal is set, show stats
             if (animal != null){
-                _containerEmpty.style.display = DisplayStyle.None;
-                _buttonSpotNotBought.style.display = DisplayStyle.None;
-                _containerStats.style.display = DisplayStyle.Flex;
                 SetName(animal.AnimalName);
                 SetLevel(animal.Level);
                 SetRarity(animal.Rarity);
             }
-            else{
-                _containerStats.style.display = DisplayStyle.None;
-                _buttonSpotNotBought.style.display = DisplayStyle.None;
-                _containerEmpty.style.display = DisplayStyle.Flex;
-            }
+            ShowAnimalStatsUI();
         }
     }
 
@@ -244,8 +258,7 @@ public class UIAnimalStatsFunc : MonoBehaviour
         SetLevel(animal.Level);
         SetRarity(animal.Rarity);
         if (isBoughtSpot){
-            _containerEmpty.style.display = DisplayStyle.None;
-            _containerStats.style.display = DisplayStyle.Flex;
+            ShowAnimalStatsUI();
         }
     }
 
