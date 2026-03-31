@@ -50,9 +50,9 @@ MonoBehaviour:
   sourceAsset: {fileID: 9197481963319205126, guid: 3b28995a1e5a43a4e9048043d837c4fd, type: 3}
   m_SortingOrder: 0
   m_Position: 0
-  m_WorldSpaceSizeMode: 0
-  m_WorldSpaceWidth: 1060
-  m_WorldSpaceHeight: 710.2
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1080
+  m_WorldSpaceHeight: 850
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
@@ -68,3 +68,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ef955844d5cc94eae0b38c5e693793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  animal: {fileID: 0}
