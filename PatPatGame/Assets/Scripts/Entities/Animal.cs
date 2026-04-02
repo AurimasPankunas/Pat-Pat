@@ -14,7 +14,7 @@ public class Animal : MonoBehaviour
     public double Food      { get; private set; }
     public double Water     { get; private set; }
     public double Bond      { get; private set; }
-
+//LIKES INPLEMENTED
     public int Likes => (int)(1 +
         1 *
         (RarityMultiplier(Rarity) * 1.50) *
