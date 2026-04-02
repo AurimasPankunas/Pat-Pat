@@ -43,6 +43,11 @@ public class UIAnimalStatsFunc : MonoBehaviour
         
     }
 
+    public void SetAnimal(Animal animal)
+    {
+        this.animal = animal;
+    }
+
 
     /// <summary>
     /// Set animal name

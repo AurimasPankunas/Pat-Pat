@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class PlayerBalance : MonoBehaviour
 {
@@ -9,12 +10,10 @@ public class PlayerBalance : MonoBehaviour
     [SerializeField] private float MAX_AFK_HOURS = 15 * 24;
     public int gloveRarity { get; private set; } = 0;
     public event Action<int> OnGloveRarityChanged;
-    private List<Animal> animals;
+    [SerializeField] private AnimalManager animalManager;
 
     void Awake()
     {
-        animals = FindObjectsByType<Animal>(FindObjectsSortMode.None).ToList();
-
         // Online pajamų skaičiavimas: kas sekundę
         InvokeRepeating(nameof(CalculateOneSecondIncomeForPets), 0, 1);
     }
@@ -68,6 +67,7 @@ public class PlayerBalance : MonoBehaviour
 
     private void CalculateOneSecondIncomeForPets()
     {
+        List<Animal> animals = animalManager.spotAnimals;
         double total = 0;
         foreach (Animal animal in animals)
         {
@@ -143,8 +143,7 @@ public class PlayerBalance : MonoBehaviour
 
     public void Load(PlayerBalanceData data, double hours)
     {
-        if (animals == null)
-            animals = FindObjectsByType<Animal>(FindObjectsSortMode.None).ToList();
+        List<Animal> animals = animalManager.spotAnimals;
 
         double earnedMoney = SimulateShelter(animals, hours, false);
         this.money = data.money + earnedMoney;

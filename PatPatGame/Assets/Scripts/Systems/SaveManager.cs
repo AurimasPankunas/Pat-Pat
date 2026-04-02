@@ -24,20 +24,12 @@ public class SaveManager : MonoBehaviour
     {
         public TimeKeeperData timeKeeperData;
         public PlayerBalanceData playerBalanceData;
-        public AnimalData[] animals;
     }
 
     // Use this to call the load method(s) for every class instance
     private void HandleLoadData()
     {
         timeKeeper.Load(saveData.timeKeeperData);
-        if (saveData.animals != null)
-        {
-            for (int i = 0; i < animals.Length && i < saveData.animals.Length; i++)
-            {
-                animals[i].Load(saveData.animals[i]);
-            }
-        }
         playerBalance.Load(saveData.playerBalanceData, timeKeeper.GetHoursSinceLastSave());
     }
 
@@ -46,13 +38,6 @@ public class SaveManager : MonoBehaviour
     {
         saveData.timeKeeperData = timeKeeper.Save();
         saveData.playerBalanceData = playerBalance.Save();
-
-        saveData.animals = new AnimalData[animals.Length];
-
-        for(int i = 0; i < animals.Length; i++) 
-        {
-            saveData.animals[i] = animals[i].Save();
-        }
     }
 
 
