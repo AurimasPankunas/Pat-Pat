@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16374023228a8c3bbbb6ce75178e090b, type: 3}
   m_Name: FrogSO
   m_EditorClassIdentifier: Assembly-CSharp::AnimalType
-  id: 
+  id: frog
   size: 0
-  fullPrefab: {fileID: 0}
+  fullPrefab: {fileID: 440886727297120880, guid: ebfea2d06107982498c128f3df8dfe0a, type: 3}
   miniPrefab: {fileID: 0}

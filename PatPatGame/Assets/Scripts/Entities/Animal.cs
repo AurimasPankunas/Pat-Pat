@@ -8,6 +8,9 @@ public class Animal : MonoBehaviour
     private const double DrainPerSecond   = 1.0 / (72.0 * 3600.0);
 
     public AnimalData data;
+    [SerializeField] private string animalName;
+    [SerializeField] private AnimalType type;
+    [SerializeField] private int rarity = 1;
 
     public int likes => (int)(1 +
         1 *
@@ -25,9 +28,13 @@ public class Animal : MonoBehaviour
     }
     private static double BondEffect(double bond) => 1.0 + bond * 0.5;
 
-    public void Initialize(AnimalData data)
+    public void Initialize(string name, AnimalType type, int rarity)
     {
-        this.data = data;
+        data = new AnimalData(type.id, name, rarity);
+    }
+    public void Initialize()
+    {
+        data = new AnimalData(type.id, animalName, rarity);
     }
 
     public void UpdateHappiness(bool isOnline, double afkProgress = 0, double dt = 1)
@@ -103,15 +110,5 @@ public class Animal : MonoBehaviour
     public void SetAnimalName(string name)
     {
         data.animalName = name;
-    }
-
-    public AnimalData Save()
-    {
-        return data;
-    }
-
-    public void Load(AnimalData data)
-    {
-        this.data = data;
     }
 }

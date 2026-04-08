@@ -9,31 +9,46 @@ public class AnimalRegister : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating(nameof(TestFunc), 0f, 5f);
+        InvokeRepeating(nameof(TestFunc), 0f, 5f);  // for testing
     }
 
-    public void RegisterAnimal(AnimalData animalData)
+    /// <summary>
+    /// Adds animal data instance to the register list
+    /// </summary>
+    public void AddAnimalToRegister(AnimalData animalData)
     {
         registerAnimals.Add(animalData);
     }
 
-    public void RemoveAnimal(int index)
+    /// <summary>
+    /// Removes animal from the register list based on index
+    /// </summary>
+    public AnimalData RemoveAnimal(int index)
     {
         if (!(index < registerAnimals.Count))
         {
             Debug.LogWarning("Index " + index + " is outside of registered animals range");
-            return;
+            return null;
         }
 
+        AnimalData removedAnimal = registerAnimals[index];
         registerAnimals.RemoveAt(index);
+        return removedAnimal;
     }
     
+    /// <summary>
+    /// Removes animal from the register list
+    /// </summary>
+    /// <param name="animal"></param>
     public void RemoveAnimal(AnimalData animal)
     {
         registerAnimals.Remove(animal);
     }
 
-    public AnimalData createRandomAnimal()
+    /// <summary>
+    /// Creates a new animal data instance with randomized stats and puts it in the register
+    /// </summary>
+    public AnimalData CreateRandomAnimal()
     {
         int typeCount = animalManager.types.Count;
         int typeChoice = Random.Range(0, typeCount);
@@ -41,18 +56,24 @@ public class AnimalRegister : MonoBehaviour
         string name = "Bober";
         int rarity = Random.Range(1, 5);
 
-        AnimalData animal = AnimalData.Create(type.id, name, rarity);
-        RegisterAnimal(animal);
+        AnimalData animal = new AnimalData(type.id, name, rarity);
+        AddAnimalToRegister(animal);
 
         return animal;
     }
 
+    // For testing, remove after proper implementation
     private void TestFunc()
     {
-        AnimalData an1 = createRandomAnimal();
-        testAnimal = animalManager.AssignAnimalToSpot(an1, animalManager.spots[0]);
+        AnimalData an1 = CreateRandomAnimal();
+        Spot spot = animalManager.GetSpot("S1");
+        if (spot == null)
+            return;
+        animalManager.AddAnimalToSpot(an1, spot);
+        testAnimal = spot.animal;
         RemoveAnimal(an1);
-        Invoke("RemoveAnimalAfterDelay", 4f);
+        if (testAnimal != null)
+            Invoke("RemoveAnimalAfterDelay", 4f);
     }
 
     private void RemoveAnimalAfterDelay()

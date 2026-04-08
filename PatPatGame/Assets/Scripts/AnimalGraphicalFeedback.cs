@@ -58,6 +58,7 @@ public class AnimalGraphicalFeedback : MonoBehaviour
             tmp.color = new Color(textColor.r, textColor.g, textColor.b, alpha);
 
             //Direct the text towards the player (player camera is used cause nothing else works and I have no idea why)
+            player = Camera.main.gameObject;
             Vector3 dirToPlayer = player.transform.position - textObj.transform.position;
             textObj.transform.rotation = Quaternion.LookRotation(-dirToPlayer);
             yield return null;

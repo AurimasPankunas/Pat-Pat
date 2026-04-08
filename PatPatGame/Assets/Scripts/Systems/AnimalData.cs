@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
 [System.Serializable]
-public struct AnimalData
+public class AnimalData
 {
     public string typeID;
     public string instanceID;
@@ -15,21 +16,23 @@ public struct AnimalData
     public double water;
     public double bond;
 
-    public static AnimalData Create(string typeID, string name, int rarity, int level = 1, double happiness = 1, double food = 1, double water = 1, double bond = 0)
+    public AnimalData(string typeID, string name, int rarity, int level = 1, double happiness = 1, double food = 1, double water = 1, double bond = 0)
     {
-        return new AnimalData
-        {
-            typeID = typeID,
-            instanceID = Guid.NewGuid().ToString(),
-            animalName = name,
-            rarity = rarity,
-            level = level,
-            happiness = happiness,
-            food = food,
-            water = water,
-            bond = bond
-        };
+            this.typeID = typeID;
+            this.instanceID = Guid.NewGuid().ToString();
+            this.animalName = name;
+            this.rarity = rarity;
+            this.level = level;
+            this.happiness = happiness;
+            this.food = food;
+            this.water = water;
+            this.bond = bond;
     }
+}
+
+public enum AnimalStateType
+{
+    Full, Mini, Register
 }
 
 

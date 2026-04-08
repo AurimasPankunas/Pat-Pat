@@ -2,49 +2,85 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-// Manager for placing/removing and keeping track of physical animals (mini animals & spot animals)
+// Manager for placing, removing and keeping track of physical animals (mini animals & spot animals)
 public class AnimalManager : MonoBehaviour
 {
-    public List<AnimalType> types;
-    public List<Spot> spots;
-    public List<MiniAnimal> miniAnimals;
-    public List<Animal> spotAnimals;
+    [field: SerializeField] public List<AnimalType> types { get; private set; }  // all animal types (Scriptable Objects)
+    public List<Spot> spots { get; private set; }
+    public List<MiniAnimal> miniAnimals { get; private set; }
+    public List<Animal> spotAnimals { get; private set; }
     
     private Dictionary<string, AnimalType> typeLookup;
     private Dictionary<string, Spot> spotLookup;
     private Dictionary<Animal, Spot> spotAnimalLookup;
 
-    private void Awake()
-    {
-        Initialize();
-    }
 
-    public void Initialize()
+    /// <summary>
+    /// Gathers and initializes spots and sets up dictionaries
+    /// </summary>
+    public void Initialize(bool isNewSave)
     {
         spots = FindObjectsByType<Spot>(FindObjectsSortMode.None).ToList();
+        miniAnimals = new List<MiniAnimal>();
+        spotAnimals = new List<Animal>();
         spotLookup = spots.ToDictionary(s => s.id, s => s);
         typeLookup = types.ToDictionary(t => t.id, t => t);
         spotAnimalLookup = new Dictionary<Animal, Spot>();
 
         foreach (Spot spot in spots)
+        {
             spot.Initialize(this);
+            Animal spotAnimal = spot.animal;
+            
+            if (spotAnimal == null)
+            continue;
+           
+            if (isNewSave)
+            {
+                spotAnimal.Initialize();
+                spotAnimals.Add(spotAnimal);
+                spotAnimalLookup.Add(spotAnimal, spot);
+                spot.AssignAnimal(spotAnimal);
+            }
+            else
+            {
+                spot.RemoveAnimal();
+                Destroy(spotAnimal.gameObject);
+            }
+            
+        }
     }
 
-
-    public Animal AssignAnimalToSpot(AnimalData animalData, Spot spot)
+    /// <summary>
+    /// Spawns an animal into the scene and assigns it to a spot
+    /// </summary>
+    /// <returns>spawned animal</returns>
+    public Animal AddAnimalToSpot(AnimalData animalData, Spot spot)
     {
         if (GetType(animalData.typeID).size != spot.size)
             return null;
+
+        if (spot.isOccupied)
+            return null;
+
+        // Creating a new animal GameObject
         GameObject prefab = GetType(animalData.typeID).fullPrefab;
         GameObject spawnedObject = Instantiate(prefab, spot.spawnPoint.position, spot.spawnPoint.rotation);
         Animal spawnedAnimal = spawnedObject.GetComponent<Animal>();
         spawnedAnimal.data = animalData;
+
+        // Updating state
         spotAnimals.Add(spawnedAnimal);
         spotAnimalLookup.Add(spawnedAnimal, spot);
         spot.AssignAnimal(spawnedAnimal);
+
         return spawnedAnimal;
     }
 
+    /// <summary>
+    /// Clears the spot occupied by the specified animal and destroys the animal GameObject
+    /// </summary>
+    /// <returns>removed animal instance data</returns>
     public AnimalData RemoveAnimalFromSpot(Animal animal)
     {
         AnimalData data = animal.data;
@@ -56,66 +92,93 @@ public class AnimalManager : MonoBehaviour
         return data;
     }
 
-    public AnimalData DespawnAnimal(Animal animal)
+    /// <summary>
+    /// Clears the spot occupied an the animal and destroys the animal GameObject
+    /// </summary>
+    /// <returns>removed animal instance data</returns>
+    public AnimalData RemoveAnimalFromSpot(Spot spot)
     {
+        Animal animal = spot.animal;
+        if (animal == null)
+        {
+            Debug.LogWarning("Attempting to remove an animal from an empty spot: " + spot.id);
+            return null;
+        }
         AnimalData data = animal.data;
+        spotAnimals.Remove(animal);
+        spot.RemoveAnimal();
+        spotAnimalLookup.Remove(animal);
         Destroy(animal.gameObject);
         return data;
     }
 
+    /// <summary>
+    /// Returns animal type data with the given ID
+    /// </summary>
     public AnimalType GetType(string typeID)
     {
         typeLookup.TryGetValue(typeID, out var def);
         return def;
     }
 
+    /// <summary>
+    /// Returns a spot with the given ID
+    /// </summary>
+    public Spot GetSpot(string spotID)
+    {
+        spotLookup.TryGetValue(spotID, out var spot);
+        return spot;
+    }
+
     public AnimalManagerSaveData Save()
     {
-        AnimalManagerSaveData data = new AnimalManagerSaveData();
-        // data.miniAnimals = miniAnimals.Select(a => a.Save()).ToList();
-        // data.spotAnimals = spotAnimals.Select(a => a.data).ToList();
-        // data.spots = spots.Select(s => s.Save()).ToList();
+        miniAnimals = FindObjectsByType<MiniAnimal>(FindObjectsSortMode.None).ToList();
+
+        AnimalManagerSaveData data = new AnimalManagerSaveData
+        {
+            miniAnimals = miniAnimals.Select(m => new MiniAnimalSaveData(m.data, m.transform.position, m.transform.rotation)).ToList(),
+            spotAnimals = this.spotAnimals.Select(s => new SpotAnimalSaveData(s.data, spotAnimalLookup[s].id)).ToList(),
+        };
         return data;
     }
 
     public void Load(AnimalManagerSaveData data)
     {
-        
+        // data.miniAnimals.ForEach(m => Instantiate...)
+        data.spotAnimals.ForEach(s => AddAnimalToSpot(s.animalData, GetSpot(s.spotID)));
     }
 }
 
 [System.Serializable]
 public struct AnimalManagerSaveData
 {
-    public List<MiniAnimalData> miniAnimals;
-    public List<SpotAnimalData> spotAnimals;
-    // public List<AnimalData> animals; // all animals
-    // public List<SpotData> spots; // which animal is in which spot
-    // public List<MiniAnimalData> miniAnimals; // mini animal locations
-    // public List<RegisterAnimalData> registerAnimals; // animals in the register
+    public List<MiniAnimalSaveData> miniAnimals;
+    public List<SpotAnimalSaveData> spotAnimals;
 }
 
-public struct SpotAnimalData
+[System.Serializable]
+public struct SpotAnimalSaveData
 {
-    public AnimalData animalData;
     public string spotID;
+    public AnimalData animalData;
 
-    public SpotAnimalData(AnimalData animalData, string spotID)
+    public SpotAnimalSaveData(AnimalData animalData, string spotID)
     {
         this.animalData = animalData;
         this.spotID = spotID;
     }
 }
 
-public struct MiniAnimalData
+[System.Serializable]
+public struct MiniAnimalSaveData
 {
     public AnimalData animalData;
     public Vector3 position;
     public Quaternion rotation;
 
-    public MiniAnimalData(AnimalData data, Vector3 position, Quaternion rotation) : this()
+    public MiniAnimalSaveData(AnimalData animalData, Vector3 position, Quaternion rotation) : this()
     {
-        this.animalData = data;
+        this.animalData = animalData;
         this.position = position;
         this.rotation = rotation;
     }

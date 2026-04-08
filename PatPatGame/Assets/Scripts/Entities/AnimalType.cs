@@ -13,8 +13,3 @@ public enum AnimalSize
 {
     Small, Medium, Large
 }
-
-public enum AnimalVersion
-{
-    Full, Mini
-}

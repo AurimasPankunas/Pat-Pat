@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16374023228a8c3bbbb6ce75178e090b, type: 3}
   m_Name: GhostSO
   m_EditorClassIdentifier: Assembly-CSharp::AnimalType
-  id: 
+  id: ghost
   size: 0
-  fullPrefab: {fileID: 0}
+  fullPrefab: {fileID: 2823052259756608225, guid: 31c833bf1d62d164696b6b73b3acf645, type: 3}
   miniPrefab: {fileID: 0}

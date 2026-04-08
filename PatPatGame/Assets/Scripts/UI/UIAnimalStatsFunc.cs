@@ -45,6 +45,10 @@ public class UIAnimalStatsFunc : MonoBehaviour
         // Setting methods to buttons
         _buttonSpotNotBought.RegisterCallback<ClickEvent>(OnClickBuySpot);
 
+        spot.OnSpotAnimalChanged += HandleOnSpotAnimalChanged;
+        HandleOnSpotAnimalChanged(spot.animal);
+        playerBalance = GameManager.Instance.playerBalance;
+
         // Sets the initial visuals depending on if:
         // There is(n't) an animal or the spot has been bought
 
@@ -62,12 +66,6 @@ public class UIAnimalStatsFunc : MonoBehaviour
                 ShowBuySpotUI();
             }
         }
-    }
-
-    void Awake()
-    {
-        spot.OnSpotAnimalChanged += HandleOnSpotAnimalChanged;
-        HandleOnSpotAnimalChanged(spot.animal);
     }
 
     void Update()
@@ -249,12 +247,6 @@ public class UIAnimalStatsFunc : MonoBehaviour
                 return; 
             }
 
-            // If animal is set, show stats
-            // if (animal != null){
-            //     SetName(animal.data.animalName);
-            //     SetLevel(animal.data.level);
-            //     SetRarity(animal.data.rarity);
-            // }
             ShowAnimalStatsUI();
         }
     }
@@ -266,9 +258,13 @@ public class UIAnimalStatsFunc : MonoBehaviour
     public void SetAnimal(Animal animal)
     {
         this.animal = animal;
-        SetName(animal.data.animalName);
-        SetLevel(animal.data.level);
-        SetRarity(animal.data.rarity);
+        if (animal != null)
+        {
+            SetName(animal.data.animalName);
+            SetLevel(animal.data.level);
+            SetRarity(animal.data.rarity);
+        }
+
         if (isBoughtSpot){
             ShowAnimalStatsUI();
         }

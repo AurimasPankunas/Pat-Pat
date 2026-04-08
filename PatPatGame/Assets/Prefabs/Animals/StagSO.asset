@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16374023228a8c3bbbb6ce75178e090b, type: 3}
-  m_Name: FoxSO
+  m_Name: StagSO
   m_EditorClassIdentifier: Assembly-CSharp::AnimalType
-  id: fox
-  size: 1
-  fullPrefab: {fileID: 3615940427258119925, guid: 15080008915b9e84d9c0f60f093494e0, type: 3}
+  id: Stag
+  size: 2
+  fullPrefab: {fileID: 5634958155235700604, guid: 2d90fafe4b2f1c342a9222185a36b1ae, type: 3}
   miniPrefab: {fileID: 0}

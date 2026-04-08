@@ -12,9 +12,9 @@ public class PlayerBalance : MonoBehaviour
     public event Action<int> OnGloveRarityChanged;
     [SerializeField] private AnimalManager animalManager;
 
-    void Awake()
+    public void Initialize()
     {
-        // Online pajamų skaičiavimas: kas sekundę
+        // Calculate shelter income once every seconds while playing
         InvokeRepeating(nameof(CalculateOneSecondIncomeForPets), 0, 1);
     }
 
