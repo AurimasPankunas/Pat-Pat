@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &395724355219751699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6466017321336949560}
+  - component: {fileID: 4450691373523339555}
+  m_Layer: 0
+  m_Name: Register
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6466017321336949560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395724355219751699}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.88714, y: 1.39307, z: 7.0961204}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8303407494739653979}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4450691373523339555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395724355219751699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe7d2363bb193342b87953f55e55474d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalRegister
+  animalManager: {fileID: 8045138864858267655}
+  registerAnimals: []
 --- !u!1 &1747239723235956827
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBalance
   <money>k__BackingField: 0
   MAX_AFK_HOURS: 360
+  animalManager: {fileID: 8045138864858267655}
 --- !u!1 &3148368911997036019
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,8 +231,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveManager
   autosaveTimeSeconds: 60
-  timeKeeper: {fileID: 2989526269022583445}
-  playerBalance: {fileID: 5588511990750435169}
+--- !u!1 &7918604838448879450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2625906520622902210}
+  - component: {fileID: 8045138864858267655}
+  m_Layer: 0
+  m_Name: AnimalManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2625906520622902210
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7918604838448879450}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.47592, y: 1.44949, z: 7.0961204}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8303407494739653979}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8045138864858267655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7918604838448879450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484eb7010e01714619f952bcfd638644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalManager
+  <types>k__BackingField:
+  - {fileID: 11400000, guid: 8789d23a6cad5e272a928d3a08936fca, type: 2}
+  - {fileID: 11400000, guid: 9c79c6e8342c3f0b19513276e9f0bcbe, type: 2}
+  - {fileID: 11400000, guid: 5fdf73c95587286ae9d25518ee0ab7b1, type: 2}
+  - {fileID: 11400000, guid: 30ccda085f5c5fdc491e4a271709095b, type: 2}
+  - {fileID: 11400000, guid: deb41f628d47b17ed9cbf86a06616f61, type: 2}
 --- !u!1 &8047763040432634985
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +315,8 @@ Transform:
   - {fileID: 3148909404351806366}
   - {fileID: 2351273159717063628}
   - {fileID: 7994665296027051045}
+  - {fileID: 2625906520622902210}
+  - {fileID: 6466017321336949560}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7485577164466220643
@@ -237,3 +334,5 @@ MonoBehaviour:
   playerBalance: {fileID: 5588511990750435169}
   saveManager: {fileID: 7899721590929890696}
   timeKeeper: {fileID: 2989526269022583445}
+  animalManager: {fileID: 8045138864858267655}
+  animalRegister: {fileID: 4450691373523339555}

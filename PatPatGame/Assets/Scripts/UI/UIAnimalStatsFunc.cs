@@ -18,6 +18,7 @@ public class UIAnimalStatsFunc : MonoBehaviour
     /// Might not need serialize fields when SpotManager 
     /// or something is implemented
     [SerializeField] private Animal animal;
+    [SerializeField] private Spot spot;
     [SerializeField] private PlayerBalance playerBalance;
     private double spotPrice = 50;
     private bool isBoughtSpot = false;
@@ -44,13 +45,17 @@ public class UIAnimalStatsFunc : MonoBehaviour
         // Setting methods to buttons
         _buttonSpotNotBought.RegisterCallback<ClickEvent>(OnClickBuySpot);
 
+        spot.OnSpotAnimalChanged += HandleOnSpotAnimalChanged;
+        HandleOnSpotAnimalChanged(spot.animal);
+        playerBalance = GameManager.Instance.playerBalance;
+
         // Sets the initial visuals depending on if:
         // There is(n't) an animal or the spot has been bought
 
         if (animal != null){ 
-            SetName(animal.AnimalName);
-            SetLevel(animal.Level);
-            SetRarity(animal.Rarity);
+            SetName(animal.data.animalName);
+            SetLevel(animal.data.level);
+            SetRarity(animal.data.rarity);
         }
         else{
             _containerStats.style.display = DisplayStyle.None;
@@ -68,10 +73,10 @@ public class UIAnimalStatsFunc : MonoBehaviour
         if(!isBoughtSpot)
             SetButtonEnabledIfBalanceIsEnough(_buttonSpotNotBought, spotPrice);
         if (animal != null){
-            SetHappiness(animal.Happiness);
-            SetWater(animal.Water);
-            SetFood(animal.Food);
-            SetBond(animal.Bond);
+            SetHappiness(animal.data.happiness);
+            SetWater(animal.data.water);
+            SetFood(animal.data.food);
+            SetBond(animal.data.bond);
         }
     }
 
@@ -100,6 +105,11 @@ public class UIAnimalStatsFunc : MonoBehaviour
             }
         }
     }
+
+    // public void SetAnimal(Animal animal)
+    // {
+    //     this.animal = animal;
+    // }
 
 
     /// <summary>
@@ -237,12 +247,6 @@ public class UIAnimalStatsFunc : MonoBehaviour
                 return; 
             }
 
-            // If animal is set, show stats
-            if (animal != null){
-                SetName(animal.AnimalName);
-                SetLevel(animal.Level);
-                SetRarity(animal.Rarity);
-            }
             ShowAnimalStatsUI();
         }
     }
@@ -254,9 +258,13 @@ public class UIAnimalStatsFunc : MonoBehaviour
     public void SetAnimal(Animal animal)
     {
         this.animal = animal;
-        SetName(animal.AnimalName);
-        SetLevel(animal.Level);
-        SetRarity(animal.Rarity);
+        if (animal != null)
+        {
+            SetName(animal.data.animalName);
+            SetLevel(animal.data.level);
+            SetRarity(animal.data.rarity);
+        }
+
         if (isBoughtSpot){
             ShowAnimalStatsUI();
         }
@@ -289,6 +297,11 @@ public class UIAnimalStatsFunc : MonoBehaviour
             playerBalance.SubtractMoney(spotPrice);
             SetIsBoughtSpot(true);
         }
+    }
+
+    private void HandleOnSpotAnimalChanged(Animal animal)
+    {
+        SetAnimal(animal);
     }
 
     public void OnDisable()

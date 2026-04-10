@@ -7,12 +7,10 @@ using UnityEngine;
 public class SaveManager : MonoBehaviour
 {
     [SerializeField] private int autosaveTimeSeconds;
-    private SaveData saveData;
-    [SerializeField] private TimeKeeper timeKeeper;
-    [SerializeField] private PlayerBalance playerBalance;
-    private Animal[] animals;
-
-
+    private static SaveData saveData;
+    // [SerializeField] private TimeKeeper timeKeeper;
+    // [SerializeField] private PlayerBalance playerBalance;
+    // private AnimalManager animalManager;
 
     //---------------------------------------------------------------------------
     // Helper struct and methods for save/load integration of specific classes
@@ -24,35 +22,23 @@ public class SaveManager : MonoBehaviour
     {
         public TimeKeeperData timeKeeperData;
         public PlayerBalanceData playerBalanceData;
-        public AnimalData[] animals;
+        public AnimalManagerSaveData animalManagerData;
     }
 
     // Use this to call the load method(s) for every class instance
     private void HandleLoadData()
     {
-        timeKeeper.Load(saveData.timeKeeperData);
-        if (saveData.animals != null)
-        {
-            for (int i = 0; i < animals.Length && i < saveData.animals.Length; i++)
-            {
-                animals[i].Load(saveData.animals[i]);
-            }
-        }
-        playerBalance.Load(saveData.playerBalanceData, timeKeeper.GetHoursSinceLastSave());
+        GameManager.Instance.timeKeeper.Load(saveData.timeKeeperData);
+        GameManager.Instance.animalManager.Load(saveData.animalManagerData);
+        GameManager.Instance.playerBalance.Load(saveData.playerBalanceData, GameManager.Instance.timeKeeper.GetHoursSinceLastSave());
     }
 
     // Use this to call the save method for every class instance
     public void HandleSaveData() 
     {
-        saveData.timeKeeperData = timeKeeper.Save();
-        saveData.playerBalanceData = playerBalance.Save();
-
-        saveData.animals = new AnimalData[animals.Length];
-
-        for(int i = 0; i < animals.Length; i++) 
-        {
-            saveData.animals[i] = animals[i].Save();
-        }
+        saveData.timeKeeperData = GameManager.Instance.timeKeeper.Save();
+        saveData.animalManagerData = GameManager.Instance.animalManager.Save();
+        saveData.playerBalanceData = GameManager.Instance.playerBalance.Save();
     }
 
 
@@ -63,6 +49,11 @@ public class SaveManager : MonoBehaviour
     public static string SaveFileName() 
     {
         return Application.persistentDataPath + "/save.json";
+    }
+
+    public static bool SaveFileExists()
+    {
+        return File.Exists(SaveFileName());
     }
     public void Save()
     {
@@ -93,20 +84,10 @@ public class SaveManager : MonoBehaviour
 
     void Awake() 
     {
-        animals = FindObjectsByType<Animal>(FindObjectsSortMode.None);
-
-        if (File.Exists(SaveFileName()))
-        {
-            Load();
-        }
-        else
-        {
-            // No save file → initialize animals with default values
-            foreach (Animal animal in animals)
-            {
-                animal.Initialize(animal.Rarity);
-            }
-        }
+        // if (File.Exists(SaveFileName()))
+        // {
+        //     Load();
+        // }
         InvokeRepeating(nameof(Save), autosaveTimeSeconds, autosaveTimeSeconds);
     }
 
