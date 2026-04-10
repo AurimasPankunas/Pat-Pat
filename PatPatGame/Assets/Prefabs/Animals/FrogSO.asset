@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalType
   id: frog
   size: 0
-  fullPrefab: {fileID: 440886727297120880, guid: ebfea2d06107982498c128f3df8dfe0a, type: 3}
+  fullPrefab: {fileID: 3296501712516180694, guid: f53037f990597184c96c3910f65d2abb, type: 3}
   miniPrefab: {fileID: 0}

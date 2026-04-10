@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalType
   id: Stag
   size: 2
-  fullPrefab: {fileID: 5634958155235700604, guid: 2d90fafe4b2f1c342a9222185a36b1ae, type: 3}
+  fullPrefab: {fileID: 5006215330643752557, guid: 688887a89edadd6419e862e693d9a50b, type: 3}
   miniPrefab: {fileID: 0}
