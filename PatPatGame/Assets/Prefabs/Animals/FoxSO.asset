@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalType
   id: fox
   size: 1
-  fullPrefab: {fileID: 3615940427258119925, guid: 15080008915b9e84d9c0f60f093494e0, type: 3}
+  fullPrefab: {fileID: 7052267958574082489, guid: 74249527c90316e40a2c989e1d0ad83a, type: 3}
   miniPrefab: {fileID: 0}

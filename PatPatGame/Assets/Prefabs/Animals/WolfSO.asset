@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalType
   id: Wolf
   size: 1
-  fullPrefab: {fileID: 8908753549382509069, guid: dbd2cdad9feef854bb41681458ad0f69, type: 3}
+  fullPrefab: {fileID: 5930878824505594404, guid: ec87fc9d66a383d4ab973594c340b7d1, type: 3}
   miniPrefab: {fileID: 0}
