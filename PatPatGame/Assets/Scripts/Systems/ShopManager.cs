@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-    [SerializeField] public PlayerBalance playerBalance;
+    private PlayerBalance playerBalance;
+    private UIShopFunc shopUI;
     [SerializeField] private ConveyorBelt conveyorBelt;
-    [SerializeField] private UIShopFunc shopUI;
     [SerializeField] private ShopItemDatabase shopItemDatabase;
     private List<ShopItem> shopList;
 
@@ -16,7 +16,17 @@ public class ShopManager : MonoBehaviour
 
     void Start()
     {
+        shopUI = GetComponent<UIShopFunc>();
         shopUI.SetShopManager(this);
+        if(!(playerBalance = GameManager.Instance.playerBalance)){
+            Debug.Log("GameManager or PlayerBalance in GameManager is missing");
+        }
+        if (shopItemDatabase == null) {
+            Debug.Log("ShopItemDatabase is missing");
+        }
+        if (conveyorBelt == null){
+            Debug.Log("ConveyorBelt is missing");
+        }
         // Sets the initial category to be selected and
         // generates the shop items for it
         shopUI.SetSelectedCategory("Food");
@@ -27,10 +37,11 @@ public class ShopManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        shopUI.SetMoneyAmount(playerBalance.money);
         if (buyCooldown > 0){
             buyCooldown -= Time.deltaTime;
         }
+        if (playerBalance)
+        { shopUI.SetMoneyAmount(playerBalance.money); }
     }
 
     /// <summary>
@@ -39,6 +50,7 @@ public class ShopManager : MonoBehaviour
     /// <param name="shopItem">Shop item that was clicked</param>
     public void ShopItemClicked(ShopItem shopItem)
     {
+        if (playerBalance == null) return;
         if (playerBalance.money >= shopItem.price && buyCooldown <= 0)
         {
             buyCooldown = buyCooldownTime;
@@ -110,6 +122,7 @@ public class ShopManager : MonoBehaviour
     /// </summary>
     public void SetGloveUpgradeElement()
     {
+        if (playerBalance == null) return;
         if (playerBalance.gloveRarity < 5)
         {
             shopUI.AddToList(shopItemDatabase.GetGlove(playerBalance.gloveRarity + 1));

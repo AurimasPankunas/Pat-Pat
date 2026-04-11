@@ -504,18 +504,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 739652497397609025, guid: 6ba37659dbc651e8286d4f6b334e248b, type: 3}
-      propertyPath: shopUI
-      value: 
-      objectReference: {fileID: 2077473942}
-    - target: {fileID: 739652497397609025, guid: 6ba37659dbc651e8286d4f6b334e248b, type: 3}
-      propertyPath: conveyorBelt
-      value: 
-      objectReference: {fileID: 6773667802709473874}
-    - target: {fileID: 739652497397609025, guid: 6ba37659dbc651e8286d4f6b334e248b, type: 3}
-      propertyPath: buyCooldownTime
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 8047763040432634985, guid: 6ba37659dbc651e8286d4f6b334e248b, type: 3}
       propertyPath: m_Name
       value: Systems
@@ -698,7 +686,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4558001259417470446, guid: fa3ba8736ebfc704fb484655de6d2fe0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1054577729}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3492333896445796466, guid: fa3ba8736ebfc704fb484655de6d2fe0, type: 3}
       insertIndex: -1
@@ -806,6 +797,55 @@ Transform:
   - {fileID: 1132798559}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1054577728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1054577729}
+  - component: {fileID: 1054577730}
+  m_Layer: 0
+  m_Name: ShopManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1054577729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054577728}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: -1.37684, y: -2.3260002, z: -12.127991}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2077473943}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1054577730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054577728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 346d4cbf15c9235428cc9eb4cc33f179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopManager
+  playerBalance: {fileID: 488733082}
+  conveyorBelt: {fileID: 6773667802709473874}
+  shopUI: {fileID: 2077473942}
+  shopItemDatabase: {fileID: 11400000, guid: b133cc68de756ed4da7abfaa5da2a848, type: 2}
+  buyCooldownTime: 0.5
 --- !u!4 &1132798559 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7327399925064667738, guid: 3512a5582cd2d8b42bf1009006305b13, type: 3}
@@ -2403,6 +2443,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c54e4b9d37d621418337218bc29d52c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIShopFunc
+--- !u!4 &2077473943 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4558001259417470446, guid: fa3ba8736ebfc704fb484655de6d2fe0, type: 3}
+  m_PrefabInstance: {fileID: 777119517}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2078535285
 PrefabInstance:
   m_ObjectHideFlags: 0

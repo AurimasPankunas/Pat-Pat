@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4558001259417470446}
   - component: {fileID: 808616904444989295}
   - component: {fileID: 90360280484662079}
+  - component: {fileID: 8570524910261712463}
   - component: {fileID: 1011912479695912119}
   - component: {fileID: 8450653130252219147}
   - component: {fileID: 5344896261353342370}
@@ -71,10 +72,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c54e4b9d37d621418337218bc29d52c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIShopFunc
-  moneySpentCooldown: 0.15
   ShopElement: {fileID: 9197481963319205126, guid: 1433fad41631d7549af82966ec6f8e3b, type: 3}
   ShopElementDescription: {fileID: 9197481963319205126, guid: 6b8b048e63dc9a247ae6ab7af6561962, type: 3}
   ShopElementLong: {fileID: 9197481963319205126, guid: 0af7ad84ff3733947b92f315b567bf7a, type: 3}
+--- !u!114 &8570524910261712463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3492333896445796466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 346d4cbf15c9235428cc9eb4cc33f179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopManager
+  conveyorBelt: {fileID: 0}
+  shopUI: {fileID: 90360280484662079}
+  shopItemDatabase: {fileID: 11400000, guid: b133cc68de756ed4da7abfaa5da2a848, type: 2}
+  buyCooldownTime: 0.5
 --- !u!65 &1011912479695912119
 BoxCollider:
   m_ObjectHideFlags: 0

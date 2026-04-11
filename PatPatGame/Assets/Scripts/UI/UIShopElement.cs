@@ -5,6 +5,7 @@ public class UIShopElement
 {
     public ShopItem shopItem;
     private ShopManager shopManager;
+    private PlayerBalance playerBalance;
 
     public TemplateContainer _shopElement;
     private Label _itemName;
@@ -22,6 +23,7 @@ public class UIShopElement
 
     public UIShopElement(VisualTreeAsset templateContainer, ShopItem shopItem, ShopManager shopManager)
     {
+        this.playerBalance = GameManager.Instance.playerBalance;
         this.shopManager = shopManager;
         this.shopItem = shopItem;
         // Instantiate visual element
@@ -74,7 +76,7 @@ public class UIShopElement
                 if (_rarity != null){
                     _rarity.text = gitem.rarity.ToString();
                     // If player has max rarity glove, hide button
-                    if(gitem.rarity == shopManager.playerBalance.gloveRarity){
+                    if(gitem.rarity == playerBalance.gloveRarity){
                         _buyButton.style.visibility = Visibility.Hidden;
                     }
                 }
@@ -94,12 +96,13 @@ public class UIShopElement
     /// </summary>
     public void SetEnabledIfBalanceIsEnough()
     {
+        if (playerBalance == null) return;
         VisualElement elementToDisable;
         if (_shopElement.name == "ShopItemElementLong") {
             elementToDisable = _buyButton;
         }
         else elementToDisable = _shopElement;
-        if (shopManager.playerBalance.money < shopItem.price)
+        if (playerBalance.money < shopItem.price)
         {
             if (elementToDisable.enabledSelf)
             {
