@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1252615662542462883}
   - component: {fileID: 2063691040903220635}
   - component: {fileID: 6094970867633520984}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: AnimalSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spot
   <id>k__BackingField: 
+  <price>k__BackingField: 0
   <size>k__BackingField: 0
   <spawnPoint>k__BackingField: {fileID: 0}
-  display: {fileID: 0}
+  <animal>k__BackingField: {fileID: 0}
