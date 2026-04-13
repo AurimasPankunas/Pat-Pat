@@ -1,22 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// ============================================================
-// ShopItemDatabase.cs — Unity ScriptableObject
-// Naudojimas: Create → Shop → Item Database
-// Kiekvienas item turi gameObjectId kurį prijungi prie
-// atitinkamo GameObject/Prefab Unity Inspector lange
-// ============================================================
-
-// --- Bazinė item klasė ---
 [System.Serializable]
 public class ShopItem
 {
-    public int    gameObjectId;
-    public int    price;
+    public int gameObjectId;
+    public int price;
 }
 
-// --- Pirštinės ---
 [System.Serializable]
 public class GloveItem : ShopItem
 {
@@ -26,7 +17,6 @@ public class GloveItem : ShopItem
     public Color imageTint;
 }
 
-// --- Maistas ---
 [System.Serializable]
 public class FoodItem : ShopItem
 {
@@ -37,7 +27,6 @@ public class FoodItem : ShopItem
     public GameObject obj;
 }
 
-// --- Vanduo ---
 [System.Serializable]
 public class WaterItem : ShopItem
 {
@@ -48,7 +37,6 @@ public class WaterItem : ShopItem
     public GameObject obj;
 }
 
-// --- Lygio kėlimas ---
 [System.Serializable]
 public class LevelUpItem : ShopItem
 {
@@ -56,20 +44,91 @@ public class LevelUpItem : ShopItem
     public int level;
 }
 
-// --- Gyvūnų vietos ---
 [System.Serializable]
 public class SpotItem : ShopItem
 {
     public int spot;
 }
 
-// ============================================================
-// Pagrindinis ScriptableObject
-// ============================================================
 [CreateAssetMenu(fileName = "ShopItemDatabase", menuName = "Shop/Item Database")]
 public class ShopItemDatabase : ScriptableObject
 {
-    [Header("Pirštinės")]
+    // Kaina atidaryti chesta Likes valiuta
+    public int chestOpenCost = 10;
+
+    // Kiek kartu atidaryti kad chestas uzsilveltina i kita lygi. Indeksas = chestLevel-1. -1 = max lygis.
+    public int[] chestOpensToLevelUp = new int[]
+    {
+          10,  // Level 1 -> Level 2
+          20,  // Level 2 -> Level 3
+          30,  // Level 3 -> Level 4
+          40,  // Level 4 -> Level 5
+          -1,  // Level 5: maksimalus lygis
+    };
+
+    // Tikimybes gauti kiekviena rarity pagal chesto lygi.
+    // Eilute = chestLevel-1, stulpelis = rarity-1: [0]Common [1]Uncommon [2]Rare [3]Epic [4]Legendary
+    // Kiekvienos eilutes tikimybiu suma = 1.0
+    public float[][] chestRarityProbabilities = new float[][]
+    {
+        // Lv1: Common  Uncommon  Rare    Epic    Legendary
+        new float[] { 0.700f,  0.200f,  0.080f, 0.015f, 0.005f },
+        // Lv2: Common  Uncommon  Rare    Epic    Legendary
+        new float[] { 0.550f,  0.250f,  0.140f, 0.045f, 0.015f },
+        // Lv3: Common  Uncommon  Rare    Epic    Legendary
+        new float[] { 0.350f,  0.300f,  0.220f, 0.100f, 0.030f },
+        // Lv4: Common  Uncommon  Rare    Epic    Legendary
+        new float[] { 0.150f,  0.250f,  0.350f, 0.180f, 0.070f },
+        // Lv5: Common  Uncommon  Rare    Epic    Legendary
+        new float[] { 0.050f,  0.150f,  0.350f, 0.300f, 0.150f },
+    };
+
+    // Grąžina atsitiktinį rarity pagal chesto lygį: 1=Common ... 5=Legendary
+    public int RollAnimalRarity(int chestLevel)
+    {
+        float[] probs = chestRarityProbabilities[chestLevel - 1];
+        float roll = Random.value;
+        float cumulative = 0f;
+        for (int i = 0; i < probs.Length; i++)
+        {
+            cumulative += probs[i];
+            if (roll < cumulative) return i + 1;
+        }
+        return probs.Length;
+    }
+
+    // ============================================================
+    // KASDIENINIO GYVŪNO TIKIMYBĖS
+    // Kas dieną žaidėjas gauna vieną naują gyvūną.
+    // Jis visada bus žemo rarity — tik Common/Uncommon/Rare.
+    // Epic ir Legendary galima gauti tik iš chestų.
+    // Indeksai: 0=Common(1), 1=Uncommon(2), 2=Rare(3), 3=Epic(4), 4=Legendary(5)
+    // Suma = 1.0
+    // ============================================================
+    [Header("Kasdieninio gyvūno tikimybės")]
+    public float[] dailyAnimalProbabilities = new float[]
+    {
+        0.700f,  // Common     (rarity 1) — 70.0%
+        0.250f,  // Uncommon   (rarity 2) — 25.0%
+        0.050f,  // Rare       (rarity 3) —  5.0%
+        0.000f,  // Epic       (rarity 4) —  0.0%  (tik iš chestų)
+        0.000f,  // Legendary  (rarity 5) —  0.0%  (tik iš chestų)
+    };
+
+    // Grąžina kasdieninio gyvūno rarity: 1=Common, 2=Uncommon, 3=Rare
+    public int RollDailyAnimalRarity()
+    {
+        float roll = Random.value;
+        float cumulative = 0f;
+        for (int i = 0; i < dailyAnimalProbabilities.Length; i++)
+        {
+            cumulative += dailyAnimalProbabilities[i];
+            if (roll < cumulative) return i + 1;
+        }
+        return 1;
+    }
+
+    // Pirštinių kainos pagal rarity
     public List<GloveItem> glovePrices = new List<GloveItem>
     {
         new GloveItem { gameObjectId = 1001, type = "Common",    rarity = 1, price =       1000 },
@@ -79,7 +138,7 @@ public class ShopItemDatabase : ScriptableObject
         new GloveItem { gameObjectId = 1005, type = "Legendary", rarity = 5, price =    1250000 },
     };
 
-    [Header("Maistas")]
+    // Maisto kainos pagal rarity
     public List<FoodItem> foodPrices = new List<FoodItem>
     {
         new FoodItem { gameObjectId = 2001, name = "Kibble",   rarity = 1, foodAmount = 0.10f, price =  25 },
@@ -89,7 +148,7 @@ public class ShopItemDatabase : ScriptableObject
         new FoodItem { gameObjectId = 2005, name = "Delicacy", rarity = 5, foodAmount = 0.10f, price = 150 },
     };
 
-    [Header("Vanduo")]
+    // Vandens kainos pagal rarity
     public List<WaterItem> waterPrices = new List<WaterItem>
     {
         new WaterItem { gameObjectId = 3001, name = "Puddle", rarity = 1, waterAmount = 0.10f, price =  25 },
@@ -99,7 +158,7 @@ public class ShopItemDatabase : ScriptableObject
         new WaterItem { gameObjectId = 3005, name = "Spring", rarity = 5, waterAmount = 0.10f, price = 150 },
     };
 
-        [Header("Lygio kėlimas")]
+    // Gyvuno lygio kėlimo kainos pagal rarity ir lygi
     public List<LevelUpItem> levelUpPrices = new List<LevelUpItem>
     {
         new LevelUpItem { gameObjectId = 4201, rarity = 1, level =  1, price =     680 },
@@ -249,7 +308,7 @@ public class ShopItemDatabase : ScriptableObject
         new LevelUpItem { gameObjectId = 4629, rarity = 5, level = 29, price =  254160 },
     };
 
-                [Header("Gyvūnų vietos")]
+    // Gyvuno vietos kainos shope
     public List<SpotItem> spotPrices = new List<SpotItem>
     {
         new SpotItem { gameObjectId = 5001, spot =  1, price =      0 },
@@ -264,11 +323,9 @@ public class ShopItemDatabase : ScriptableObject
         new SpotItem { gameObjectId = 5010, spot = 10, price = 160000 },
     };
 
-    // Pagalbiniai metodai
-    public GloveItem  GetGlove(int rarity)   => glovePrices.Find(x => x.rarity == rarity);
-    public FoodItem   GetFood(int rarity)    => foodPrices.Find(x => x.rarity == rarity);
-    public WaterItem  GetWater(int rarity)   => waterPrices.Find(x => x.rarity == rarity);
-    public SpotItem   GetSpot(int spot)      => spotPrices.Find(x => x.spot == spot);
-    public LevelUpItem GetLevelUp(int rarity, int level) =>
-        levelUpPrices.Find(x => x.rarity == rarity && x.level == level);
+    public GloveItem   GetGlove(int rarity)              => glovePrices.Find(x => x.rarity == rarity);
+    public FoodItem    GetFood(int rarity)               => foodPrices.Find(x => x.rarity == rarity);
+    public WaterItem   GetWater(int rarity)              => waterPrices.Find(x => x.rarity == rarity);
+    public SpotItem    GetSpot(int spot)                 => spotPrices.Find(x => x.spot == spot);
+    public LevelUpItem GetLevelUp(int rarity, int level) => levelUpPrices.Find(x => x.rarity == rarity && x.level == level);
 }
