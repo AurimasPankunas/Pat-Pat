@@ -482,6 +482,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7021770459266883765, guid: 74249527c90316e40a2c989e1d0ad83a, type: 3}
+      propertyPath: type
+      value: 
+      objectReference: {fileID: 11400000, guid: 8789d23a6cad5e272a928d3a08936fca, type: 2}
+    - target: {fileID: 7021770459266883765, guid: 74249527c90316e40a2c989e1d0ad83a, type: 3}
+      propertyPath: animalName
+      value: Foxy
+      objectReference: {fileID: 0}
     - target: {fileID: 7052267958574082489, guid: 74249527c90316e40a2c989e1d0ad83a, type: 3}
       propertyPath: m_Name
       value: Fox
@@ -709,6 +717,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3248046993456243674, guid: f53037f990597184c96c3910f65d2abb, type: 3}
+      propertyPath: type
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c79c6e8342c3f0b19513276e9f0bcbe, type: 2}
+    - target: {fileID: 3248046993456243674, guid: f53037f990597184c96c3910f65d2abb, type: 3}
+      propertyPath: animalName
+      value: Poggy Froggy
+      objectReference: {fileID: 0}
     - target: {fileID: 3296501712516180694, guid: f53037f990597184c96c3910f65d2abb, type: 3}
       propertyPath: m_Name
       value: Frog
@@ -854,6 +870,14 @@ PrefabInstance:
     - target: {fileID: 5930878824505594404, guid: ec87fc9d66a383d4ab973594c340b7d1, type: 3}
       propertyPath: m_Name
       value: Wolf
+      objectReference: {fileID: 0}
+    - target: {fileID: 5972425673456261928, guid: ec87fc9d66a383d4ab973594c340b7d1, type: 3}
+      propertyPath: type
+      value: 
+      objectReference: {fileID: 11400000, guid: deb41f628d47b17ed9cbf86a06616f61, type: 2}
+    - target: {fileID: 5972425673456261928, guid: ec87fc9d66a383d4ab973594c340b7d1, type: 3}
+      propertyPath: animalName
+      value: Dog
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1122,6 +1146,14 @@ PrefabInstance:
     - target: {fileID: 2628109838578745594, guid: 4f7d48c8cd7b3984f8e78d5e561fca9a, type: 3}
       propertyPath: m_Name
       value: Ghost
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653759991062743542, guid: 4f7d48c8cd7b3984f8e78d5e561fca9a, type: 3}
+      propertyPath: type
+      value: 
+      objectReference: {fileID: 11400000, guid: 5fdf73c95587286ae9d25518ee0ab7b1, type: 2}
+    - target: {fileID: 2653759991062743542, guid: 4f7d48c8cd7b3984f8e78d5e561fca9a, type: 3}
+      propertyPath: animalName
+      value: Ghostinius II
       objectReference: {fileID: 0}
     - target: {fileID: 5786809445207932668, guid: 4f7d48c8cd7b3984f8e78d5e561fca9a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2152,6 +2184,14 @@ PrefabInstance:
     - target: {fileID: 5006215330643752557, guid: 688887a89edadd6419e862e693d9a50b, type: 3}
       propertyPath: m_Name
       value: Stag
+      objectReference: {fileID: 0}
+    - target: {fileID: 5031999687735967585, guid: 688887a89edadd6419e862e693d9a50b, type: 3}
+      propertyPath: type
+      value: 
+      objectReference: {fileID: 11400000, guid: 30ccda085f5c5fdc491e4a271709095b, type: 2}
+    - target: {fileID: 5031999687735967585, guid: 688887a89edadd6419e862e693d9a50b, type: 3}
+      propertyPath: animalName
+      value: Deary Deer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
