@@ -83,16 +83,16 @@
     background-color: rgb(188, 115, 0);
 }
 
-.RedButton {
-    background-color: rgb(217, 15, 26);
+.GreyButton {
+    background-color: rgb(182, 173, 155);
 }
 
-.RedButton:hover {
-    background-color: rgb(195, 3, 13);
+.GreyButton:hover {
+    background-color: rgb(155, 148, 132);
 }
 
-.RedButton:active {
-    background-color: rgb(164, 0, 9);
+.GreyButton:active {
+    background-color: rgb(122, 116, 103);
 }
 
 .MoneySpent {

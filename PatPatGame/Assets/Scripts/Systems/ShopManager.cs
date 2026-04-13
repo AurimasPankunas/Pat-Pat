@@ -27,6 +27,9 @@ public class ShopManager : MonoBehaviour
         if (conveyorBelt == null){
             Debug.Log("ConveyorBelt is missing");
         }
+        // Gets in the way of testing but good to have in build?
+        //playerBalance.OnMoneyChanged += shopUI.SetMoneyAmount;
+        shopUI.SetMoneyAmount(playerBalance.money);
         // Sets the initial category to be selected and
         // generates the shop items for it
         shopUI.SetSelectedCategory("Food");
@@ -41,7 +44,9 @@ public class ShopManager : MonoBehaviour
             buyCooldown -= Time.deltaTime;
         }
         if (playerBalance)
-        { shopUI.SetMoneyAmount(playerBalance.money); }
+        {
+            shopUI.SetMoneyAmount(playerBalance.money);
+        }
     }
 
     /// <summary>

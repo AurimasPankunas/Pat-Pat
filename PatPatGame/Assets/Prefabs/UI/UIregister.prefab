@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8818359717360264636}
   - component: {fileID: 8275859664389182623}
+  - component: {fileID: 6671731240253049366}
+  - component: {fileID: 6314406424239208190}
   - component: {fileID: 13153629633629204}
   - component: {fileID: 3540078657733446175}
   - component: {fileID: 191060110508037380}
@@ -58,6 +60,32 @@ MonoBehaviour:
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
+--- !u!114 &6671731240253049366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5177023392011931575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6d8d495e86a4cd4fbac6a1aa027a315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!114 &6314406424239208190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5177023392011931575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b0dbaae6735094d81a3fb259d7b9fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Systems.RegisterManager
+  shopItemDatabase: {fileID: 11400000, guid: b133cc68de756ed4da7abfaa5da2a848, type: 2}
+  buyCooldownTime: 0.5
 --- !u!65 &13153629633629204
 BoxCollider:
   m_ObjectHideFlags: 0

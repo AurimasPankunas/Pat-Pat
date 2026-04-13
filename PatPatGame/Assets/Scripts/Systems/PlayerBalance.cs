@@ -7,6 +7,11 @@ using Unity.VisualScripting;
 public class PlayerBalance : MonoBehaviour
 {
     [field: SerializeField] public double money { get; private set; }
+    public event Action<double> OnMoneyChanged;
+    [field: SerializeField] public int likes { get; private set; }
+    public event Action<int> OnLikesChanged;
+    [field: SerializeField] public int chestLevel { get; private set; }
+    [field: SerializeField] public int levelChestsOpened { get; private set; }
     [SerializeField] private float MAX_AFK_HOURS = 15 * 24;
     public int gloveRarity { get; private set; } = 0;
     public event Action<int> OnGloveRarityChanged;
@@ -25,18 +30,56 @@ public class PlayerBalance : MonoBehaviour
     public void AddMoney(double amount)
     {
         money += amount;
+        OnMoneyChanged?.Invoke(money);
     }
     public void SubtractMoney(double amount)
     {
         money -= amount;
+        OnMoneyChanged?.Invoke(money);
     }
 
     public double AddPettingMoney(Animal animal)
     {
         double amount = animal.PettingIncome(gloveRarity);
         money += amount;
+        OnMoneyChanged?.Invoke(money);
         return amount;
     }
+
+    // =============================    
+    // LIKES
+    // =============================
+
+    public void AddLikes(int amount)
+    {
+        likes += amount;
+        OnLikesChanged?.Invoke(likes);
+    }
+    public void SubtractLikes(int amount)
+    {
+        likes -= amount;
+        OnLikesChanged?.Invoke(likes);
+    }
+
+    // =============================    
+    // CHESTS
+    // =============================
+    public void AddChestsOpened(int amount)
+    {
+        levelChestsOpened += amount;
+    }
+
+    public void SubtractChestsOpened(int amount)
+    {
+        levelChestsOpened -= amount;
+    }
+
+    public void IncrementChestLevel()
+    {
+        if(chestLevel < 5)
+            chestLevel++;
+    }
+
 
     // =============================    
     // GLOVES
@@ -79,6 +122,7 @@ public class PlayerBalance : MonoBehaviour
             total += animal.IncomeCalculation(isOnline: true);
         }
         money += total;
+        OnMoneyChanged?.Invoke(money);
     }
 
     // =============================
@@ -138,7 +182,9 @@ public class PlayerBalance : MonoBehaviour
 
     public PlayerBalanceData Save()
     {
-        return new PlayerBalanceData { money = this.money, gloveRarity = this.gloveRarity };
+        if (chestLevel <= 0) chestLevel = 1;
+        return new PlayerBalanceData { money = this.money, likes = this.likes, chestLevel = this.chestLevel,
+            levelChestsOpened = this.levelChestsOpened, gloveRarity = this.gloveRarity };
     }
 
     public void Load(PlayerBalanceData data, double hours)
@@ -147,6 +193,9 @@ public class PlayerBalance : MonoBehaviour
 
         double earnedMoney = SimulateShelter(animals, hours, false);
         this.money = data.money + earnedMoney;
+        this.likes = data.likes;
+        this.chestLevel = data.chestLevel;
+        this.levelChestsOpened = data.levelChestsOpened;
         SetGloveRarity(data.gloveRarity);
     }
 }
@@ -155,5 +204,8 @@ public class PlayerBalance : MonoBehaviour
 public struct PlayerBalanceData
 {
     public double money;
+    public int likes;
+    public int chestLevel;
+    public int levelChestsOpened;
     public int gloveRarity;
 }
