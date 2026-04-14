@@ -43,12 +43,6 @@
     border-bottom-left-radius: 8px;
 }
 
-
-
-
-
-
-
 #BondBar .unity-progress-bar__background {
     margin-left: 0;
     border-top-width: 0;
@@ -67,4 +61,16 @@
     margin-right: 0;
     margin-bottom: 0;
     margin-left: 0;
+}
+
+.WhiteButtonBG {
+    background-color: rgb(255, 255, 255);
+}
+
+.WhiteButtonBG:hover {
+    background-color: rgb(234, 231, 231);
+}
+
+.WhiteButtonBG:active {
+    background-color: rgb(201, 201, 201);
 }

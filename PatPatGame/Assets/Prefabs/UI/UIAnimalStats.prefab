@@ -72,6 +72,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   animal: {fileID: 0}
+  spot: {fileID: 0}
+  playerBalance: {fileID: 0}
+  shopItemDatabase: {fileID: 11400000, guid: b133cc68de756ed4da7abfaa5da2a848, type: 2}
 --- !u!65 &4884831416726524430
 BoxCollider:
   m_ObjectHideFlags: 0
