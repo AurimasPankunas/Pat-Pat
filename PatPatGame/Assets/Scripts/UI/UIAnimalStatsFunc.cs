@@ -334,5 +334,6 @@ public class UIAnimalStatsFunc : MonoBehaviour
     public void OnDisable()
     {
         _buttonSpotNotBought.UnregisterCallback<ClickEvent>(OnClickBuySpot);
+        _buttonLevelUp.UnregisterCallback<ClickEvent>(OnClickLevelUp);
     }
 }
