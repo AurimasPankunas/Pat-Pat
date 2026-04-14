@@ -45,7 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalRegister
   animalManager: {fileID: 8045138864858267655}
+  shopItemDatabase: {fileID: 11400000, guid: b133cc68de756ed4da7abfaa5da2a848, type: 2}
   registerAnimals: []
+  maxRegisterAnimals: 5
 --- !u!1 &1747239723235956827
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,57 +93,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBalance
   <money>k__BackingField: 0
+  <likes>k__BackingField: 0
+  <chestLevel>k__BackingField: 0
+  <levelChestsOpened>k__BackingField: 0
   MAX_AFK_HOURS: 360
   animalManager: {fileID: 8045138864858267655}
---- !u!1 &3148368911997036019
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7994665296027051045}
-  - component: {fileID: 739652497397609025}
-  m_Layer: 0
-  m_Name: ShopManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7994665296027051045
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3148368911997036019}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8303407494739653979}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &739652497397609025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3148368911997036019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 346d4cbf15c9235428cc9eb4cc33f179, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShopManager
-  playerBalance: {fileID: 5588511990750435169}
-  conveyorBelt: {fileID: 0}
-  shopUI: {fileID: 0}
-  shopItemDatabase: {fileID: 11400000, guid: b133cc68de756ed4da7abfaa5da2a848, type: 2}
-  buyCooldownTime: 0.5
 --- !u!1 &5170211520188678470
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +270,6 @@ Transform:
   - {fileID: 5344577957715989527}
   - {fileID: 3148909404351806366}
   - {fileID: 2351273159717063628}
-  - {fileID: 7994665296027051045}
   - {fileID: 2625906520622902210}
   - {fileID: 6466017321336949560}
   m_Father: {fileID: 0}

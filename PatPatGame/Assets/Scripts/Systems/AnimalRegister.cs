@@ -1,15 +1,21 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AnimalRegister : MonoBehaviour
 {
     [SerializeField] private AnimalManager animalManager;
+    [SerializeField] private ShopItemDatabase shopItemDatabase;
     public List<AnimalData> registerAnimals;
+    public int maxRegisterAnimals = 5;
     private Animal testAnimal;
+    public event Action OnRegisterAnimalChanged;
 
     void Start()
     {
         InvokeRepeating(nameof(TestFunc), 0f, 5f);  // for testing
+        InvokeRepeating(nameof(TestDailyFunc), 0f, 12f);
     }
 
     /// <summary>
@@ -18,6 +24,7 @@ public class AnimalRegister : MonoBehaviour
     public void AddAnimalToRegister(AnimalData animalData)
     {
         registerAnimals.Add(animalData);
+        OnRegisterAnimalChanged?.Invoke();
     }
 
     /// <summary>
@@ -33,6 +40,7 @@ public class AnimalRegister : MonoBehaviour
 
         AnimalData removedAnimal = registerAnimals[index];
         registerAnimals.RemoveAt(index);
+        OnRegisterAnimalChanged?.Invoke();
         return removedAnimal;
     }
     
@@ -43,6 +51,7 @@ public class AnimalRegister : MonoBehaviour
     public void RemoveAnimal(AnimalData animal)
     {
         registerAnimals.Remove(animal);
+        OnRegisterAnimalChanged?.Invoke();
     }
 
     /// <summary>
@@ -54,9 +63,36 @@ public class AnimalRegister : MonoBehaviour
         int typeChoice = Random.Range(0, typeCount);
         AnimalType type = animalManager.types[typeChoice];
         string name = "Bober";
-        int rarity = Random.Range(1, 5);
+        int rarity = shopItemDatabase.RollDailyAnimalRarity();
+        int level = Random.Range(1, 2);
+        double happiness = Random.Range(0f, 1f);
+        double food = Random.Range(0f, 1f);
+        double water = Random.Range(0f, 1f);
 
-        AnimalData animal = new AnimalData(type.id, name, rarity);
+        AnimalData animal = new AnimalData(type.id, name, rarity, level, happiness, food, water);
+        AddAnimalToRegister(animal);
+
+        return animal;
+    }
+
+    /// <summary>
+    /// Creates animal with chest rarity
+    /// </summary>
+    public AnimalData CreateChestAnimal()
+    {
+        int chestLvl = GameManager.Instance.playerBalance.chestLevel;
+        int typeCount = animalManager.types.Count;
+        int typeChoice = Random.Range(0, typeCount);
+        AnimalType type = animalManager.types[typeChoice];
+        string name = $"Chest Lvl." +
+            $"{chestLvl} Bober";
+        int rarity = shopItemDatabase.RollAnimalRarity(chestLvl);
+        int level = Random.Range(1, 5);
+        double happiness = Random.Range(0f, 1f);
+        double food = Random.Range(0f, 1f);
+        double water = Random.Range(0f, 1f);
+
+    AnimalData animal = new AnimalData(type.id, name, rarity,level,happiness,food,water);
         AddAnimalToRegister(animal);
 
         return animal;
@@ -74,6 +110,14 @@ public class AnimalRegister : MonoBehaviour
         RemoveAnimal(an1);
         if (testAnimal != null)
             Invoke("RemoveAnimalAfterDelay", 4f);
+    }
+    // Daily animal spawning test
+    private void TestDailyFunc()
+    {
+        if(registerAnimals.Count < maxRegisterAnimals)
+        {
+            CreateRandomAnimal();
+        }
     }
 
     private void RemoveAnimalAfterDelay()

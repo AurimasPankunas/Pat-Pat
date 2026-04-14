@@ -1,0 +1,61 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/PatPatStyle.uss?fileID=7433441132597879392&amp;guid=f5985b321d282874f97bacc2e9998abc&amp;type=3#PatPatStyle"/>
+    <Style src="project://database/Assets/UI/Pre-madeElementsStyles.uss?fileID=7433441132597879392&amp;guid=05a60a23150ba5f45b4e854efe011372&amp;type=3#Pre-madeElementsStyles"/>
+    <Style src="project://database/Assets/UI/AnimalStatsStyle.uss?fileID=7433441132597879392&amp;guid=8bea74b8a86521441afc27035a0350a9&amp;type=3#AnimalStatsStyle"/>
+    <ui:VisualElement name="RegisterContainer" class="PanelBackground" style="flex-grow: 0; flex-direction: column; display: flex; background-image: url(&quot;project://database/Assets/UI/Resources/Textures/GradientDownwards.png?fileID=2800000&amp;guid=50759faa553ddcc449dad8d8cc170baf&amp;type=3#GradientDownwards&quot;); width: 670px; height: 470px;">
+        <ui:VisualElement name="Header" class="HeaderStyle" style="flex-direction: row;">
+            <ui:VisualElement style="flex-grow: 0; width: 245px; right: auto; left: 0; top: 0; position: absolute; bottom: 0; background-color: rgb(242, 241, 239); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; flex-direction: row; padding-top: 5px; padding-right: 0; padding-bottom: 5px; padding-left: 7px; align-items: center;">
+                <ui:VisualElement style="flex-grow: 0; width: 30px; height: 30px; background-image: resource(&quot;Textures/Like&quot;); -unity-background-scale-mode: scale-to-fit; margin-bottom: 5px;"/>
+                <ui:Label text="Likes" name="LikesAmount" style="font-size: 20px; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-Bold.ttf?fileID=12800000&amp;guid=a408a2f38d08b2a429d13a1db7e7460e&amp;type=3#Livvic-Bold&quot;); -unity-text-align: middle-left; width: auto; flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 5px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;"/>
+            </ui:VisualElement>
+            <ui:Label text="Register" name="HeaderLabel"/>
+            <ui:VisualElement style="flex-grow: 0; width: 86px; right: auto; left: 560px; top: 2px; position: absolute; bottom: 0; background-color: rgb(242, 241, 239); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; flex-direction: row; padding-top: 5px; padding-right: 0; padding-bottom: 5px; padding-left: 7px; align-items: center;">
+                <ui:VisualElement style="flex-grow: 0; width: 30px; height: 30px; background-image: resource(&quot;Textures/Happy&quot;); -unity-background-scale-mode: scale-to-fit; margin-bottom: 0; margin-top: 0; margin-right: 0; margin-left: 0;"/>
+                <ui:Label text="5/5" name="AnimalsAmount" style="font-size: 20px; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-Bold.ttf?fileID=12800000&amp;guid=a408a2f38d08b2a429d13a1db7e7460e&amp;type=3#Livvic-Bold&quot;); -unity-text-align: middle-right; width: auto; flex-grow: 1; margin-top: 0; margin-right: 10px; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-shrink: 1; flex-direction: row;">
+            <ui:VisualElement name="Chest" style="flex-grow: 1; width: initial; align-items: center; justify-content: space-evenly; padding-bottom: 10px;">
+                <ui:VisualElement style="flex-direction: row; align-items: center; justify-content: flex-start; width: 160px;">
+                    <ui:Label text="Chests to open until level up:" name="ChestsToOpen" style="-unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-SemiBold.ttf?fileID=12800000&amp;guid=6bbaee6b38702c3458ef4774312cb6b0&amp;type=3#Livvic-SemiBold&quot;); font-size: 15px; white-space: normal; width: 116px; -unity-text-align: upper-center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;"/>
+                    <ui:Label text="open" name="LevelUpLabel" style="-unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-SemiBold.ttf?fileID=12800000&amp;guid=6bbaee6b38702c3458ef4774312cb6b0&amp;type=3#Livvic-SemiBold&quot;); font-size: 18px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 7px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;"/>
+                </ui:VisualElement>
+                <ui:VisualElement style="width: 110px; height: 90px;">
+                    <ui:Image source="project://database/Assets/UI/Resources/Textures/ChestBackground.svg?fileID=7388822144124034973&amp;guid=44dcc57cd9a484f4da19c3700a6e0a66&amp;type=3#ChestBackground" name="ChestBGImage" tint-color="rgb(180, 128, 20)" style="height: 100%;"/>
+                    <ui:Image source="project://database/Assets/UI/Resources/Textures/ChestLineartAndTrim.svg?fileID=7388822144124034973&amp;guid=ede580c229a0d524091057d64fd97f61&amp;type=3#ChestLineartAndTrim" name="ChestTrimImage" tint-color="rgb(70, 5, 5)" style="position: absolute; top: 0; bottom: 0; right: 0; left: 0; align-items: center; justify-content: center;">
+                        <ui:Image source="project://database/Assets/UI/Resources/Textures/Happy.svg?fileID=6192944022281365145&amp;guid=9d7c9d1a43b5cdd46a618af4087b9b74&amp;type=3#Happy" style="width: 50px; aspect-ratio: 1; margin-bottom: 5px;"/>
+                    </ui:Image>
+                </ui:VisualElement>
+                <ui:Button text="" name="BuyButton" class="ShopButton" style="flex-direction: row; align-items: center; justify-content: center; width: 125px;">
+                    <ui:Image source="project://database/Assets/UI/Resources/Textures/Like.svg?fileID=6192944022281365145&amp;guid=7c7dcfc550e79c44cada717a604fc65d&amp;type=3#Like" style="height: 30px; width: 30px; flex-shrink: 0;"/>
+                    <ui:Label text="price" name="BuyPriceLabel" style="margin-top: 2px; margin-right: 2px; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-Medium.ttf?fileID=12800000&amp;guid=c17b6ee01c40d454e83c8c402f195778&amp;type=3#Livvic-Medium&quot;); font-size: 18px;"/>
+                </ui:Button>
+                <ui:Label text="Rarity chances" style="-unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Poetsen_One/PoetsenOne-Regular.ttf?fileID=12800000&amp;guid=00652dc61b80089488704a3e650887b7&amp;type=3#PoetsenOne-Regular&quot;); font-size: 18px;"/>
+                <ui:VisualElement style="flex-grow: 0; flex-direction: row; width: 100%; padding-right: 10px; padding-left: 10px; justify-content: center; margin-top: -10px;">
+                    <ui:VisualElement style="flex-grow: 0; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-SemiBold.ttf?fileID=12800000&amp;guid=6bbaee6b38702c3458ef4774312cb6b0&amp;type=3#Livvic-SemiBold&quot;); justify-content: space-around; width: 106px;">
+                        <ui:Label text="Common " style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
+                        <ui:Label text="Uncommon" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
+                        <ui:Label text="Rare " style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
+                        <ui:Label text="Epic " style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
+                        <ui:Label text="Legendary " style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 0; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-SemiBold.ttf?fileID=12800000&amp;guid=6bbaee6b38702c3458ef4774312cb6b0&amp;type=3#Livvic-SemiBold&quot;); justify-content: space-around; align-items: flex-end;">
+                        <ui:Label text="20% " name="CommonChance" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
+                        <ui:Label text="20% " name="UncommonChance" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
+                        <ui:Label text="20%" name="RareChance" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
+                        <ui:Label text="20%" name="EpicChance" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
+                        <ui:Label text="20%" name="LegendaryChance" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Line" style="flex-grow: 0; background-color: rgb(255, 255, 255); width: 3px; flex-direction: column-reverse; margin-bottom: 13px;">
+                <ui:VisualElement style="flex-grow: 0; width: 24px; height: 14px; align-self: center; background-image: url(&quot;project://database/Assets/UI/Resources/Textures/Curve.svg?fileID=6192944022281365145&amp;guid=62c39823787588e4c8e497e7f5b2e4e0&amp;type=3#Curve&quot;); -unity-background-scale-mode: scale-to-fit; margin-bottom: -13px; -unity-background-image-tint-color: rgb(255, 255, 255); margin-right: 1px;"/>
+            </ui:VisualElement>
+            <ui:VisualElement style="width: 475px;">
+                <ui:ScrollView horizontal-scroller-visibility="Hidden" style="width: 475px; flex-shrink: 1; flex-grow: 0;">
+                    <ui:VisualElement name="ListContainer" style="flex-grow: 1; flex-shrink: 1; padding-top: 5px; padding-right: 0; padding-bottom: 5px; padding-left: 5px; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-content: flex-start; visibility: visible; display: flex;"/>
+                </ui:ScrollView>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

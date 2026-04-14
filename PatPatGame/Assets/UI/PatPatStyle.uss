@@ -83,6 +83,18 @@
     background-color: rgb(188, 115, 0);
 }
 
+.GreyButton {
+    background-color: rgb(182, 173, 155);
+}
+
+.GreyButton:hover {
+    background-color: rgb(155, 148, 132);
+}
+
+.GreyButton:active {
+    background-color: rgb(122, 116, 103);
+}
+
 .MoneySpent {
     font-size: 18px;
     -unity-font-definition: url("project://database/Assets/UI/Fonts/Livvic/Livvic-Bold.ttf?fileID=12800000&guid=a408a2f38d08b2a429d13a1db7e7460e&type=3#Livvic-Bold");
