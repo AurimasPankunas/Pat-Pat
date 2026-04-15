@@ -15,4 +15,4 @@ MonoBehaviour:
   id: ghost
   size: 0
   fullPrefab: {fileID: 2628109838578745594, guid: 4f7d48c8cd7b3984f8e78d5e561fca9a, type: 3}
-  miniPrefab: {fileID: 0}
+  miniPrefab: {fileID: 7830895434316919023, guid: ff3505047fefd5448a840c460aad3350, type: 3}

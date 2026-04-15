@@ -9,6 +9,7 @@ public class RegisterManager : MonoBehaviour
     private PlayerBalance playerBalance;
     private UIRegisterFunc registerUI;
     [SerializeField] private ShopItemDatabase shopItemDatabase;
+    [SerializeField] private Transform miniAnimalSpawnPoint;
 
     public float buyCooldownTime = 0.3f;
     private float buyCooldown = 0.3f;
@@ -67,7 +68,7 @@ public class RegisterManager : MonoBehaviour
     public void AnimalTakeInClicked(AnimalData animal)
     {
         Debug.Log("Take in");
-        animalRegister.RemoveAnimal(animal);
+        animalRegister.RemoveAnimal(animal, miniAnimalSpawnPoint);
     }
 
     /// <summary>
@@ -77,7 +78,7 @@ public class RegisterManager : MonoBehaviour
     public void AnimalTurnAwayClicked(AnimalData animal)
     {
         Debug.Log("Turn away");
-        animalRegister.RemoveAnimal(animal);
+        animalRegister.RemoveAnimal(animal, null);
     }
 
     public void OnChestBuyClicked()

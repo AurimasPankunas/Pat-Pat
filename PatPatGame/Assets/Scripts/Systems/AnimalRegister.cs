@@ -9,12 +9,10 @@ public class AnimalRegister : MonoBehaviour
     [SerializeField] private ShopItemDatabase shopItemDatabase;
     public List<AnimalData> registerAnimals;
     public int maxRegisterAnimals = 5;
-    private Animal testAnimal;
     public event Action OnRegisterAnimalChanged;
 
     void Start()
     {
-        InvokeRepeating(nameof(TestFunc), 0f, 5f);  // for testing
         InvokeRepeating(nameof(TestDailyFunc), 0f, 12f);
     }
 
@@ -45,13 +43,17 @@ public class AnimalRegister : MonoBehaviour
     }
     
     /// <summary>
-    /// Removes animal from the register list
+    /// Removes animal from the register list. If spawnPoint is given, spawns a mini animal
     /// </summary>
     /// <param name="animal"></param>
-    public void RemoveAnimal(AnimalData animal)
+    public void RemoveAnimal(AnimalData animal, Transform spawnPoint)
     {
         registerAnimals.Remove(animal);
         OnRegisterAnimalChanged?.Invoke();
+        if (spawnPoint != null)
+        {
+            animalManager.CreateMiniAnimal(animal, spawnPoint.position, spawnPoint.rotation);
+        }
     }
 
     /// <summary>
@@ -98,19 +100,6 @@ public class AnimalRegister : MonoBehaviour
         return animal;
     }
 
-    // For testing, remove after proper implementation
-    private void TestFunc()
-    {
-        AnimalData an1 = CreateRandomAnimal();
-        Spot spot = animalManager.GetSpot("S1");
-        if (spot == null)
-            return;
-        animalManager.AddAnimalToSpot(an1, spot);
-        testAnimal = spot.animal;
-        RemoveAnimal(an1);
-        if (testAnimal != null)
-            Invoke("RemoveAnimalAfterDelay", 4f);
-    }
     // Daily animal spawning test
     private void TestDailyFunc()
     {
@@ -118,10 +107,5 @@ public class AnimalRegister : MonoBehaviour
         {
             CreateRandomAnimal();
         }
-    }
-
-    private void RemoveAnimalAfterDelay()
-    {
-        animalManager.RemoveAnimalFromSpot(testAnimal);
     }
 }

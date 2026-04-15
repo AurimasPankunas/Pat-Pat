@@ -15,4 +15,4 @@ MonoBehaviour:
   id: Stag
   size: 2
   fullPrefab: {fileID: 5006215330643752557, guid: 688887a89edadd6419e862e693d9a50b, type: 3}
-  miniPrefab: {fileID: 0}
+  miniPrefab: {fileID: 7037157254712551668, guid: 9302e983c795af44ea6f451d009fb0ef, type: 3}

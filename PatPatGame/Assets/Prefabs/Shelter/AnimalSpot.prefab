@@ -105,3 +105,15 @@ MonoBehaviour:
   <size>k__BackingField: 0
   <spawnPoint>k__BackingField: {fileID: 0}
   <animal>k__BackingField: {fileID: 0}
+  removeAnimalInputAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Remove Animal Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: e0d9d513-a232-4096-a86b-82e7ea992a44
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}

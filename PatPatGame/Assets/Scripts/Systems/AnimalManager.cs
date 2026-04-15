@@ -52,10 +52,48 @@ public class AnimalManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Spawns a mini animal at a given spawn point
+    /// </summary>
+    public MiniAnimal CreateMiniAnimal(AnimalData animalData, Vector3 spawnPosition, Quaternion spawnRotation)
+    {
+        GameObject prefab = GetType(animalData.typeID).miniPrefab;
+        GameObject spawnedObject = Instantiate(prefab, spawnPosition, spawnRotation);
+        MiniAnimal spawnedAnimal = spawnedObject.GetComponent<MiniAnimal>();
+        spawnedAnimal.data = animalData;
+        miniAnimals.Add(spawnedAnimal);
+        return spawnedAnimal;
+    }
+
+    /// <summary>
+    /// Destroys the mini animal game GameObject
+    /// </summary>
+    private AnimalData RemoveMiniAnimal(MiniAnimal miniAnimal)
+    {
+        miniAnimals.Remove(miniAnimal);
+        AnimalData data = miniAnimal.data;
+        Destroy(miniAnimal.gameObject);
+        return data;
+    }
+
+    /// <summary>
+    /// Converts mini animal to spot animal
+    /// </summary>
+    public Animal MoveMiniAnimalToSpot(MiniAnimal miniAnimal, Spot spot)
+    {
+        Animal animal = AddAnimalToSpot(miniAnimal.data, spot);
+
+        // check if animal assignment to spot was successful
+        if (animal != null)
+            RemoveMiniAnimal(miniAnimal);
+
+        return animal;
+    }
+
+    /// <summary>
     /// Spawns an animal into the scene and assigns it to a spot
     /// </summary>
     /// <returns>spawned animal</returns>
-    public Animal AddAnimalToSpot(AnimalData animalData, Spot spot)
+    private Animal AddAnimalToSpot(AnimalData animalData, Spot spot)
     {
         if (GetType(animalData.typeID).size != spot.size)
             return null;
@@ -89,6 +127,16 @@ public class AnimalManager : MonoBehaviour
         spot.RemoveAnimal();
         spotAnimalLookup.Remove(animal);
         Destroy(animal.gameObject);
+        return data;
+    }
+
+    /// <summary>
+    /// Clears the spot occupied by the specified animal, destroys the animal GameObject and spawns a mini animal
+    /// </summary>
+    public AnimalData RemoveAnimalFromSpot(Animal animal, Vector3 position, Quaternion rotation)
+    {
+        AnimalData data = RemoveAnimalFromSpot(animal);
+            CreateMiniAnimal(data, position, rotation);
         return data;
     }
 
@@ -144,7 +192,7 @@ public class AnimalManager : MonoBehaviour
 
     public void Load(AnimalManagerSaveData data)
     {
-        // data.miniAnimals.ForEach(m => Instantiate...)
+        data.miniAnimals.ForEach(m => CreateMiniAnimal(m.animalData, m.position, m.rotation));
         data.spotAnimals.ForEach(s => AddAnimalToSpot(s.animalData, GetSpot(s.spotID)));
     }
 }

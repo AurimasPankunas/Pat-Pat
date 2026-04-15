@@ -15,4 +15,4 @@ MonoBehaviour:
   id: fox
   size: 1
   fullPrefab: {fileID: 7052267958574082489, guid: 74249527c90316e40a2c989e1d0ad83a, type: 3}
-  miniPrefab: {fileID: 0}
+  miniPrefab: {fileID: 5663656623042991618, guid: 9ba8d769c7d9a0a42908ce7e8f5cd528, type: 3}

@@ -15,4 +15,4 @@ MonoBehaviour:
   id: frog
   size: 0
   fullPrefab: {fileID: 3296501712516180694, guid: f53037f990597184c96c3910f65d2abb, type: 3}
-  miniPrefab: {fileID: 0}
+  miniPrefab: {fileID: 5355938590229199378, guid: c0e2ec310b116d74dba73d688512f3d1, type: 3}

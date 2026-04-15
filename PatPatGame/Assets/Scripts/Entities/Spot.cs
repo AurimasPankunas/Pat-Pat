@@ -1,18 +1,25 @@
 using System;
+using System.Collections;
 using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 [RequireComponent(typeof(Collider))]
 public class Spot : MonoBehaviour
 {
     private AnimalManager manager;
+    private Collider col;
     [field: SerializeField] public string id { get; private set; }
     [field: SerializeField] public double price { get; private set; }
     [field: SerializeField] public AnimalSize size { get; private set; }
     [field: SerializeField] public Transform spawnPoint { get; private set; }
     [field: SerializeField] public Animal animal { get; private set; }  // serialized so that animals can be set up for a new save
     public bool isOccupied { get; private set; }
+    private bool isPlacingEnabled = false;
+    [SerializeField] private InputActionProperty removeAnimalInputAction;
 
     public event Action<Animal> OnSpotAnimalChanged;
 
@@ -20,6 +27,8 @@ public class Spot : MonoBehaviour
     {
         this.manager = manager;
         isOccupied = false;
+        col = GetComponent<Collider>();
+        StartCoroutine(EnablePlacingAfterTime(1));
     }
 
     /// <summary>
@@ -29,7 +38,10 @@ public class Spot : MonoBehaviour
     {
         this.animal = animal;
         isOccupied = true;
+        isPlacingEnabled = false;
+        // col.enabled = false;
         OnSpotAnimalChanged?.Invoke(animal);
+
     }
 
     /// <summary>
@@ -39,21 +51,34 @@ public class Spot : MonoBehaviour
     {
         animal = null;
         isOccupied = false;
+        StartCoroutine(EnablePlacingAfterTime(5));
         OnSpotAnimalChanged?.Invoke(null);
     }
 
-    // Untested
-    // Assigning animals by hand would probably look something like this.
-    // Also other methods would need to enable/disable the collider at
-    // appropriate times (performance reasons mostly) and prevent removed
-    // animal from being instantly reassigned if mini variant spawns inside the collider.
     private void OnTriggerEnter(Collider other)
     {
         MiniAnimal animal = other.GetComponent<MiniAnimal>();
-        if (animal != null)
-            manager.AddAnimalToSpot(animal.data, this);
-        return;
+        if (isPlacingEnabled && animal != null)
+            manager.MoveMiniAnimalToSpot(animal, this);
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Hand"))
+        {
+            if (removeAnimalInputAction.action.ReadValue<float>() > 0.5f && isOccupied)
+            {
+                manager.RemoveAnimalFromSpot(animal, spawnPoint.position + new Vector3(0,1,0), spawnPoint.rotation);
+            }
+        }
+    }
+
+    private IEnumerator EnablePlacingAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        if (isOccupied == false)
+            isPlacingEnabled = true;
+    } 
 }
 
 [System.Serializable]
