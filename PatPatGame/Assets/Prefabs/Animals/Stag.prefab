@@ -1950,7 +1950,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3419861082153057666, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_Name
-      value: NEW STAG
+      value: Stag
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447838492487857294, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: type
+      value: 
+      objectReference: {fileID: 11400000, guid: 30ccda085f5c5fdc491e4a271709095b, type: 2}
+    - target: {fileID: 3447838492487857294, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: animalName
+      value: Deary Deer
       objectReference: {fileID: 0}
     - target: {fileID: 3447838492487857294, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: <Rarity>k__BackingField
@@ -1959,6 +1967,22 @@ PrefabInstance:
     - target: {fileID: 3447838492487857294, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: <AnimalName>k__BackingField
       value: Deary Deer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833184270127717505, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: m_Size.x
+      value: 3.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833184270127717505, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: m_Size.y
+      value: 4.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833184270127717505, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: m_Size.z
+      value: 5.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833184270127717505, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: m_Center.y
+      value: 2.34
       objectReference: {fileID: 0}
     - target: {fileID: 6576314244548395908, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_LocalScale.x
@@ -1974,31 +1998,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6576314244548395908, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.7708125
+      value: 7.44
       objectReference: {fileID: 0}
     - target: {fileID: 6576314244548395908, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00000017142169
+      value: -0.00000023841858
       objectReference: {fileID: 0}
     - target: {fileID: 6576314244548395908, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.9236107
+      value: -7.36
       objectReference: {fileID: 0}
     - target: {fileID: 6576314244548395908, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92871255
+      value: 0.80401266
       objectReference: {fileID: 0}
     - target: {fileID: 6576314244548395908, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6576314244548395908, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.37080058
+      value: -0.5946122
       objectReference: {fileID: 0}
     - target: {fileID: 6576314244548395908, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6576314244548395908, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2006,7 +2030,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6576314244548395908, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -43.53
+      value: -72.97
       objectReference: {fileID: 0}
     - target: {fileID: 6576314244548395908, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

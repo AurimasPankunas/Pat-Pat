@@ -2051,7 +2051,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3419861082153057666, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_Name
-      value: NEW FROG
+      value: Frog
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447838492487857294, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: type
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c79c6e8342c3f0b19513276e9f0bcbe, type: 2}
+    - target: {fileID: 3447838492487857294, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: animalName
+      value: Poggy Froggy
       objectReference: {fileID: 0}
     - target: {fileID: 3447838492487857294, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: <Rarity>k__BackingField
@@ -2060,6 +2068,22 @@ PrefabInstance:
     - target: {fileID: 3447838492487857294, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: <AnimalName>k__BackingField
       value: Poggy Froggy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833184270127717505, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: m_Size.x
+      value: 3.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833184270127717505, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: m_Size.y
+      value: 2.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833184270127717505, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: m_Size.z
+      value: 2.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833184270127717505, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: m_Center.y
+      value: 1.36
       objectReference: {fileID: 0}
     - target: {fileID: 6576314244548395908, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_LocalScale.x
@@ -2075,15 +2099,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6576314244548395908, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.8495345
+      value: -2.878
       objectReference: {fileID: 0}
     - target: {fileID: 6576314244548395908, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.688546
+      value: 0.693
       objectReference: {fileID: 0}
     - target: {fileID: 6576314244548395908, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.161772
+      value: 8.107
       objectReference: {fileID: 0}
     - target: {fileID: 6576314244548395908, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_LocalRotation.w

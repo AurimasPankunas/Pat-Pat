@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: -8443066626562193689}
   - component: {fileID: 349495288428067852}
   - component: {fileID: 4085546612816703756}
+  - component: {fileID: -4917883608393806375}
   m_Layer: 0
   m_Name: Water
-  m_TagString: Untagged
+  m_TagString: Drink
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,3 +213,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &-4917883608393806375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3970966350647022558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb2860117f7e8a4abda4feb79ba3480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Drinks
+  drinkItemID: 0

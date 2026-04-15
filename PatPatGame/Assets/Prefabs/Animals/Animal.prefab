@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 6576314244548395908}
   - component: {fileID: 7826902323455449165}
   - component: {fileID: 913359835201503196}
+  - component: {fileID: 4833184270127717505}
   - component: {fileID: 5241394963239238168}
   - component: {fileID: 332531407121439069}
   - component: {fileID: 3447838492487857294}
+  - component: {fileID: -6026240903082377067}
   m_Layer: 0
   m_Name: Animal
   m_TagString: Untagged
@@ -81,6 +83,27 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &4833184270127717505
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3419861082153057666}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5241394963239238168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,5 +147,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6e7b7478ec12546a67c33192fb4ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Animal
-  <AnimalName>k__BackingField: 
-  <Rarity>k__BackingField: 0
+  data:
+    typeID: 
+    instanceID: 
+    animalName: 
+    rarity: 0
+    level: 0
+    happiness: 0
+    food: 0
+    water: 0
+    bond: 0
+  animalName: 
+  type: {fileID: 0}
+  rarity: 1
+--- !u!114 &-6026240903082377067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3419861082153057666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd85e99f84ec7b449bf192bf5987b1e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'

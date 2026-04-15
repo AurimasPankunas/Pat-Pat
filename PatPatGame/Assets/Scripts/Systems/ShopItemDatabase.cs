@@ -324,8 +324,8 @@ public class ShopItemDatabase : ScriptableObject
     };
 
     public GloveItem   GetGlove(int rarity)              => glovePrices.Find(x => x.rarity == rarity);
-    public FoodItem    GetFood(int rarity)               => foodPrices.Find(x => x.rarity == rarity);
-    public WaterItem   GetWater(int rarity)              => waterPrices.Find(x => x.rarity == rarity);
+    public FoodItem    GetFood(int gameObjectId)               => foodPrices.Find(x => x.gameObjectId == gameObjectId);
+    public WaterItem   GetWater(int gameObjectId)              => waterPrices.Find(x => x.gameObjectId == gameObjectId);
     public SpotItem    GetSpot(int spot)                 => spotPrices.Find(x => x.spot == spot);
     public LevelUpItem GetLevelUp(int rarity, int level) => levelUpPrices.Find(x => x.rarity == rarity && x.level == level);
 }

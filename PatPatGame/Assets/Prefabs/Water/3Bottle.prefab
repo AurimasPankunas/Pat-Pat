@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4917883608393806375, guid: e80f89dc5d484544fb5f4ac12f3c7de9, type: 3}
+      propertyPath: drinkItemID
+      value: 3003
+      objectReference: {fileID: 0}
     - target: {fileID: 3970966350647022558, guid: e80f89dc5d484544fb5f4ac12f3c7de9, type: 3}
       propertyPath: m_Name
       value: 3Bottle
