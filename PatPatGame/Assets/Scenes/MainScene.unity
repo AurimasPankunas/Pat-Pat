@@ -206,6 +206,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6900676903622151380, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
+      propertyPath: m_BodyTranslateMultiplier
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8135023674665499069, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
       propertyPath: m_Name
       value: XR Interaction Simulator
@@ -482,14 +486,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7021770459266883765, guid: 74249527c90316e40a2c989e1d0ad83a, type: 3}
-      propertyPath: type
-      value: 
-      objectReference: {fileID: 11400000, guid: 8789d23a6cad5e272a928d3a08936fca, type: 2}
-    - target: {fileID: 7021770459266883765, guid: 74249527c90316e40a2c989e1d0ad83a, type: 3}
-      propertyPath: animalName
-      value: Foxy
-      objectReference: {fileID: 0}
     - target: {fileID: 7052267958574082489, guid: 74249527c90316e40a2c989e1d0ad83a, type: 3}
       propertyPath: m_Name
       value: Fox
@@ -717,14 +713,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3248046993456243674, guid: f53037f990597184c96c3910f65d2abb, type: 3}
-      propertyPath: type
-      value: 
-      objectReference: {fileID: 11400000, guid: 9c79c6e8342c3f0b19513276e9f0bcbe, type: 2}
-    - target: {fileID: 3248046993456243674, guid: f53037f990597184c96c3910f65d2abb, type: 3}
-      propertyPath: animalName
-      value: Poggy Froggy
-      objectReference: {fileID: 0}
     - target: {fileID: 3296501712516180694, guid: f53037f990597184c96c3910f65d2abb, type: 3}
       propertyPath: m_Name
       value: Frog
@@ -870,14 +858,6 @@ PrefabInstance:
     - target: {fileID: 5930878824505594404, guid: ec87fc9d66a383d4ab973594c340b7d1, type: 3}
       propertyPath: m_Name
       value: Wolf
-      objectReference: {fileID: 0}
-    - target: {fileID: 5972425673456261928, guid: ec87fc9d66a383d4ab973594c340b7d1, type: 3}
-      propertyPath: type
-      value: 
-      objectReference: {fileID: 11400000, guid: deb41f628d47b17ed9cbf86a06616f61, type: 2}
-    - target: {fileID: 5972425673456261928, guid: ec87fc9d66a383d4ab973594c340b7d1, type: 3}
-      propertyPath: animalName
-      value: Dog
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1146,14 +1126,6 @@ PrefabInstance:
     - target: {fileID: 2628109838578745594, guid: 4f7d48c8cd7b3984f8e78d5e561fca9a, type: 3}
       propertyPath: m_Name
       value: Ghost
-      objectReference: {fileID: 0}
-    - target: {fileID: 2653759991062743542, guid: 4f7d48c8cd7b3984f8e78d5e561fca9a, type: 3}
-      propertyPath: type
-      value: 
-      objectReference: {fileID: 11400000, guid: 5fdf73c95587286ae9d25518ee0ab7b1, type: 2}
-    - target: {fileID: 2653759991062743542, guid: 4f7d48c8cd7b3984f8e78d5e561fca9a, type: 3}
-      propertyPath: animalName
-      value: Ghostinius II
       objectReference: {fileID: 0}
     - target: {fileID: 5786809445207932668, guid: 4f7d48c8cd7b3984f8e78d5e561fca9a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1950,7 +1922,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6398506484677247284, guid: 5886d8bdd566bee4d9be95d8a90644c3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2140676236}
+    - targetCorrespondingSourceObject: {fileID: 4693778080147920269, guid: 5886d8bdd566bee4d9be95d8a90644c3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1683868379}
   m_SourcePrefab: {fileID: 100100000, guid: 5886d8bdd566bee4d9be95d8a90644c3, type: 3}
 --- !u!1001 &1623362188
 PrefabInstance:
@@ -2185,19 +2163,54 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stag
       objectReference: {fileID: 0}
-    - target: {fileID: 5031999687735967585, guid: 688887a89edadd6419e862e693d9a50b, type: 3}
-      propertyPath: type
-      value: 
-      objectReference: {fileID: 11400000, guid: 30ccda085f5c5fdc491e4a271709095b, type: 2}
-    - target: {fileID: 5031999687735967585, guid: 688887a89edadd6419e862e693d9a50b, type: 3}
-      propertyPath: animalName
-      value: Deary Deer
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 688887a89edadd6419e862e693d9a50b, type: 3}
+--- !u!1 &1683868371 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4693778080147920269, guid: 5886d8bdd566bee4d9be95d8a90644c3, type: 3}
+  m_PrefabInstance: {fileID: 1470563079}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1683868375 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 202553296627121866, guid: 5886d8bdd566bee4d9be95d8a90644c3, type: 3}
+  m_PrefabInstance: {fileID: 1470563079}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1683868379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683868371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34384645808e6d94f8df3c3eca14a1b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandGripColliderController
+  triggerCollider: {fileID: 1683868375}
+  gripAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Grip
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 3055b8bf-d372-4bf8-b8c2-f6c5ad248c91
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 4b4efd95-7d5d-4a22-ae40-13fe0c3ba2a7
+        m_Path: 
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Grip
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!4 &1694596878 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7327399925064667738, guid: f68f3a049dc4fd44593a9cc03b2f1933, type: 3}
@@ -2534,6 +2547,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6e7b7478ec12546a67c33192fb4ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Animal
+--- !u!1 &2140676229 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6398506484677247284, guid: 5886d8bdd566bee4d9be95d8a90644c3, type: 3}
+  m_PrefabInstance: {fileID: 1470563079}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &2140676233 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 613309326078363758, guid: 5886d8bdd566bee4d9be95d8a90644c3, type: 3}
+  m_PrefabInstance: {fileID: 1470563079}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2140676236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140676229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34384645808e6d94f8df3c3eca14a1b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  triggerCollider: {fileID: 2140676233}
+  gripAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Grip
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: ed6ec40b-268a-4dbb-bacc-2c62d0013cb1
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &89450178854650364
 GameObject:
   m_ObjectHideFlags: 0

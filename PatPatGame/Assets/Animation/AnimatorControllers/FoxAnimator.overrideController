@@ -6,10 +6,10 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FrogAnimator
+  m_Name: FoxAnimator
   m_Controller: {fileID: 9100000, guid: 9b9038a72de55d24d9c5234ed1bcc5d8, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 9714b40ebf6d78949af678e97e7f9843, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: a3342722763ea0441970abe6a9ac5dfa, type: 2}
+    m_OverrideClip: {fileID: -5105944257485555118, guid: 357f4e0279f254245ab513d741cc031d, type: 3}
   - m_OriginalClip: {fileID: 5845618705403835542, guid: 357f4e0279f254245ab513d741cc031d, type: 3}
-    m_OverrideClip: {fileID: -5094259538617418458, guid: a198c482e12d8fa4b8601ec408a8071a, type: 3}
+    m_OverrideClip: {fileID: 5845618705403835542, guid: 357f4e0279f254245ab513d741cc031d, type: 3}

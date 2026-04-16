@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2Snack
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e8b60e0700986e24d88e5c2f0f2dfea5, type: 3}
+      propertyPath: m_TagString
+      value: Food
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -75,6 +79,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e8b60e0700986e24d88e5c2f0f2dfea5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1574608622656597289}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e8b60e0700986e24d88e5c2f0f2dfea5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7588631980174888636}
   m_SourcePrefab: {fileID: 100100000, guid: e8b60e0700986e24d88e5c2f0f2dfea5, type: 3}
 --- !u!1 &4769931846310100157 stripped
 GameObject:
@@ -82,6 +89,28 @@ GameObject:
   m_PrefabInstance: {fileID: 5688990174507155948}
   m_PrefabAsset: {fileID: 0}
 --- !u!64 &1574608622656597289
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4769931846310100157}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5495902117074765545, guid: e8b60e0700986e24d88e5c2f0f2dfea5, type: 3}
+--- !u!64 &7588631980174888636
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,6 +145,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4101436685248295199, guid: 238d1b97080fa794681fbf7f129a4b83, type: 3}
+      propertyPath: foodItemID
+      value: 2002
+      objectReference: {fileID: 0}
     - target: {fileID: 255243697486944469, guid: 238d1b97080fa794681fbf7f129a4b83, type: 3}
       propertyPath: m_Name
       value: 2Snack
