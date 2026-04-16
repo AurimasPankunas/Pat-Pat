@@ -37,9 +37,17 @@
                 </ui:ProgressBar>
                 <ui:VisualElement name="FoodImage" style="-unity-background-scale-mode: scale-to-fit; width: 137px; height: 142px; display: flex; background-image: resource(&quot;Textures/Food&quot;);"/>
             </ui:VisualElement>
-            <ui:VisualElement name="LvlContainer" style="flex-grow: 0; flex-direction: row; justify-content: center; width: 326px; background-color: rgb(255, 255, 255); border-top-left-radius: 31px; border-top-right-radius: 31px; border-bottom-right-radius: 31px; border-bottom-left-radius: 31px; margin-top: 32px; margin-right: 11px; margin-bottom: 11px; margin-left: 11px; align-self: center; height: 128px;">
-                <ui:Label text="Lvl. " name="LvlLabel" style="-unity-text-align: middle-center; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-Bold.ttf?fileID=12800000&amp;guid=a408a2f38d08b2a429d13a1db7e7460e&amp;type=3#Livvic-Bold&quot;); font-size: 50px; padding-top: 4px;"/>
-                <ui:Label text="30" name="LvlAmount" style="-unity-text-align: middle-center; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-Bold.ttf?fileID=12800000&amp;guid=a408a2f38d08b2a429d13a1db7e7460e&amp;type=3#Livvic-Bold&quot;); font-size: 50px; padding-top: 4px;"/>
+            <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: center; align-items: center;">
+                <ui:VisualElement name="LvlContainer" style="flex-grow: 0; flex-direction: row; justify-content: center; width: 326px; background-color: rgb(255, 255, 255); border-top-left-radius: 31px; border-top-right-radius: 31px; border-bottom-right-radius: 31px; border-bottom-left-radius: 31px; margin-top: 20px; margin-right: 20px; margin-bottom: 20px; margin-left: 20px; align-self: center; height: 128px;">
+                    <ui:Label text="Lvl. " name="LvlLabel" style="-unity-text-align: middle-center; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-Bold.ttf?fileID=12800000&amp;guid=a408a2f38d08b2a429d13a1db7e7460e&amp;type=3#Livvic-Bold&quot;); font-size: 50px; padding-top: 4px;"/>
+                    <ui:Label text="30" name="LvlAmount" style="-unity-text-align: middle-center; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-Bold.ttf?fileID=12800000&amp;guid=a408a2f38d08b2a429d13a1db7e7460e&amp;type=3#Livvic-Bold&quot;); font-size: 50px; padding-top: 4px;"/>
+                </ui:VisualElement>
+                <ui:Button text="" name="LevelUpButton" class="WhiteButtonBG" style="height: 128px; flex-direction: row; align-items: center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; justify-content: center; min-width: 110px; max-width: 670px; padding-top: 20px; padding-bottom: 20px; border-top-left-radius: 31px; border-top-right-radius: 31px; border-bottom-right-radius: 31px; border-bottom-left-radius: 31px; padding-right: 20px; padding-left: 20px; border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center;">
+                        <ui:Image source="project://database/Assets/UI/Resources/Textures/Coin.svg?fileID=6192944022281365145&amp;guid=066fe45bb7c5eef40a23f06b579657f3&amp;type=3#Coin" style="height: 50px; width: 50px; flex-shrink: 0;"/>
+                        <ui:Label text="price" name="LevelUpPriceLabel" style="margin-top: 2px; margin-right: 2px; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px; font-size: 50px;"/>
+                    </ui:VisualElement>
+                </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

@@ -9,6 +9,8 @@ public class UIAnimalStatsFunc : MonoBehaviour
     private VisualElement _containerEmpty;
     private Button _buttonSpotNotBought;
     private Label _buttonSpotNotBoughtPrice;
+    private Button _buttonLevelUp;
+    private Label _buttonLevelUpPrice;
     private ProgressBar _happyBar;
     private ProgressBar _waterBar;
     private ProgressBar _foodBar;
@@ -20,6 +22,8 @@ public class UIAnimalStatsFunc : MonoBehaviour
     [SerializeField] private Animal animal;
     [SerializeField] private Spot spot;
     [SerializeField] private PlayerBalance playerBalance;
+    [SerializeField] private ShopItemDatabase shopItemDatabase;
+    private double levelUpPrice = 50;
     private double spotPrice = 50;
     private bool isBoughtSpot = false;
 
@@ -41,9 +45,12 @@ public class UIAnimalStatsFunc : MonoBehaviour
         _containerEmpty = _document.rootVisualElement.Q<VisualElement>("SpotEmptyContainer");
         _buttonSpotNotBought = _document.rootVisualElement.Q<Button>("SpotBuyButton");
         _buttonSpotNotBoughtPrice = _document.rootVisualElement.Q<Label>("SpotPriceLabel");
+        _buttonLevelUp = _document.rootVisualElement.Q<Button>("LevelUpButton");
+        _buttonLevelUpPrice = _document.rootVisualElement.Q<Label>("LevelUpPriceLabel");
 
         // Setting methods to buttons
         _buttonSpotNotBought.RegisterCallback<ClickEvent>(OnClickBuySpot);
+        _buttonLevelUp.RegisterCallback<ClickEvent>(OnClickLevelUp);
 
         spot.OnSpotAnimalChanged += HandleOnSpotAnimalChanged;
         HandleOnSpotAnimalChanged(spot.animal);
@@ -56,6 +63,8 @@ public class UIAnimalStatsFunc : MonoBehaviour
             SetName(animal.data.animalName);
             SetLevel(animal.data.level);
             SetRarity(animal.data.rarity);
+            levelUpPrice = shopItemDatabase.GetLevelUp(animal.data.rarity, animal.data.level).price;
+            _buttonLevelUpPrice.text = levelUpPrice.ToString("N0");
         }
         else{
             _containerStats.style.display = DisplayStyle.None;
@@ -77,6 +86,9 @@ public class UIAnimalStatsFunc : MonoBehaviour
             SetWater(animal.data.water);
             SetFood(animal.data.food);
             SetBond(animal.data.bond);
+            if(animal.data.level < 30){
+                SetButtonEnabledIfBalanceIsEnough(_buttonLevelUp, levelUpPrice);
+            }
         }
     }
 
@@ -263,6 +275,8 @@ public class UIAnimalStatsFunc : MonoBehaviour
             SetName(animal.data.animalName);
             SetLevel(animal.data.level);
             SetRarity(animal.data.rarity);
+            levelUpPrice = shopItemDatabase.GetLevelUp(animal.data.rarity, animal.data.level).price;
+            _buttonLevelUpPrice.text = levelUpPrice.ToString("N0");
         }
 
         if (isBoughtSpot){
@@ -299,6 +313,19 @@ public class UIAnimalStatsFunc : MonoBehaviour
         }
     }
 
+    public void OnClickLevelUp(ClickEvent evt)
+    {
+        if(playerBalance.money >= levelUpPrice)
+        {
+            playerBalance.SubtractMoney(levelUpPrice);
+            animal.LevelUp();
+            int animalLvl = animal.data.level;
+            SetLevel(animalLvl);
+            levelUpPrice = shopItemDatabase.GetLevelUp(animal.data.rarity,animalLvl).price;
+            _buttonLevelUpPrice.text = levelUpPrice.ToString("N0");
+        }
+    }
+
     private void HandleOnSpotAnimalChanged(Animal animal)
     {
         SetAnimal(animal);
@@ -307,5 +334,6 @@ public class UIAnimalStatsFunc : MonoBehaviour
     public void OnDisable()
     {
         _buttonSpotNotBought.UnregisterCallback<ClickEvent>(OnClickBuySpot);
+        _buttonLevelUp.UnregisterCallback<ClickEvent>(OnClickLevelUp);
     }
 }

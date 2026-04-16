@@ -98,3 +98,15 @@
     margin-bottom: 0;
     margin-left: 0;
 }
+
+.WhiteButtonBG {
+    background-color: rgb(255, 255, 255);
+}
+
+.WhiteButtonBG:hover {
+    background-color: rgb(234, 231, 231);
+}
+
+.WhiteButtonBG:active {
+    background-color: rgb(201, 201, 201);
+}
