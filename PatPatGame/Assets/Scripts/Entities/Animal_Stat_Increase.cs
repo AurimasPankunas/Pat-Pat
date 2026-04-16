@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class Animal_Stat_Increase : MonoBehaviour
 {
-    private string rarityMessage;
+    private string Message;
     private Animal animal;
+    private AnimalGraphicalFeedback graphicalFeedback;
     [SerializeField] private ShopItemDatabase shopItemDatabase;
     private FoodItem foodData;
     private WaterItem waterData;
@@ -11,41 +12,52 @@ public class Animal_Stat_Increase : MonoBehaviour
     void Start()
     {
         animal = GetComponent<Animal>();
+        graphicalFeedback = GetComponent<AnimalGraphicalFeedback>();
     }
 
     void OnTriggerEnter(Collider other)
     {
         Debug.Log($"Collider entered: {other.gameObject.name}, Tag: {other.tag}");
         
-        if(other.CompareTag("Hand"))
-        {
-            return;
-        }
         if(other.CompareTag("Food"))
         {
-            Food food = other.GetComponent<Food>();
+            Food food = other.GetComponentInParent<Food>();
             if(food != null)
             {
-                if(food.foodItemID == animal.data.rarity)
+                foodData = shopItemDatabase.GetFood(food.foodItemID);
+                if(foodData.foodAmount + animal.data.food >= 1.0) {
+                    Message = "Not hungry!";
+                } else if(foodData.rarity == animal.data.rarity)
                 {
-                    foodData = shopItemDatabase.GetFood(food.foodItemID);
                     animal.UpdateFood(foodData.foodAmount);
+                    animal.GetComponent<Animator>().SetTrigger("Eat");
                     Destroy(other.gameObject);
+                } else
+                {
+                    Message = "Wrong rarity food!";
                 }
-                rarityMessage = "Wrong rarity food!";
+                StartCoroutine(graphicalFeedback.SpawnFloatingText(Message, false));
             }
         } else if(other.CompareTag("Drink"))
         {
-            Drink drink = other.GetComponent<Drink>();
+            Drink drink = other.GetComponentInParent<Drink>();
             if(drink != null)
             {
-                if(drink.drinkItemID == animal.data.rarity)
-                {
-                    waterData = shopItemDatabase.GetWater(drink.drinkItemID);
-                    animal.UpdateWater(waterData.waterAmount);
-                    Destroy(other.gameObject);
+                waterData = shopItemDatabase.GetWater(drink.drinkItemID);
+                if(waterData.waterAmount + animal.data.water >= 1.0) {
+                    Message = "Not thirsty!";
                 }
-                rarityMessage = "Wrong rarity drink!";
+                if(waterData.rarity == animal.data.rarity)
+                {
+                    animal.UpdateWater(waterData.waterAmount);
+                    animal.GetComponent<Animator>().SetTrigger("Eat");
+                    Destroy(other.gameObject);
+                } else
+                {
+                    Message = "Wrong rarity drink!";
+                    StartCoroutine(graphicalFeedback.SpawnFloatingText(Message, false));
+                    Debug.Log("Wrong rarity");
+                }
             }
         } else
         {

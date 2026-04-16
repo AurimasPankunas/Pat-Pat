@@ -2033,6 +2033,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6026240903082377067, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: shopItemDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: b133cc68de756ed4da7abfaa5da2a848, type: 2}
     - target: {fileID: 913359835201503196, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_Height
       value: 2.5331848

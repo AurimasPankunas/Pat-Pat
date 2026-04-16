@@ -19,15 +19,15 @@ public class AnimalGraphicalFeedback : MonoBehaviour
         //Time.timeScale = 20;
         animal = GetComponent<Animal>();
         playerBalance = FindFirstObjectByType<PlayerBalance>();
-        StartCoroutine(SpawnFloatingText(message));
+        StartCoroutine(SpawnFloatingText(message, true));
     }
 
-    private IEnumerator SpawnFloatingText(string message)
+    public IEnumerator SpawnFloatingText(string message, bool addMoney = true)
     {
-        if(animal != null)
+        if(addMoney && animal != null)
         {
             money = playerBalance.AddPettingMoney(animal);
-        } else
+        } else if(addMoney)
         {
             money = -99999.99;
         }
@@ -38,7 +38,7 @@ public class AnimalGraphicalFeedback : MonoBehaviour
 
         //Assing textmesh components
         TextMeshPro tmp = textObj.AddComponent<TextMeshPro>();
-        tmp.text = message + money.ToString() + "$";
+        tmp.text = addMoney ? message + money.ToString() + "$" : message;
         tmp.fontSize = fontSize;
         tmp.color = textColor;
         tmp.alignment = TextAlignmentOptions.Center;
