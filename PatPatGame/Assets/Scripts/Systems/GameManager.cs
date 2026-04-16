@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     private void InitializeManagers()
     {
-        shopItemDatabase = new ShopItemDatabase(); ;
+        shopItemDatabase = ScriptableObject.CreateInstance<ShopItemDatabase>();
         if (SaveManager.SaveFileExists())
         {
             animalManager.Initialize(false);
