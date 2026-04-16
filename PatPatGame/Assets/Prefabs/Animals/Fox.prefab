@@ -2359,6 +2359,14 @@ PrefabInstance:
       value: Fox
       objectReference: {fileID: 0}
     - target: {fileID: 3447838492487857294, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: type
+      value: 
+      objectReference: {fileID: 11400000, guid: 8789d23a6cad5e272a928d3a08936fca, type: 2}
+    - target: {fileID: 3447838492487857294, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: animalName
+      value: Foxy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447838492487857294, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: <Rarity>k__BackingField
       value: 1
       objectReference: {fileID: 0}
