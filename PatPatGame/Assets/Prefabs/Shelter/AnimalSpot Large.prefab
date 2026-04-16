@@ -279,13 +279,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d739d422722b1b04d83e6575a6b25b45, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7369823965925430680}
   m_SourcePrefab: {fileID: 100100000, guid: d739d422722b1b04d83e6575a6b25b45, type: 3}
 --- !u!4 &2663115498910680002 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d739d422722b1b04d83e6575a6b25b45, type: 3}
   m_PrefabInstance: {fileID: 2558027076738606121}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3440356228807055736 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d739d422722b1b04d83e6575a6b25b45, type: 3}
+  m_PrefabInstance: {fileID: 2558027076738606121}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7369823965925430680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3440356228807055736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40da5e9ad32028bdb1c14615799ac44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpotVisuals
+  spot: {fileID: 2326011969493896353}
 --- !u!1001 &2822484945941064283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -363,6 +384,10 @@ PrefabInstance:
       propertyPath: spot
       value: 
       objectReference: {fileID: 2326011969493896353}
+    - target: {fileID: 3627120223850792353, guid: 8f84c65929f5faf4f839f819bb3980dd, type: 3}
+      propertyPath: sourceAsset
+      value: 
+      objectReference: {fileID: 9197481963319205126, guid: 3b28995a1e5a43a4e9048043d837c4fd, type: 3}
     - target: {fileID: 6837661000482051765, guid: 8f84c65929f5faf4f839f819bb3980dd, type: 3}
       propertyPath: m_Name
       value: UIAnimalStats

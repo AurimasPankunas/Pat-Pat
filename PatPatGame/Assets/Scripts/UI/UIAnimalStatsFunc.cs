@@ -52,9 +52,13 @@ public class UIAnimalStatsFunc : MonoBehaviour
         _buttonSpotNotBought.RegisterCallback<ClickEvent>(OnClickBuySpot);
         _buttonLevelUp.RegisterCallback<ClickEvent>(OnClickLevelUp);
 
+        spot.OnSpotBoughtUpdated += HandleOnSpotBought;
+        isBoughtSpot = spot.isBought;
         spot.OnSpotAnimalChanged += HandleOnSpotAnimalChanged;
         HandleOnSpotAnimalChanged(spot.animal);
         playerBalance = GameManager.Instance.playerBalance;
+        SetSpotPrice(spot.price);
+        isBoughtSpot = spot.isBought;
 
         // Sets the initial visuals depending on if:
         // There is(n't) an animal or the spot has been bought
@@ -249,19 +253,21 @@ public class UIAnimalStatsFunc : MonoBehaviour
     /// </summary>
     /// <param name="isBought"></param>
     public void SetIsBoughtSpot(bool isBought)
-    {
-        if (isBought != isBoughtSpot){
-            isBoughtSpot = isBought;
+{
+    if (isBought != isBoughtSpot){
+        isBoughtSpot = isBought;
 
-            // Revert UI if false
-            if (!isBoughtSpot) {
-                ShowBuySpotUI();
-                return; 
-            }
-
-            ShowAnimalStatsUI();
+        // Revert UI if false
+        if (!isBoughtSpot) {
+            ShowBuySpotUI();
+            return; 
         }
+
+        spot.BuySpot();
+
+        ShowAnimalStatsUI();
     }
+}
 
     /// <summary>
     /// Set the animal to show
@@ -329,6 +335,11 @@ public class UIAnimalStatsFunc : MonoBehaviour
     private void HandleOnSpotAnimalChanged(Animal animal)
     {
         SetAnimal(animal);
+    }
+
+    private void HandleOnSpotBought(bool value)
+    {
+        SetIsBoughtSpot(value);
     }
 
     public void OnDisable()

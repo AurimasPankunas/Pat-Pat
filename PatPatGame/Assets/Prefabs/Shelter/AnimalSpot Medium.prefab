@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: spot
       value: 
       objectReference: {fileID: 2326011969493896353}
+    - target: {fileID: 3627120223850792353, guid: 8f84c65929f5faf4f839f819bb3980dd, type: 3}
+      propertyPath: sourceAsset
+      value: 
+      objectReference: {fileID: 9197481963319205126, guid: 3b28995a1e5a43a4e9048043d837c4fd, type: 3}
     - target: {fileID: 6837661000482051765, guid: 8f84c65929f5faf4f839f819bb3980dd, type: 3}
       propertyPath: m_Name
       value: UIAnimalStats
@@ -233,6 +237,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: afc8d2a121520c7dcaafe6730996d7ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6891614337461349273}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: afc8d2a121520c7dcaafe6730996d7ac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4616616857523141720}
   m_SourcePrefab: {fileID: 100100000, guid: afc8d2a121520c7dcaafe6730996d7ac, type: 3}
 --- !u!1 &4030581668879144364 stripped
 GameObject:
@@ -260,6 +267,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.250001, y: 0.55960894, z: 2.9900007}
   m_Center: {x: 0.00000011920932, y: 0.27980053, z: 0.00000011920932}
+--- !u!114 &4616616857523141720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4030581668879144364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40da5e9ad32028bdb1c14615799ac44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpotVisuals
+  spot: {fileID: 2326011969493896353}
 --- !u!4 &4369705503028039446 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: afc8d2a121520c7dcaafe6730996d7ac, type: 3}

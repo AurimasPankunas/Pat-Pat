@@ -98,7 +98,7 @@ public class AnimalManager : MonoBehaviour
         if (GetType(animalData.typeID).size != spot.size)
             return null;
 
-        if (spot.isOccupied)
+        if (spot.isOccupied || !spot.isBought)
             return null;
 
         // Creating a new animal GameObject
@@ -186,14 +186,16 @@ public class AnimalManager : MonoBehaviour
         {
             miniAnimals = miniAnimals.Select(m => new MiniAnimalSaveData(m.data, m.transform.position, m.transform.rotation)).ToList(),
             spotAnimals = this.spotAnimals.Select(s => new SpotAnimalSaveData(s.data, spotAnimalLookup[s].id)).ToList(),
+            spots = this.spots.Select(s => new SpotData(s.id, s.isBought)).ToList()
         };
         return data;
     }
 
     public void Load(AnimalManagerSaveData data)
     {
-        data.miniAnimals.ForEach(m => CreateMiniAnimal(m.animalData, m.position, m.rotation));
+        data.spots.ForEach(s => spotLookup[s.spotID].UpdateSpotBought(s.isBought));
         data.spotAnimals.ForEach(s => AddAnimalToSpot(s.animalData, GetSpot(s.spotID)));
+        data.miniAnimals.ForEach(m => CreateMiniAnimal(m.animalData, m.position, m.rotation));
     }
 }
 
@@ -202,6 +204,7 @@ public struct AnimalManagerSaveData
 {
     public List<MiniAnimalSaveData> miniAnimals;
     public List<SpotAnimalSaveData> spotAnimals;
+    public List<SpotData> spots;
 }
 
 [System.Serializable]
@@ -229,5 +232,17 @@ public struct MiniAnimalSaveData
         this.animalData = animalData;
         this.position = position;
         this.rotation = rotation;
+    }
+}
+
+[System.Serializable]
+public struct SpotData
+{
+    public string spotID;
+    public bool isBought;
+    public SpotData(string spotID, bool isBought)
+    {
+        this.spotID = spotID;
+        this.isBought = isBought;
     }
 }

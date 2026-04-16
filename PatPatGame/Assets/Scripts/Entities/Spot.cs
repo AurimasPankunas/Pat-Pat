@@ -19,9 +19,12 @@ public class Spot : MonoBehaviour
     [field: SerializeField] public Animal animal { get; private set; }  // serialized so that animals can be set up for a new save
     public bool isOccupied { get; private set; }
     private bool isPlacingEnabled = false;
+    [field: SerializeField] public bool isBought { get; private set; }
     [SerializeField] private InputActionProperty removeAnimalInputAction;
 
     public event Action<Animal> OnSpotAnimalChanged;
+    public event Action<bool> OnSpotBoughtUpdated;  // for loading
+    public event Action<bool> OnSpotBought;  // 
 
     public void Initialize(AnimalManager manager)
     {
@@ -55,6 +58,24 @@ public class Spot : MonoBehaviour
         OnSpotAnimalChanged?.Invoke(null);
     }
 
+    /// <summary>
+    /// Updates spot bought state (for loading save data)
+    /// </summary>
+    public void UpdateSpotBought(bool value)
+    {
+        isBought = value;
+        OnSpotBought?.Invoke(value);
+    }
+
+    /// <summary>
+    /// Sets spot bought state to true
+    /// </summary>
+    public void BuySpot()
+    {
+        isBought = true;
+        OnSpotBoughtUpdated?.Invoke(true);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         MiniAnimal animal = other.GetComponent<MiniAnimal>();
@@ -79,16 +100,4 @@ public class Spot : MonoBehaviour
         if (isOccupied == false)
             isPlacingEnabled = true;
     } 
-}
-
-[System.Serializable]
-public struct SpotData
-{
-    public string spotID;
-    public bool isBought;
-    public SpotData(string spotID, bool isBought)
-    {
-        this.spotID = spotID;
-        this.isBought = isBought;
-    }
 }
