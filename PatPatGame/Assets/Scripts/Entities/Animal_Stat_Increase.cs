@@ -59,8 +59,7 @@ public class Animal_Stat_Increase : MonoBehaviour
                 waterData = shopItemDatabase.GetWater(drink.drinkItemID);
                 if(waterData.waterAmount + animal.data.water >= 1.0) {
                     Message = "Not thirsty!";
-                }
-                if(waterData.rarity == animal.data.rarity)
+                } else if(waterData.rarity == animal.data.rarity)
                 {
                     animal.UpdateWater(waterData.waterAmount);
                     animal.GetComponent<Animator>().SetTrigger("Eat");
