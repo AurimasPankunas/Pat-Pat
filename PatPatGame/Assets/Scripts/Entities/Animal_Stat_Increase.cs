@@ -8,11 +8,23 @@ public class Animal_Stat_Increase : MonoBehaviour
     [SerializeField] private ShopItemDatabase shopItemDatabase;
     private FoodItem foodData;
     private WaterItem waterData;
+    
+    [SerializeField] private float floatingTextCooldown = 0.5f;
+    private float lastFloatingTextTime = -1f;
 
     void Start()
     {
         animal = GetComponent<Animal>();
         graphicalFeedback = GetComponent<AnimalGraphicalFeedback>();
+    }
+
+    private void SpawnFloatingTextWithCooldown(string message)
+    {
+        if (Time.time >= lastFloatingTextTime + floatingTextCooldown)
+        {
+            StartCoroutine(graphicalFeedback.SpawnFloatingText(message, false));
+            lastFloatingTextTime = Time.time;
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -31,12 +43,13 @@ public class Animal_Stat_Increase : MonoBehaviour
                 {
                     animal.UpdateFood(foodData.foodAmount);
                     animal.GetComponent<Animator>().SetTrigger("Eat");
+                    Message = null;
                     Destroy(other.gameObject);
                 } else
                 {
                     Message = "Wrong rarity food!";
                 }
-                StartCoroutine(graphicalFeedback.SpawnFloatingText(Message, false));
+                SpawnFloatingTextWithCooldown(Message);
             }
         } else if(other.CompareTag("Drink"))
         {
@@ -51,13 +64,13 @@ public class Animal_Stat_Increase : MonoBehaviour
                 {
                     animal.UpdateWater(waterData.waterAmount);
                     animal.GetComponent<Animator>().SetTrigger("Eat");
+                    Message = null;
                     Destroy(other.gameObject);
                 } else
                 {
                     Message = "Wrong rarity drink!";
-                    StartCoroutine(graphicalFeedback.SpawnFloatingText(Message, false));
-                    Debug.Log("Wrong rarity");
                 }
+                SpawnFloatingTextWithCooldown(Message);
             }
         } else
         {
