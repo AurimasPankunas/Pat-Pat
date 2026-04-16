@@ -1,3 +1,4 @@
+using NUnit.Framework.Constraints;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
     public TimeKeeper timeKeeper;
     public AnimalManager animalManager;
     public AnimalRegister animalRegister;
+    public ShopItemDatabase shopItemDatabase;
 
     // Setting execution order in project settings can ensure
     // GameManager's Awake() runs before all other scripts.
@@ -62,6 +64,7 @@ public class GameManager : MonoBehaviour
 
     private void InitializeManagers()
     {
+        shopItemDatabase = new ShopItemDatabase(); ;
         if (SaveManager.SaveFileExists())
         {
             animalManager.Initialize(false);
