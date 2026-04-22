@@ -89,16 +89,16 @@ public class Animal : MonoBehaviour
     public double PettingIncome(int gloveRarity)
     {
         PettingHappinessIncrease(gloveRarity);
-
+    
+        // Naudojame tiesioginį gloveRarity, nes Pow(x, 1) = x
         double income =
-            20.0 *
+            (20.0 / 13.5) *
             RarityMultiplier(data.rarity) *
             LevelMultiplier(data.level) *
-            (1 + data.happiness) *
+            (1.0 + data.happiness) *
             BondEffect(data.bond) *
-            (1 + Math.Pow(gloveRarity, 1.25)) *
-            NeedsEffect(data.food, data.water);
-
+            (1.0 + (double)gloveRarity) * NeedsEffect(data.food, data.water);
+    
         return Math.Round(income, 2);
     }
 
