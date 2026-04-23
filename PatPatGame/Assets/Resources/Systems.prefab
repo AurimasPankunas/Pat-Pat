@@ -235,6 +235,7 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: 10e6344e0eeb0099a9f1d0149d2a1915, type: 2}
   poolSize: 10
   musicTest: {fileID: 8300000, guid: 45377d0e9ec0b9714bff98c8d257de81, type: 3}
+  sfxTest: {fileID: 8300000, guid: bd7548b74c60c8448b1a3572174f7d4c, type: 3}
 --- !u!1 &7918604838448879450
 GameObject:
   m_ObjectHideFlags: 0

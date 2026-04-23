@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using System.Collections.Generic;
+using Unity.Mathematics;
 
 public class SoundManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class SoundManager : MonoBehaviour
     [Header("SFX Pool")]
     public int poolSize = 10;
     public AudioClip musicTest;
+    public AudioClip sfxTest;
     private List<AudioSource> sfxSources;
     private AudioSource musicSource;
 
@@ -24,7 +26,13 @@ public class SoundManager : MonoBehaviour
         InitializeAudioPool();
         InitializeMusicSource();
         PlayMusic(musicTest, 1, true);
-        SetMusicVolume(0.0001f);
+        InvokeRepeating(nameof(PlaySoundTest), 1, 5);
+    }
+
+    private void PlaySoundTest()
+    {
+        SetMusicVolume(0.1f);
+        PlaySoundAtPosition(sfxTest, new Vector3(0,0,0));
     }
 
     void InitializeAudioPool()
