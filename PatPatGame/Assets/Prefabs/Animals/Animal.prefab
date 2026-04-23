@@ -160,6 +160,7 @@ MonoBehaviour:
   animalName: 
   type: {fileID: 0}
   rarity: 1
+  idleSound: {fileID: 8300000, guid: bd7548b74c60c8448b1a3572174f7d4c, type: 3}
 --- !u!114 &-6026240903082377067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,3 +173,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd85e99f84ec7b449bf192bf5987b1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  shopItemDatabase: {fileID: 0}
+  floatingTextCooldown: 0.5

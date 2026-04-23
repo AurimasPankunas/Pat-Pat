@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 
+/// <summary>
+/// Central sound player and volume manager
+/// </summary>
 public class SoundManager : MonoBehaviour
 {
     [Header("Audio Mixer")]
@@ -13,29 +16,20 @@ public class SoundManager : MonoBehaviour
 
     [Header("SFX Pool")]
     public int poolSize = 10;
-    public AudioClip musicTest;
-    public AudioClip sfxTest;
     private List<AudioSource> sfxSources;
     private AudioSource musicSource;
 
     private int currentSourceIndex = 0;
+    public bool isTesting = false;
 
     public void Initialize()
     {
         InitializeMixerGroups();
         InitializeAudioPool();
         InitializeMusicSource();
-        PlayMusic(musicTest, 1, true);
-        InvokeRepeating(nameof(PlaySoundTest), 1, 5);
     }
 
-    private void PlaySoundTest()
-    {
-        SetMusicVolume(0.1f);
-        PlaySoundAtPosition(sfxTest, new Vector3(0,0,0));
-    }
-
-    void InitializeAudioPool()
+    private void InitializeAudioPool()
     {
         sfxSources = new List<AudioSource>();
 
@@ -51,31 +45,39 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    void InitializeMusicSource()
+    private void InitializeMusicSource()
     {
         GameObject musicObj = new GameObject("Music_Source");
         musicObj.transform.parent = transform;
 
         musicSource = musicObj.AddComponent<AudioSource>();
+        musicSource.outputAudioMixerGroup = musicGroup;
         musicSource.playOnAwake = false;
         musicSource.loop = true;
         musicSource.spatialBlend = 0f; // 2D sound
     }
 
-    void InitializeMixerGroups()
+    private void InitializeMixerGroups()
     {
         musicGroup = audioMixer.FindMatchingGroups("Master/Music")[0];
         sfxGroup = audioMixer.FindMatchingGroups("Master/SFX")[0];
         uiGroup = audioMixer.FindMatchingGroups("Master/UI")[0];
     }
 
-    AudioSource GetNextSource()
+    private AudioSource GetNextSource()
     {
         currentSourceIndex = (currentSourceIndex + 1) % poolSize;
         return sfxSources[currentSourceIndex];
     }
 
-    // Play 3D SFX at position
+    public AudioSource getMusicSource()
+    {
+        return musicSource;
+    }
+
+    /// <summary>
+    /// Play 3D SFX at position (SFX audio group)
+    /// </summary>
     public void PlaySoundAtPosition(AudioClip clip, Vector3 position, float volume = 1f)
     {
         AudioSource source = GetNextSource();
@@ -87,7 +89,10 @@ public class SoundManager : MonoBehaviour
         source.Play();
     }
 
-    public void PlayUISound(AudioClip clip, float volume = 1f)
+    /// </summary>
+    /// Play a 2D SFX (UI audio group)
+    /// </summary>
+    public void PlaySound2D(AudioClip clip, float volume = 1f)
     {
         AudioSource source = GetNextSource();
 
@@ -97,10 +102,12 @@ public class SoundManager : MonoBehaviour
         source.volume = volume;
         source.Play();
     }
-
+    /// </summary>
+    /// Play a music clip (Music audio group)
+    /// </summary>
     public void PlayMusic(AudioClip music, float volume = 1f, bool loop = true)
     {
-        musicSource.outputAudioMixerGroup = musicGroup;
+        // SetMusicVolume(0.6f);
         musicSource.clip = music;
         musicSource.volume = volume;
         musicSource.loop = loop;
@@ -109,22 +116,26 @@ public class SoundManager : MonoBehaviour
 
     public void StopMusic()
     {
+        StartCoroutine(FadeOut(musicSource, 1f));
         musicSource.Stop();
     }
 
-    // Master volume control (AudioMixer exposed param: "MasterVolume")
-    public void SetMasterVolume(float volume)
+    /// <summary>
+    /// Switch music source to 3D and set its location
+    /// </summary>
+    public void SetMusicLocation(Vector3 position)
     {
-        // volume expected 0.0001f - 1f
-        float db = Mathf.Log10(volume) * 20;
-        audioMixer.SetFloat("MasterVolume", db);
+        musicSource.transform.position = position;
+        musicSource.rolloffMode = AudioRolloffMode.Logarithmic;
+        musicSource.maxDistance = 1000;
+        musicSource.spatialBlend = 1f;
     }
 
-    void SetVolume(string parameter, float volume)
+    public void SetMasterVolume(float volume)
     {
-        float db = Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * 20;
-        audioMixer.SetFloat(parameter, db);
+        SetVolume("MasterVolume", volume);
     }
+
 
     public void SetMusicVolume(float volume)
     {
@@ -139,5 +150,30 @@ public class SoundManager : MonoBehaviour
     public void SetUIVolume(float volume)
     {
         SetVolume("UIVolume", volume);
+    }
+
+    private void SetVolume(string parameter, float volume)
+    {
+        // float minDb = -80f;
+        // float maxDb = 0f;
+        // float db = Mathf.Lerp(minDb, maxDb, volume);
+
+        volume = Mathf.Pow(volume, 4f); // tweak exponent for volume curve (2–4 works well)
+        float db = Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * 20;
+
+        audioMixer.SetFloat(parameter, db);
+    }
+
+    private static IEnumerator FadeOut (AudioSource audioSource, float FadeTime) {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0) {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        audioSource.Stop ();
+        audioSource.volume = startVolume;
     }
 }

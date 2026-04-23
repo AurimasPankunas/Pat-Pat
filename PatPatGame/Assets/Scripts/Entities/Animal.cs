@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -11,6 +12,21 @@ public class Animal : MonoBehaviour
     [SerializeField] private string animalName;
     [SerializeField] private AnimalType type;
     [SerializeField] private int rarity = 1;
+    [SerializeField] private AudioClip idleSound;
+    private SoundManager soundManager;
+
+
+    void Start()
+    {
+        soundManager = GameManager.Instance.soundManager;
+    }
+    // play idle sound randomly (example + testing)
+    void FixedUpdate()
+    {
+        float rand = UnityEngine.Random.Range(0f, 1f);
+        if (soundManager.isTesting && idleSound != null && rand < 0.002)
+            soundManager.PlaySoundAtPosition(idleSound, transform.position);
+    }
 
     public int likes => (int)(1 +
         1 *
