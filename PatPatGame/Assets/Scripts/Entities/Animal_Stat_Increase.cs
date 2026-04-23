@@ -44,7 +44,7 @@ public class Animal_Stat_Increase : MonoBehaviour
                     animal.UpdateFood(foodData.foodAmount);
                     animal.GetComponent<Animator>().SetTrigger("Eat");
                     Message = null;
-                    Destroy(other.transform.root.gameObject);
+                    Destroy(other.gameObject.transform.parent.gameObject);
                 } else
                 {
                     Message = "Wrong rarity food!";
@@ -64,7 +64,7 @@ public class Animal_Stat_Increase : MonoBehaviour
                     animal.UpdateWater(waterData.waterAmount);
                     animal.GetComponent<Animator>().SetTrigger("Eat");
                     Message = null;
-                    Destroy(other.transform.root.gameObject);
+                    Destroy(other.gameObject.transform.parent.gameObject);
                 } else
                 {
                     Message = "Wrong rarity drink!";
