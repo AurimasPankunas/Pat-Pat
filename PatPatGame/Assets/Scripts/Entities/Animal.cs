@@ -20,7 +20,7 @@ public class Animal : MonoBehaviour
         (1 + Math.Pow(data.bond, 0.4)) *
         Math.Pow(NeedsEffect(data.food, data.water), 3));
     private static double RarityMultiplier(int rarity) => Math.Pow(1.6, rarity - 1);
-    private static double LevelMultiplier(int level) => Math.Pow(level, 1.2);
+    private static double LevelMultiplier(int level) => Math.Pow(level, 0.6);
     private static double NeedsEffect(double food, double water)
     {
         double needs = food * 0.5 + water * 0.5;
