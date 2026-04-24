@@ -26,6 +26,8 @@ public class Tray : MonoBehaviour
     {
         //Debug.Log("Placing "+obj.name);
         Rigidbody rb = obj.GetComponent<Rigidbody>();
+        rb.angularVelocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
         rb.isKinematic = true;
 
         obj.transform.SetParent(transform, true);
