@@ -126,7 +126,11 @@ public class AnimalManager : MonoBehaviour
         spotAnimalLookup.TryGetValue(animal, out var spot);
         spot.RemoveAnimal();
         spotAnimalLookup.Remove(animal);
-        Destroy(animal.gameObject);
+
+        // Move the animal far away and let its scripts finish before destroying
+        animal.gameObject.transform.Translate(new Vector3(0,-1000,0), Space.World);
+        Destroy(animal.gameObject, 4);
+        Debug.Log("Animal removal code reached return");
         return data;
     }
 
