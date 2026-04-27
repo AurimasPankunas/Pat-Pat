@@ -1,27 +1,26 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using System.Collections.Generic;
 
 public class PriceZone : MonoBehaviour
 {
     [SerializeField] private ItemBin parentBin;
 
-    private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _trackedGrab;
+    private HashSet<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable> _trackedGrabs = new();
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.IsChildOf(transform)) return;
 
         var grab = other.GetComponentInParent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
-        if (grab == null) return;
+        if (grab == null || _trackedGrabs.Contains(grab)) return;
 
         var sellable = grab.GetComponentInChildren<ISellable>();
         if (sellable == null) return;
 
-        _trackedGrab = grab;
-
+        _trackedGrabs.Add(grab);
         grab.selectEntered.AddListener(OnItemGrabbed);
         grab.selectExited.AddListener(OnItemReleased);
-
 
         if (grab.isSelected)
             parentBin.ShowPriceBox(sellable.PriceLabel);
@@ -32,35 +31,41 @@ public class PriceZone : MonoBehaviour
         if (other.transform.IsChildOf(transform)) return;
 
         var grab = other.GetComponentInParent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
-        if (grab == null || grab != _trackedGrab) return;
+        if (grab == null || !_trackedGrabs.Contains(grab)) return;
 
-        Cleanup();
+        RemoveTracked(grab);
+
+        if (!AnyHeldInZone())
+            parentBin.HidePriceBox();
     }
 
     private void OnItemGrabbed(SelectEnterEventArgs args)
     {
-        if (_trackedGrab == null) return;
+        var grab = args.interactableObject as UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable;
+        if (grab == null || !_trackedGrabs.Contains(grab)) return;
 
-        var sellable = _trackedGrab.GetComponentInChildren<ISellable>();
-        if (sellable == null) return;
-
-        parentBin.ShowPriceBox(sellable.PriceLabel);
+        var sellable = grab.GetComponentInChildren<ISellable>();
+        if (sellable != null)
+            parentBin.ShowPriceBox(sellable.PriceLabel);
     }
 
     private void OnItemReleased(SelectExitEventArgs args)
     {
-        parentBin.HidePriceBox();
+        if (!AnyHeldInZone())
+            parentBin.HidePriceBox();
     }
 
-    private void Cleanup()
+    private bool AnyHeldInZone()
     {
-        parentBin.HidePriceBox();
+        foreach (var g in _trackedGrabs)
+            if (g != null && g.isSelected) return true;
+        return false;
+    }
 
-        if (_trackedGrab != null)
-        {
-            _trackedGrab.selectEntered.RemoveListener(OnItemGrabbed);
-            _trackedGrab.selectExited.RemoveListener(OnItemReleased);
-            _trackedGrab = null;
-        }
+    private void RemoveTracked(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grab)
+    {
+        grab.selectEntered.RemoveListener(OnItemGrabbed);
+        grab.selectExited.RemoveListener(OnItemReleased);
+        _trackedGrabs.Remove(grab);
     }
 }

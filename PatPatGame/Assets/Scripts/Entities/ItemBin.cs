@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using TMPro;
-
+using System.Collections.Generic;
 
 public class ItemBin : MonoBehaviour
 {
@@ -10,19 +10,16 @@ public class ItemBin : MonoBehaviour
     [SerializeField] private TextMeshProUGUI priceText;
     [SerializeField] private GameObject showPriceBox;
 
-    private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _hoveredItem;
+    private HashSet<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable> _itemsInZone = new();
 
-    private void Start()
-    {
-        HidePrice();
-    }
+    private void Start() => HidePrice();
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.IsChildOf(transform)) return;
 
         var grab = other.GetComponentInParent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
-        if (grab == null) return;
+        if (grab == null || _itemsInZone.Contains(grab)) return;
 
         var sellable = grab.GetComponentInChildren<ISellable>();
         if (sellable == null) return;
@@ -33,7 +30,7 @@ public class ItemBin : MonoBehaviour
             return;
         }
 
-        _hoveredItem = grab;
+        _itemsInZone.Add(grab);
         ShowPrice(sellable.PriceLabel);
         grab.selectExited.AddListener(OnItemReleased);
     }
@@ -43,21 +40,46 @@ public class ItemBin : MonoBehaviour
         if (other.transform.IsChildOf(transform)) return;
 
         var grab = other.GetComponentInParent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
-        if (grab == null || grab != _hoveredItem) return;
+        if (grab == null || !_itemsInZone.Contains(grab)) return;
 
-        HidePrice();
         grab.selectExited.RemoveListener(OnItemReleased);
-        _hoveredItem = null;
+        _itemsInZone.Remove(grab);
+
+        RefreshPrice();
     }
 
     private void OnItemReleased(SelectExitEventArgs args)
     {
-        if (_hoveredItem == null) return;
+        var grab = args.interactableObject as UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable;
+        if (grab == null || !_itemsInZone.Contains(grab)) return;
 
-        var sellable = _hoveredItem.GetComponentInChildren<ISellable>();
+        var sellable = grab.GetComponentInChildren<ISellable>();
         if (sellable == null) return;
 
-        SellItem(_hoveredItem, sellable);
+        SellItem(grab, sellable);
+    }
+
+    private void RefreshPrice()
+    {
+        _itemsInZone.RemoveWhere(g => g == null);
+
+        if (_itemsInZone.Count == 0)
+        {
+            HidePrice();
+            return;
+        }
+
+        foreach (var remaining in _itemsInZone)
+        {
+            var sellable = remaining.GetComponentInChildren<ISellable>();
+            if (sellable != null)
+            {
+                ShowPrice(sellable.PriceLabel);
+                return;
+            }
+        }
+
+        HidePrice();
     }
 
     private void SellItem(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grab, ISellable sellable)
@@ -70,10 +92,11 @@ public class ItemBin : MonoBehaviour
         GameManager.Instance.playerBalance.AddMoney(sellable.SellValue);
 
         grab.selectExited.RemoveListener(OnItemReleased);
-        HidePrice();
-        _hoveredItem = null;
+        _itemsInZone.Remove(grab);
 
         Destroy(grab.gameObject);
+
+        RefreshPrice();
     }
 
     public void ShowPrice(string label)
@@ -87,14 +110,6 @@ public class ItemBin : MonoBehaviour
         if (priceTagCanvas != null) priceTagCanvas.SetActive(false);
     }
 
-    public void ShowPriceBox(string label)
-    {
-        if (priceTagCanvas != null) priceTagCanvas.SetActive(true);
-        if (priceText != null) priceText.text = label;
-    }
-
-    public void HidePriceBox()
-    {
-        if (priceTagCanvas != null) priceTagCanvas.SetActive(false);
-    }
+    public void ShowPriceBox(string label) => ShowPrice(label);
+    public void HidePriceBox() => HidePrice();
 }

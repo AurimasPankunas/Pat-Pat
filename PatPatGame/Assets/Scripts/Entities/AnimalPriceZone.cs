@@ -1,29 +1,30 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using System.Collections.Generic;
 
 public class AnimalPriceZone : MonoBehaviour
 {
     [SerializeField] private AnimalSell parentBin;
 
-    private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable _trackedGrab;
+    // Track ALL grabs in this zone, not just one
+    private HashSet<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable> _trackedGrabs = new();
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.IsChildOf(transform)) return;
 
         var grab = other.GetComponentInParent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
-        if (grab == null) return;
+        if (grab == null || _trackedGrabs.Contains(grab)) return;
 
         var miniAnimal = grab.GetComponentInChildren<MiniAnimal>();
         if (miniAnimal == null) return;
 
-        _trackedGrab = grab;
-
+        _trackedGrabs.Add(grab);
         grab.selectEntered.AddListener(OnItemGrabbed);
         grab.selectExited.AddListener(OnItemReleased);
 
         if (grab.isSelected)
-            parentBin.ShowPriceBox(miniAnimal.data.likes.ToString()+" Like(s)");
+            parentBin.ShowPriceBox(miniAnimal.data.likes.ToString() + " Like(s)");
     }
 
     private void OnTriggerExit(Collider other)
@@ -31,35 +32,44 @@ public class AnimalPriceZone : MonoBehaviour
         if (other.transform.IsChildOf(transform)) return;
 
         var grab = other.GetComponentInParent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
-        if (grab == null || grab != _trackedGrab) return;
+        if (grab == null || !_trackedGrabs.Contains(grab)) return;
 
-        Cleanup();
+        // Only clean up this specific item
+        RemoveTracked(grab);
+
+        // If no held items remain in zone, hide price
+        if (!AnyHeldInZone())
+            parentBin.HidePriceBox();
     }
 
     private void OnItemGrabbed(SelectEnterEventArgs args)
     {
-        if (_trackedGrab == null) return;
+        var grab = args.interactableObject as UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable;
+        if (grab == null || !_trackedGrabs.Contains(grab)) return;
 
-        var miniAnimal = _trackedGrab.GetComponentInChildren<MiniAnimal>();
-        if (miniAnimal == null) return;
-
-        parentBin.ShowPriceBox(miniAnimal.data.likes.ToString()+" Like(s)");
+        var miniAnimal = grab.GetComponentInChildren<MiniAnimal>();
+        if (miniAnimal != null)
+            parentBin.ShowPriceBox(miniAnimal.data.likes.ToString() + " Like(s)");
     }
 
     private void OnItemReleased(SelectExitEventArgs args)
     {
-        parentBin.HidePriceBox();
+        // Only hide if no other held items remain in the zone
+        if (!AnyHeldInZone())
+            parentBin.HidePriceBox();
     }
 
-    private void Cleanup()
+    private bool AnyHeldInZone()
     {
-        parentBin.HidePriceBox();
+        foreach (var g in _trackedGrabs)
+            if (g != null && g.isSelected) return true;
+        return false;
+    }
 
-        if (_trackedGrab != null)
-        {
-            _trackedGrab.selectEntered.RemoveListener(OnItemGrabbed);
-            _trackedGrab.selectExited.RemoveListener(OnItemReleased);
-            _trackedGrab = null;
-        }
+    private void RemoveTracked(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grab)
+    {
+        grab.selectEntered.RemoveListener(OnItemGrabbed);
+        grab.selectExited.RemoveListener(OnItemReleased);
+        _trackedGrabs.Remove(grab);
     }
 }

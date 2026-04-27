@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 554750497}
   - component: {fileID: 554750498}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ItemSellingHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -551,8 +551,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.09422133, y: 0.058494233, z: 0.10971086}
-  m_Center: {x: 0.01856543, y: -0.023573352, z: 0.020883674}
+  m_Size: {x: 0.035691973, y: 0.014611865, z: 0.13120411}
+  m_Center: {x: 0.0014266726, y: -0.0055926424, z: 0.010137445}
 --- !u!114 &554750498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -830,7 +830,7 @@ GameObject:
   - component: {fileID: 1013078777}
   - component: {fileID: 1013078776}
   m_Layer: 0
-  m_Name: Trashcan_Small1 (1)
+  m_Name: Trashcan_Small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -924,17 +924,17 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1013078775}
   m_LocalRotation: {x: -0.49991274, y: 0.49991274, z: 0.50008726, w: 0.50008726}
-  m_LocalPosition: {x: 0, y: 0, z: 5.137324}
-  m_LocalScale: {x: 224.73135, y: 360.4763, z: 152.40997}
+  m_LocalPosition: {x: 0, y: 0, z: -3.664}
+  m_LocalScale: {x: 224.73135, y: 360.4763, z: 152.40996}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 543450653042915029}
   - {fileID: 554750496}
-  m_Father: {fileID: 1026294249}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.6592016, y: 0.004}
+  m_AnchoredPosition: {x: -9.293, y: 0.009}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1015847288
@@ -1032,8 +1032,6 @@ Transform:
   - {fileID: 1745281385}
   - {fileID: 893289457}
   - {fileID: 1132798559}
-  - {fileID: 5906466213414845562}
-  - {fileID: 1013078779}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1041049627
@@ -2313,7 +2311,7 @@ GameObject:
   - component: {fileID: 1490764785}
   - component: {fileID: 1490764784}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: AnimalsellingHitboxI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2370,8 +2368,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.09351902, y: 0.05849423, z: 0.10971086}
-  m_Center: {x: 0.01821417, y: -0.02357335, z: 0.020881005}
+  m_Size: {x: 0.046264846, y: 0.008895468, z: 0.12316453}
+  m_Center: {x: 0.038610704, y: -0.015708389, z: 0.01414791}
 --- !u!1001 &1623362188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3353,7 +3351,7 @@ GameObject:
   - component: {fileID: 633906051}
   - component: {fileID: 633906050}
   m_Layer: 0
-  m_Name: Trashcan_Small1
+  m_Name: TrashcanHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3548,13 +3546,13 @@ Transform:
   m_GameObject: {fileID: 6538148135389128384}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.236, y: -0, z: -0.13}
+  m_LocalPosition: {x: -3.9357986, y: 0, z: -8.931324}
   m_LocalScale: {x: 0.7946496, y: 1, z: 0.71142}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2099877620}
   - {fileID: 1490764783}
-  m_Father: {fileID: 1026294249}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6100017474695879619
 PrefabInstance:
@@ -3760,4 +3758,6 @@ SceneRoots:
   - {fileID: 6100017474695879619}
   - {fileID: 4103780311223734948}
   - {fileID: 499223846}
+  - {fileID: 5906466213414845562}
+  - {fileID: 1013078779}
   - {fileID: 1026294249}
