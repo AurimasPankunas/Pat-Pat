@@ -160,6 +160,7 @@ MonoBehaviour:
   animalName: 
   type: {fileID: 0}
   rarity: 1
+  idleSound: {fileID: 8300000, guid: bd7548b74c60c8448b1a3572174f7d4c, type: 3}
 --- !u!114 &-6026240903082377067
 MonoBehaviour:
   m_ObjectHideFlags: 0

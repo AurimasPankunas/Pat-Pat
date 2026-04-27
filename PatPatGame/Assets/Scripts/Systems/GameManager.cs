@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     public TimeKeeper timeKeeper;
     public AnimalManager animalManager;
     public AnimalRegister animalRegister;
+    public SoundManager soundManager;
 
     // Setting execution order in project settings can ensure
     // GameManager's Awake() runs before all other scripts.
@@ -73,5 +74,6 @@ public class GameManager : MonoBehaviour
             animalManager.Initialize(true);
             playerBalance.Initialize();
         }
+        soundManager.Initialize();
     }
 }
