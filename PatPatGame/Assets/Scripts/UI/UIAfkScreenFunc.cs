@@ -6,9 +6,11 @@ using UnityEngine.UIElements;
 public class UIAfkScreenFunc : MonoBehaviour
 {
     private UIDocument _document;
+    private VisualElement _welcomeBackContainer;
     private Label _moneyAmount;
     private Label _timeAmount;
     private Button _closeButton;
+    private Button _quitButton;
     private PlayerBalance playerBalance;
     private TimeKeeper timeKeeper;
 
@@ -20,12 +22,15 @@ public class UIAfkScreenFunc : MonoBehaviour
         _document = GetComponent<UIDocument>();
 
         // Grabbing UI elements from the document
+        _welcomeBackContainer = _document.rootVisualElement.Q<VisualElement>("WelcomeBackContainer");
         _moneyAmount = _document.rootVisualElement.Q<Label>("MoneyAmount");
         _timeAmount = _document.rootVisualElement.Q<Label>("TimeAmount");
         _closeButton = _document.rootVisualElement.Q<Button>("CloseButton");
+        _quitButton = _document.rootVisualElement.Q<Button>("QuitButton");
 
         // Set button function
         _closeButton.RegisterCallback<ClickEvent>(OnCloseClick);
+        _quitButton.RegisterCallback<ClickEvent>(OnQuitClick);
 
         // Set visuals
         TimeSpan time = DateTime.Now - timeKeeper.lastLogin;
@@ -42,12 +47,20 @@ public class UIAfkScreenFunc : MonoBehaviour
 
     public void OnCloseClick(ClickEvent evt)
     {
-        OnDisable();
-        Destroy(this.gameObject);
+        _welcomeBackContainer.style.display = DisplayStyle.None;
+        _closeButton.UnregisterCallback<ClickEvent>(OnCloseClick);
+    }
+
+    public void OnQuitClick(ClickEvent evt)
+    {
+        // Quitting works only in build mode
+        Debug.Log("Quit");
+        Application.Quit();
     }
 
     public void OnDisable()
     {
         _closeButton.UnregisterCallback<ClickEvent>(OnCloseClick);
+        _quitButton.UnregisterCallback<ClickEvent>(OnQuitClick);
     }
 }
