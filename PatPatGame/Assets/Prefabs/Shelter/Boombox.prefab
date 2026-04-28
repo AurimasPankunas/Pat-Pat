@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &389003674153076578
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: aa1cc873a543a19a49f59e0cbb88c6ea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.714
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aa1cc873a543a19a49f59e0cbb88c6ea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.971
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aa1cc873a543a19a49f59e0cbb88c6ea, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.315
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aa1cc873a543a19a49f59e0cbb88c6ea, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aa1cc873a543a19a49f59e0cbb88c6ea, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aa1cc873a543a19a49f59e0cbb88c6ea, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aa1cc873a543a19a49f59e0cbb88c6ea, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aa1cc873a543a19a49f59e0cbb88c6ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aa1cc873a543a19a49f59e0cbb88c6ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aa1cc873a543a19a49f59e0cbb88c6ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: aa1cc873a543a19a49f59e0cbb88c6ea, type: 3}
+      propertyPath: m_Name
+      value: Boombox
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: aa1cc873a543a19a49f59e0cbb88c6ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 950048109034682127}
+  m_SourcePrefab: {fileID: 100100000, guid: aa1cc873a543a19a49f59e0cbb88c6ea, type: 3}
+--- !u!1 &695644609551432243 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: aa1cc873a543a19a49f59e0cbb88c6ea, type: 3}
+  m_PrefabInstance: {fileID: 389003674153076578}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &950048109034682127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695644609551432243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef58c179536361ec1bdbd48f133cfab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicPlayer
+  audioClips:
+  - {fileID: 8300000, guid: 45377d0e9ec0b9714bff98c8d257de81, type: 3}
+  spatialMusic: 0
+  minWaitBetweenPlays: 1
+  maxWaitBetweenPlays: 5

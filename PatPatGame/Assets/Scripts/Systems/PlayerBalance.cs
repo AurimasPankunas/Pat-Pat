@@ -8,6 +8,7 @@ public class PlayerBalance : MonoBehaviour
 {
     [field: SerializeField] public double money { get; private set; }
     public event Action<double> OnMoneyChanged;
+    public double earnedMoneyOffline;
     [field: SerializeField] public int likes { get; private set; }
     public event Action<int> OnLikesChanged;
     [field: SerializeField] public int chestLevel { get; private set; }
@@ -191,8 +192,8 @@ public class PlayerBalance : MonoBehaviour
     {
         List<Animal> animals = animalManager.spotAnimals;
 
-        double earnedMoney = SimulateShelter(animals, hours, false);
-        this.money = data.money + earnedMoney;
+        earnedMoneyOffline = SimulateShelter(animals, hours, false);
+        this.money = data.money + earnedMoneyOffline;
         this.likes = data.likes;
         this.chestLevel = data.chestLevel;
         this.levelChestsOpened = data.levelChestsOpened;

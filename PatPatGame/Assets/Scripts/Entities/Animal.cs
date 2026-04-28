@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -11,9 +12,24 @@ public class Animal : MonoBehaviour
     [SerializeField] private string animalName;
     [SerializeField] private AnimalType type;
     [SerializeField] private int rarity = 1;
+    [SerializeField] private AudioClip idleSound;
+    private SoundManager soundManager;
+
+
+    void Start()
+    {
+        soundManager = GameManager.Instance.soundManager;
+    }
+    // play idle sound randomly (example + testing)
+    void FixedUpdate()
+    {
+        float rand = UnityEngine.Random.Range(0f, 1f);
+        if (soundManager.isTesting && idleSound != null && rand < 0.002)
+            soundManager.PlaySoundAtPosition(idleSound, transform.position);
+    }
 
     private static double RarityMultiplier(int rarity) => Math.Pow(1.6, rarity - 1);
-    private static double LevelMultiplier(int level) => Math.Pow(level, 1.2);
+    private static double LevelMultiplier(int level) => Math.Pow(level, 0.6);
     private static double NeedsEffect(double food, double water)
     {
         double needs = food * 0.5 + water * 0.5;
@@ -82,16 +98,16 @@ public class Animal : MonoBehaviour
     public double PettingIncome(int gloveRarity)
     {
         PettingHappinessIncrease(gloveRarity);
-
+    
+        // Naudojame tiesioginį gloveRarity, nes Pow(x, 1) = x
         double income =
-            20.0 *
+            (20.0 / 13.5) *
             RarityMultiplier(data.rarity) *
             LevelMultiplier(data.level) *
-            (1 + data.happiness) *
+            (1.0 + data.happiness) *
             BondEffect(data.bond) *
-            (1 + Math.Pow(gloveRarity, 1.25)) *
-            NeedsEffect(data.food, data.water);
-
+            (1.0 + (double)gloveRarity) * NeedsEffect(data.food, data.water);
+    
         return Math.Round(income, 2);
     }
 
