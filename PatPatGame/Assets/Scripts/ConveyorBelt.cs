@@ -22,7 +22,9 @@ public class ConveyorBelt : MonoBehaviour
 
         for(int i = 0; i < onBelt.Count; i++)
         {
-            onBelt[i].GetComponent<Rigidbody>().linearVelocity = speed * direction * Time.deltaTime;
+            Rigidbody rb = onBelt[i].GetComponent<Rigidbody>();
+            if (!rb.isKinematic)
+                rb.linearVelocity = speed * direction * Time.deltaTime;
         }
     }
 
