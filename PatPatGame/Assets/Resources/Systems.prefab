@@ -340,4 +340,5 @@ MonoBehaviour:
   timeKeeper: {fileID: 2989526269022583445}
   animalManager: {fileID: 8045138864858267655}
   animalRegister: {fileID: 4450691373523339555}
+  shopItemDatabase: {fileID: 11400000, guid: b133cc68de756ed4da7abfaa5da2a848, type: 2}
   soundManager: {fileID: 1506822050911859010}
