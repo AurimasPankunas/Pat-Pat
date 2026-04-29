@@ -23,6 +23,7 @@ public class SaveManager : MonoBehaviour
         public TimeKeeperData timeKeeperData;
         public PlayerBalanceData playerBalanceData;
         public AnimalManagerSaveData animalManagerData;
+        public AnimalRegisterSaveData animalRegisterData;
     }
 
     // Use this to call the load method(s) for every class instance
@@ -30,6 +31,7 @@ public class SaveManager : MonoBehaviour
     {
         GameManager.Instance.timeKeeper.Load(saveData.timeKeeperData);
         GameManager.Instance.animalManager.Load(saveData.animalManagerData);
+        GameManager.Instance.animalRegister.Load(saveData.animalRegisterData);
         GameManager.Instance.playerBalance.Load(saveData.playerBalanceData, GameManager.Instance.timeKeeper.GetHoursSinceLastSave());
     }
 
@@ -38,6 +40,7 @@ public class SaveManager : MonoBehaviour
     {
         saveData.timeKeeperData = GameManager.Instance.timeKeeper.Save();
         saveData.animalManagerData = GameManager.Instance.animalManager.Save();
+        saveData.animalRegisterData = GameManager.Instance.animalRegister.Save();
         saveData.playerBalanceData = GameManager.Instance.playerBalance.Save();
     }
 
