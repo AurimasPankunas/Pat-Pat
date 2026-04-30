@@ -833,6 +833,37 @@ Transform:
   - {fileID: 5944178280860038914}
   m_Father: {fileID: 8340733257877638360}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4903868766529597641
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 173868230060070318}
+  m_Layer: 0
+  m_Name: Mouth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &173868230060070318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4903868766529597641}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1727738890307975155}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5105557590058600500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,7 +1598,8 @@ Transform:
   m_LocalPosition: {x: -0, y: 0.007867455, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 173868230060070318}
   m_Father: {fileID: 6658190512681008058}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8330410952790964850
@@ -1707,9 +1739,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -6026240903082377067, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: particleDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6026240903082377067, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: shopItemDatabase
       value: 
       objectReference: {fileID: 11400000, guid: b133cc68de756ed4da7abfaa5da2a848, type: 2}
+    - target: {fileID: -6026240903082377067, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: particleParentTransform
+      value: 
+      objectReference: {fileID: 173868230060070318}
     - target: {fileID: 913359835201503196, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_Height
       value: 2.13

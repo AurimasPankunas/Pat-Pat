@@ -7,6 +7,7 @@ public class Food : MonoBehaviour, ISellable
     [Header("Selling")]
     [Range(0f, 1f)]
     [SerializeField] private float sellPercent = 0.5f;
+    [field: SerializeField] public Color foodColor { get; private set; }
 
     public double SellValue
     {
