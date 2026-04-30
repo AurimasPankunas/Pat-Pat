@@ -1,19 +1,19 @@
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
 // Manager for placing, removing and keeping track of physical animals (mini animals & spot animals)
 public class AnimalManager : MonoBehaviour
 {
-    [field: SerializeField] public List<AnimalType> types { get; private set; }  // all animal types (Scriptable Objects)
+    [field: SerializeField]
+    public List<AnimalType> types { get; private set; } // all animal types (Scriptable Objects)
     public List<Spot> spots { get; private set; }
     public List<MiniAnimal> miniAnimals { get; private set; }
     public List<Animal> spotAnimals { get; private set; }
-    
+
     private Dictionary<string, AnimalType> typeLookup;
     private Dictionary<string, Spot> spotLookup;
     private Dictionary<Animal, Spot> spotAnimalLookup;
-
 
     /// <summary>
     /// Gathers and initializes spots and sets up dictionaries
@@ -31,10 +31,10 @@ public class AnimalManager : MonoBehaviour
         {
             spot.Initialize(this);
             Animal spotAnimal = spot.animal;
-            
+
             if (spotAnimal == null)
-            continue;
-           
+                continue;
+
             if (isNewSave)
             {
                 spotAnimal.Initialize();
@@ -47,14 +47,17 @@ public class AnimalManager : MonoBehaviour
                 spot.RemoveAnimal();
                 Destroy(spotAnimal.gameObject);
             }
-            
         }
     }
 
     /// <summary>
     /// Spawns a mini animal at a given spawn point
     /// </summary>
-    public MiniAnimal CreateMiniAnimal(AnimalData animalData, Vector3 spawnPosition, Quaternion spawnRotation)
+    public MiniAnimal CreateMiniAnimal(
+        AnimalData animalData,
+        Vector3 spawnPosition,
+        Quaternion spawnRotation
+    )
     {
         GameObject prefab = GetType(animalData.typeID).miniPrefab;
         GameObject spawnedObject = Instantiate(prefab, spawnPosition, spawnRotation);
@@ -103,7 +106,11 @@ public class AnimalManager : MonoBehaviour
 
         // Creating a new animal GameObject
         GameObject prefab = GetType(animalData.typeID).fullPrefab;
-        GameObject spawnedObject = Instantiate(prefab, spot.spawnPoint.position, spot.spawnPoint.rotation);
+        GameObject spawnedObject = Instantiate(
+            prefab,
+            spot.spawnPoint.position,
+            spot.spawnPoint.rotation
+        );
         Animal spawnedAnimal = spawnedObject.GetComponent<Animal>();
         spawnedAnimal.data = animalData;
 
@@ -128,9 +135,9 @@ public class AnimalManager : MonoBehaviour
         spotAnimalLookup.Remove(animal);
 
         // Move the animal far away and let its scripts finish before destroying
-        animal.gameObject.transform.Translate(new Vector3(0,-1000,0), Space.World);
+        animal.gameObject.transform.Translate(new Vector3(0, -1000, 0), Space.World);
         Destroy(animal.gameObject, 4);
-        
+
         return data;
     }
 
@@ -140,7 +147,7 @@ public class AnimalManager : MonoBehaviour
     public AnimalData RemoveAnimalFromSpot(Animal animal, Vector3 position, Quaternion rotation)
     {
         AnimalData data = RemoveAnimalFromSpot(animal);
-            CreateMiniAnimal(data, position, rotation);
+        CreateMiniAnimal(data, position, rotation);
         return data;
     }
 
@@ -188,9 +195,17 @@ public class AnimalManager : MonoBehaviour
 
         AnimalManagerSaveData data = new AnimalManagerSaveData
         {
-            miniAnimals = miniAnimals.Select(m => new MiniAnimalSaveData(m.data, m.transform.position, m.transform.rotation)).ToList(),
-            spotAnimals = this.spotAnimals.Select(s => new SpotAnimalSaveData(s.data, spotAnimalLookup[s].id)).ToList(),
-            spots = this.spots.Select(s => new SpotData(s.id, s.isBought)).ToList()
+            miniAnimals = miniAnimals
+                .Select(m => new MiniAnimalSaveData(
+                    m.data,
+                    m.transform.position,
+                    m.transform.rotation
+                ))
+                .ToList(),
+            spotAnimals = this
+                .spotAnimals.Select(s => new SpotAnimalSaveData(s.data, spotAnimalLookup[s].id))
+                .ToList(),
+            spots = this.spots.Select(s => new SpotData(s.id, s.isBought)).ToList(),
         };
         return data;
     }
@@ -231,7 +246,8 @@ public struct MiniAnimalSaveData
     public Vector3 position;
     public Quaternion rotation;
 
-    public MiniAnimalSaveData(AnimalData animalData, Vector3 position, Quaternion rotation) : this()
+    public MiniAnimalSaveData(AnimalData animalData, Vector3 position, Quaternion rotation)
+        : this()
     {
         this.animalData = animalData;
         this.position = position;
@@ -244,6 +260,7 @@ public struct SpotData
 {
     public string spotID;
     public bool isBought;
+
     public SpotData(string spotID, bool isBought)
     {
         this.spotID = spotID;
