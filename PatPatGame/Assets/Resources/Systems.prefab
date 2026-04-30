@@ -48,6 +48,51 @@ MonoBehaviour:
   shopItemDatabase: {fileID: 11400000, guid: b133cc68de756ed4da7abfaa5da2a848, type: 2}
   registerAnimals: []
   maxRegisterAnimals: 5
+--- !u!1 &814892461720366833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8414616061590217931}
+  - component: {fileID: 2523938746445375435}
+  m_Layer: 0
+  m_Name: EffectPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8414616061590217931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814892461720366833}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.80812, y: 0.68855, z: 6.1518703}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8303407494739653979}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2523938746445375435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814892461720366833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc407f4b78bb0fbab9058279184993aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectPlayer
+  ps: {fileID: 8575474578855544277, guid: 116880afc94dfbcd0a8484177f2e1715, type: 3}
 --- !u!1 &1747239723235956827
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +366,7 @@ Transform:
   - {fileID: 2625906520622902210}
   - {fileID: 6466017321336949560}
   - {fileID: 72717444423963393}
+  - {fileID: 8414616061590217931}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7485577164466220643
@@ -342,3 +388,4 @@ MonoBehaviour:
   animalRegister: {fileID: 4450691373523339555}
   shopItemDatabase: {fileID: 11400000, guid: b133cc68de756ed4da7abfaa5da2a848, type: 2}
   soundManager: {fileID: 1506822050911859010}
+  effectPlayer: {fileID: 2523938746445375435}

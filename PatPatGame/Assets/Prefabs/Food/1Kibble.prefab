@@ -124,6 +124,22 @@ PrefabInstance:
       propertyPath: foodItemID
       value: 2001
       objectReference: {fileID: 0}
+    - target: {fileID: -4101436685248295199, guid: 238d1b97080fa794681fbf7f129a4b83, type: 3}
+      propertyPath: <foodColor>k__BackingField.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4101436685248295199, guid: 238d1b97080fa794681fbf7f129a4b83, type: 3}
+      propertyPath: <foodColor>k__BackingField.b
+      value: 0.87473536
+      objectReference: {fileID: 0}
+    - target: {fileID: -4101436685248295199, guid: 238d1b97080fa794681fbf7f129a4b83, type: 3}
+      propertyPath: <foodColor>k__BackingField.g
+      value: 0.5896226
+      objectReference: {fileID: 0}
+    - target: {fileID: -4101436685248295199, guid: 238d1b97080fa794681fbf7f129a4b83, type: 3}
+      propertyPath: <foodColor>k__BackingField.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 255243697486944469, guid: 238d1b97080fa794681fbf7f129a4b83, type: 3}
       propertyPath: m_Name
       value: 1Kibble
