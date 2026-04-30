@@ -13,7 +13,7 @@ public class AnimalRegister : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating(nameof(TestDailyFunc), 0f, 12f);
+        InvokeRepeating(nameof(TestDailyFunc), 6f, 12f);
     }
 
     /// <summary>
@@ -108,4 +108,22 @@ public class AnimalRegister : MonoBehaviour
             CreateRandomAnimal();
         }
     }
+
+    public AnimalRegisterSaveData Save()
+    {
+        AnimalRegisterSaveData data = new AnimalRegisterSaveData{ animals = registerAnimals };
+        return data;
+    }
+
+    public void Load(AnimalRegisterSaveData data)
+    {
+        registerAnimals.Clear();
+        data.animals.ForEach(a => registerAnimals.Add(a));
+    }
+}
+
+[System.Serializable]
+public struct AnimalRegisterSaveData
+{
+    public List<AnimalData> animals;
 }
