@@ -77,9 +77,9 @@ public class Animal_Stat_Increase : MonoBehaviour
                     Message = null;
                     // To deal with Cup water smh
                     GameObject parent = other.gameObject.transform.parent.gameObject;
-                    parent = parent.gameObject.transform.parent.gameObject;
-                    if (parent != null)
+                    if (parent.transform.parent != null)
                     {
+                        parent = parent.gameObject.transform.parent.gameObject;
                         if (parent.CompareTag("Drink"))
                         {
                             Destroy(parent);
