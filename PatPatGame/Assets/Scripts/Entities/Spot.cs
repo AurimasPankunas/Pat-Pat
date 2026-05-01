@@ -81,17 +81,12 @@ public class Spot : MonoBehaviour
         MiniAnimal animal = other.GetComponent<MiniAnimal>();
         if (isPlacingEnabled && animal != null)
             manager.MoveMiniAnimalToSpot(animal, this);
-    }
+    } 
 
-    private void OnTriggerStay(Collider other)
+    public void TryRemoveAnimal()
     {
-        if (other.CompareTag("Hand"))
-        {
-            if (removeAnimalInputAction.action.ReadValue<float>() > 0.5f && isOccupied)
-            {
-                manager.RemoveAnimalFromSpot(animal, spawnPoint.position + new Vector3(0,1,0), spawnPoint.rotation);
-            }
-        }
+        if (isOccupied)
+            manager.RemoveAnimalFromSpot(animal, spawnPoint.position + new Vector3(0, 1, 0), spawnPoint.rotation);
     }
 
     private IEnumerator EnablePlacingAfterTime(float time)

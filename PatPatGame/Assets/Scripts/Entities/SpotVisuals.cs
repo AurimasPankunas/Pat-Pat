@@ -14,11 +14,12 @@ public class SpotVisuals : MonoBehaviour
 
     private void ChangeMaterial(bool isBought)
     {
-        Renderer renderer = GetComponent<Renderer>();
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
 
         // Ensure the renderer and materials are not null
-        if (renderer != null && renderer.materials.Length > 0)
+        foreach (Renderer renderer in renderers)
         {
+            if (renderer == null || renderer.materials.Length == 0) continue;
             // Loop through each material in the mesh
             foreach (Material material in renderer.materials)
             {
