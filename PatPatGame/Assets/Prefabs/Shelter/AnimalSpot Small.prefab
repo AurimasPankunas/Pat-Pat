@@ -410,10 +410,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4080285132405936856}
     - target: {fileID: 6094970867633520984, guid: 83d4a9a121cb51342bc68e34ef56f913, type: 3}
-      propertyPath: smokePrefab
-      value: 
-      objectReference: {fileID: 7093165372199611692, guid: 37665fe9897e53648bf1981e0d8d650d, type: 3}
-    - target: {fileID: 6094970867633520984, guid: 83d4a9a121cb51342bc68e34ef56f913, type: 3}
       propertyPath: <id>k__BackingField
       value: S
       objectReference: {fileID: 0}
