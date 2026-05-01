@@ -174,4 +174,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   shopItemDatabase: {fileID: 0}
+  foodParticleSystem: {fileID: 8575474578855544277, guid: 116880afc94dfbcd0a8484177f2e1715, type: 3}
   floatingTextCooldown: 0.5

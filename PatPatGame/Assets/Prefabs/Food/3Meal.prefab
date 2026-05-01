@@ -124,6 +124,22 @@ PrefabInstance:
       propertyPath: foodItemID
       value: 2003
       objectReference: {fileID: 0}
+    - target: {fileID: -4101436685248295199, guid: 238d1b97080fa794681fbf7f129a4b83, type: 3}
+      propertyPath: <foodColor>k__BackingField.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4101436685248295199, guid: 238d1b97080fa794681fbf7f129a4b83, type: 3}
+      propertyPath: <foodColor>k__BackingField.b
+      value: 0.38714847
+      objectReference: {fileID: 0}
+    - target: {fileID: -4101436685248295199, guid: 238d1b97080fa794681fbf7f129a4b83, type: 3}
+      propertyPath: <foodColor>k__BackingField.g
+      value: 0.5095316
+      objectReference: {fileID: 0}
+    - target: {fileID: -4101436685248295199, guid: 238d1b97080fa794681fbf7f129a4b83, type: 3}
+      propertyPath: <foodColor>k__BackingField.r
+      value: 0.5660378
+      objectReference: {fileID: 0}
     - target: {fileID: 255243697486944469, guid: 238d1b97080fa794681fbf7f129a4b83, type: 3}
       propertyPath: m_Name
       value: 3Meal

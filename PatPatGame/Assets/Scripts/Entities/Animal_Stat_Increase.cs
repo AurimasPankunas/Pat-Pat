@@ -6,6 +6,9 @@ public class Animal_Stat_Increase : MonoBehaviour
     private Animal animal;
     private AnimalGraphicalFeedback graphicalFeedback;
     [SerializeField] private ShopItemDatabase shopItemDatabase;
+    [SerializeField] private ParticleSystem foodParticleSystem;
+    [SerializeField] private Transform particleParentTransform;
+    [SerializeField] private float particleDuration;
     private FoodItem foodData;
     private WaterItem waterData;
     
@@ -44,6 +47,14 @@ public class Animal_Stat_Increase : MonoBehaviour
                     animal.UpdateFood(foodData.foodAmount);
                     animal.GetComponent<Animator>().SetTrigger("Eat");
                     Message = null;
+
+                    if (foodParticleSystem != null)
+                    {
+                        EffectPlayer effectPlayer = GameManager.Instance.effectPlayer;
+                        EffectOptions options = new EffectOptions { color = food.foodColor, duration = this.particleDuration };
+                        effectPlayer.PlayAttached(foodParticleSystem, particleParentTransform, options);
+                    }
+
                     Destroy(other.gameObject.transform.parent.gameObject);
                 } else
                 {
@@ -66,9 +77,9 @@ public class Animal_Stat_Increase : MonoBehaviour
                     Message = null;
                     // To deal with Cup water smh
                     GameObject parent = other.gameObject.transform.parent.gameObject;
-                    parent = parent.gameObject.transform.parent.gameObject;
-                    if (parent != null)
+                    if (parent.transform.parent != null)
                     {
+                        parent = parent.gameObject.transform.parent.gameObject;
                         if (parent.CompareTag("Drink"))
                         {
                             Destroy(parent);
