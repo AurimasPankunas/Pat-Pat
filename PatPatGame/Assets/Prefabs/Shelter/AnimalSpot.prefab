@@ -105,6 +105,7 @@ MonoBehaviour:
   <size>k__BackingField: 0
   <spawnPoint>k__BackingField: {fileID: 0}
   <animal>k__BackingField: {fileID: 0}
+  <isBought>k__BackingField: 0
   removeAnimalInputAction:
     m_UseReference: 1
     m_Action:
@@ -117,3 +118,4 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  smokePrefab: {fileID: 309252699506112408, guid: e5a43cfa476a57d47a4a58debd8e48a9, type: 3}

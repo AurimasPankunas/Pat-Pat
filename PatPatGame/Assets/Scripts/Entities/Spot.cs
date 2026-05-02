@@ -12,19 +12,36 @@ public class Spot : MonoBehaviour
 {
     private AnimalManager manager;
     private Collider col;
-    [field: SerializeField] public string id { get; private set; }
-    [field: SerializeField] public double price { get; private set; }
-    [field: SerializeField] public AnimalSize size { get; private set; }
-    [field: SerializeField] public Transform spawnPoint { get; private set; }
-    [field: SerializeField] public Animal animal { get; private set; }  // serialized so that animals can be set up for a new save
+
+    [field: SerializeField]
+    public string id { get; private set; }
+
+    [field: SerializeField]
+    public double price { get; private set; }
+
+    [field: SerializeField]
+    public AnimalSize size { get; private set; }
+
+    [field: SerializeField]
+    public Transform spawnPoint { get; private set; }
+
+    [field: SerializeField]
+    public Animal animal { get; private set; } // serialized so that animals can be set up for a new save
     public bool isOccupied { get; private set; }
     private bool isPlacingEnabled = false;
-    [field: SerializeField] public bool isBought { get; private set; }
-    [SerializeField] private InputActionProperty removeAnimalInputAction;
+
+    [field: SerializeField]
+    public bool isBought { get; private set; }
+
+    [SerializeField]
+    private InputActionProperty removeAnimalInputAction;
+
+    [SerializeField]
+    private GameObject smokePrefab;
 
     public event Action<Animal> OnSpotAnimalChanged;
-    public event Action<bool> OnSpotBoughtUpdated;  // for loading
-    public event Action<bool> OnSpotBought;  // 
+    public event Action<bool> OnSpotBoughtUpdated; // for loading
+    public event Action<bool> OnSpotBought; //
 
     public void Initialize(AnimalManager manager)
     {
@@ -44,7 +61,6 @@ public class Spot : MonoBehaviour
         isPlacingEnabled = false;
         // col.enabled = false;
         OnSpotAnimalChanged?.Invoke(animal);
-
     }
 
     /// <summary>
@@ -85,8 +101,18 @@ public class Spot : MonoBehaviour
 
     public void TryRemoveAnimal()
     {
-        if (isOccupied)
-            manager.RemoveAnimalFromSpot(animal, spawnPoint.position + new Vector3(0, 1, 0), spawnPoint.rotation);
+        if (isOccupied){
+            Instantiate(
+                 smokePrefab,
+                 spawnPoint.position + new Vector3(0, 1, 0),
+                 spawnPoint.rotation
+            );
+            manager.RemoveAnimalFromSpot(
+                animal,
+                spawnPoint.position + new Vector3(0, 1, 0),
+                spawnPoint.rotation
+            );
+        }
     }
 
     private IEnumerator EnablePlacingAfterTime(float time)
@@ -94,5 +120,5 @@ public class Spot : MonoBehaviour
         yield return new WaitForSeconds(time);
         if (isOccupied == false)
             isPlacingEnabled = true;
-    } 
+    }
 }
