@@ -16,6 +16,7 @@ public class UIAnimalStatsFunc : MonoBehaviour
     private ProgressBar _foodBar;
     private ProgressBar _bondBar;
     private Label _levelAmount;
+    private Label _spotSize;
 
     /// Might not need serialize fields when SpotManager 
     /// or something is implemented
@@ -41,6 +42,7 @@ public class UIAnimalStatsFunc : MonoBehaviour
         _foodBar = _document.rootVisualElement.Q<ProgressBar>("FoodBar");
         _bondBar = _document.rootVisualElement.Q<ProgressBar>("BondBar");
         _levelAmount = _document.rootVisualElement.Q<Label>("LvlAmount");
+        _spotSize = _document.rootVisualElement.Q<Label>("SpotSize");
 
         _containerEmpty = _document.rootVisualElement.Q<VisualElement>("SpotEmptyContainer");
         _buttonSpotNotBought = _document.rootVisualElement.Q<Button>("SpotBuyButton");
@@ -59,6 +61,19 @@ public class UIAnimalStatsFunc : MonoBehaviour
         playerBalance = GameManager.Instance.playerBalance;
         SetSpotPrice(spot.price);
         isBoughtSpot = spot.isBought;
+
+        switch (spot.size)
+        {
+            case AnimalSize.Small:
+                _spotSize.text = "S";
+                break;
+            case AnimalSize.Large:
+                _spotSize.text = "L";
+                break;
+            default:
+                _spotSize.text = "M";
+                break;
+        }
 
         // Sets the initial visuals depending on if:
         // There is(n't) an animal or the spot has been bought

@@ -11,6 +11,7 @@ public class UIAnimalElement
     private Label _animalName;
     private Image _animalImage;
     private Label _animalLevel;
+    private Label _animalSize;
     private Button _takeInButton;
     private Button _turnAwayButton;
     private ProgressBar _happinessBar;
@@ -27,6 +28,7 @@ public class UIAnimalElement
         _animalName = _animalElement.Q<Label>("NameLabel");
         _animalImage = _animalElement.Q<Image>("AnimalImage");
         _animalLevel = _animalElement.Q<Label>("AnimalLevel");
+        _animalSize = _animalElement.Q<Label>("AnimalSize");
         _takeInButton = _animalElement.Q<Button>("TakeInButton");
         _turnAwayButton = _animalElement.Q<Button>("TurnAwayButton");
         _happinessBar = _animalElement.Q<ProgressBar>("SmallHappyBar");
@@ -42,6 +44,18 @@ public class UIAnimalElement
             _happinessBar.value = (float)animalData.happiness;
             _animalLevel.text = animalData.level.ToString();
             SetRarity(animalData.rarity);
+            switch (registerManager.GetType(animalData.typeID).size)
+            {
+                case AnimalSize.Small:
+                    _animalSize.text = "S";
+                    break;
+                case AnimalSize.Large:
+                    _animalSize.text = "L";
+                    break;
+                default:
+                    _animalSize.text = "M";
+                    break;
+            }
         }
         SetEnabledIfCanTakeIn(true);
     }
