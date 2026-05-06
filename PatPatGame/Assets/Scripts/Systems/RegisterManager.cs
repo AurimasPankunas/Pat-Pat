@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class RegisterManager : MonoBehaviour
 {
     private AnimalRegister animalRegister;
+    private AnimalManager animalManager;
     private PlayerBalance playerBalance;
     private UIRegisterFunc registerUI;
     [SerializeField] private ShopItemDatabase shopItemDatabase;
@@ -19,6 +20,7 @@ public class RegisterManager : MonoBehaviour
         registerUI = GetComponent<UIRegisterFunc>();
         registerUI.SetRegisterManager(this);
         animalRegister = GameManager.Instance.animalRegister;
+        animalManager = GameManager.Instance.animalManager;
         playerBalance = GameManager.Instance.playerBalance;
         if (shopItemDatabase == null){
             Debug.Log("ShopItemDatabase is missing");
@@ -53,6 +55,10 @@ public class RegisterManager : MonoBehaviour
         {
             registerUI.SetLikes(playerBalance.likes);
         }
+    }
+    public AnimalType GetType(string typeID)
+    {
+        return animalManager.GetType(typeID);
     }
 
     private void HandleRegisterAnimalChanged()

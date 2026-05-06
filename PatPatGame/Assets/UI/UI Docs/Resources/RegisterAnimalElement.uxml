@@ -10,7 +10,9 @@
                 </ui:ProgressBar>
                 <ui:VisualElement name="HappyImage" style="-unity-background-scale-mode: scale-to-fit; width: 23px; background-image: resource(&quot;Textures/Happy&quot;); aspect-ratio: 1; flex-shrink: 0;"/>
             </ui:VisualElement>
-            <ui:VisualElement style="flex-grow: 0; flex-direction: row; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-SemiBold.ttf?fileID=12800000&amp;guid=6bbaee6b38702c3458ef4774312cb6b0&amp;type=3#Livvic-SemiBold&quot;); justify-content: center; font-size: 18px;">
+            <ui:VisualElement name="" style="flex-grow: 0; flex-direction: row; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-SemiBold.ttf?fileID=12800000&amp;guid=6bbaee6b38702c3458ef4774312cb6b0&amp;type=3#Livvic-SemiBold&quot;); justify-content: center; font-size: 18px;">
+                <ui:Label text="Size:" name="Label" style="margin-right: 0;"/>
+                <ui:Label text="M" name="AnimalSize" style="margin-right: 16px;"/>
                 <ui:Label text="Lvl." name="Label" style="margin-right: 0;"/>
                 <ui:Label text="rare" name="AnimalLevel"/>
             </ui:VisualElement>
