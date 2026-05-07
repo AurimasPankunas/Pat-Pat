@@ -5,15 +5,18 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class ButtonFollow : MonoBehaviour
 {
+    [SerializeField] private Spot spot;
+
     public Transform visualTarget;
     public Vector3 localAxis;
     public float resetSpeed = 5;
+    private Vector3 pokeStartLocalPosition;
 
     private bool freeze = false;
+    private bool hasActivated = false;
 
     private Vector3 initialLocalPosition;
     
-    private Vector3 offset;
     private Transform pokeAttachTransform;
 
     private XRBaseInteractable interactable;
@@ -32,24 +35,27 @@ public class ButtonFollow : MonoBehaviour
 
     public void Follow(BaseInteractionEventArgs hover)
     {
-        if(hover.interactorObject is XRPokeInteractor)
+        if (hover.interactorObject is XRPokeInteractor)
         {
+            if (!spot.isBought) return;
             XRPokeInteractor interactor = (XRPokeInteractor)hover.interactorObject;
 
             isFollowing = true;
             freeze = false;
 
             pokeAttachTransform = interactor.attachTransform;
-            offset = visualTarget.position - pokeAttachTransform.position;
+            // Record where the finger was when it first entered
+            pokeStartLocalPosition = visualTarget.parent.InverseTransformPoint(pokeAttachTransform.position);
         }
     }
-    
+
     public void Reset(BaseInteractionEventArgs hover)
     {
         if(hover.interactorObject is XRPokeInteractor)
         {
             isFollowing = false;
             freeze = false;
+            hasActivated = false;
         }
     }
 
@@ -61,6 +67,11 @@ public class ButtonFollow : MonoBehaviour
         }
     }
 
+    private void OnButtonPressed()
+    {
+        spot.TryRemoveAnimal();
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -69,10 +80,19 @@ public class ButtonFollow : MonoBehaviour
 
         if (isFollowing)
         {
-            Vector3 localTargetPosition = visualTarget.InverseTransformPoint(pokeAttachTransform.position + offset);
-            Vector3 constrainedLocalTargetPosition = Vector3.Project(localTargetPosition, localAxis);
+            Vector3 pokeLocalPosition = visualTarget.parent.InverseTransformPoint(pokeAttachTransform.position);
+            Vector3 delta = pokeLocalPosition - pokeStartLocalPosition;
+            Vector3 constrainedDelta = Vector3.Project(delta, localAxis);
 
-            visualTarget.position = visualTarget.TransformPoint(constrainedLocalTargetPosition);
+            float movement = Mathf.Clamp(constrainedDelta.y, -0.1f, 0f);
+            visualTarget.localPosition = initialLocalPosition + new Vector3(0, movement, 0);
+
+            // Trigger when fully pressed
+            if (movement <= -0.1f && !hasActivated)
+            {
+                hasActivated = true;
+                OnButtonPressed();
+            }
         }
         else
         {
