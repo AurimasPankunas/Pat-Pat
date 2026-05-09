@@ -50,9 +50,39 @@ public class SpotItem : ShopItem
     public int spot;
 }
 
+[System.Serializable]
+public class Mission
+{
+    public string missionName;
+    public int rewardMoney;
+    public int rewardLikes;
+    //[HideInInspector] public int currentProgress; 
+    public int targetGoal; 
+}
 [CreateAssetMenu(fileName = "ShopItemDatabase", menuName = "Shop/Item Database")]
 public class ShopItemDatabase : ScriptableObject
 {
+    [Header("Daily Missions")]
+    public List<Mission> dailyMissions = new List<Mission>()
+    {
+        new Mission { missionName = "Log in daily", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1 },
+        new Mission { missionName = "Buy food and water", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1 },
+        new Mission { missionName = "Pet the animals 10 times", rewardMoney = 0, rewardLikes = 1, targetGoal = 10 },
+        new Mission { missionName = "Feed the animal with water and food", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1 },
+        new Mission { missionName = "Level up the animal", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1 },
+        new Mission { missionName = "Complete all the missions", rewardMoney = 0, rewardLikes = 1, targetGoal = 5 }
+    };
+
+    [Header("Weekly Missions")]
+    public List<Mission> weeklyMissions = new List<Mission>()
+    {
+        new Mission { missionName = "Log in 5 days", rewardMoney = 3000, rewardLikes = 2, targetGoal = 5 },
+        new Mission { missionName = "Open the chest one time", rewardMoney = 3000, rewardLikes = 1, targetGoal = 1 },
+        new Mission { missionName = "Give away the animal", rewardMoney = 3000, rewardLikes = 2, targetGoal = 1 },
+        new Mission { missionName = "Pet the animals 100 times total", rewardMoney = 3000, rewardLikes = 1, targetGoal = 100 }
+    };
+
+
     // Kaina atidaryti chesta Likes valiuta
     public int chestOpenCost = 10;
 
@@ -72,7 +102,7 @@ public class ShopItemDatabase : ScriptableObject
     public float[][] chestRarityProbabilities = new float[][]
     {
         // Lv1: Common  Uncommon  Rare    Epic    Legendary
-        new float[] { 0.700f,  0.200f,  0.080f, 0.015f, 0.005f },
+        new float[] { 0.700f,  0.200f,  0.080f, 0.020f, 0.000f },
         // Lv2: Common  Uncommon  Rare    Epic    Legendary
         new float[] { 0.550f,  0.250f,  0.140f, 0.045f, 0.015f },
         // Lv3: Common  Uncommon  Rare    Epic    Legendary
