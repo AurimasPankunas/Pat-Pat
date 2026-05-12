@@ -3849,7 +3849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1276867747195276705, guid: 5e85c18eb0ad63b41856406c8c6714e1, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 70
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1276867747195276705, guid: 5e85c18eb0ad63b41856406c8c6714e1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3906,6 +3906,41 @@ PrefabInstance:
     - target: {fileID: 2124802746056299024, guid: 5e85c18eb0ad63b41856406c8c6714e1, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 25.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 2568200762471157918, guid: 5e85c18eb0ad63b41856406c8c6714e1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2568200762471157918, guid: 5e85c18eb0ad63b41856406c8c6714e1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2568200762471157918, guid: 5e85c18eb0ad63b41856406c8c6714e1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -0.004198551
+      objectReference: {fileID: 0}
+    - target: {fileID: 2568200762471157918, guid: 5e85c18eb0ad63b41856406c8c6714e1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -0.012708783
+      objectReference: {fileID: 0}
+    - target: {fileID: 2568200762471157918, guid: 5e85c18eb0ad63b41856406c8c6714e1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0020980835
+      objectReference: {fileID: 0}
+    - target: {fileID: 2568200762471157918, guid: 5e85c18eb0ad63b41856406c8c6714e1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.0063552856
+      objectReference: {fileID: 0}
+    - target: {fileID: 3253156075707181777, guid: 5e85c18eb0ad63b41856406c8c6714e1, type: 3}
+      propertyPath: m_text
+      value: "You can take in animals from the list or choose to turn an animal away.
+        \n\nThe chest will give you animals with a higher rarity.\n\nIf you have
+        no more free spots, you can no longer take in more animals until a spot frees
+        up."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3253156075707181777, guid: 5e85c18eb0ad63b41856406c8c6714e1, type: 3}
+      propertyPath: m_margin.y
+      value: -28.371538
       objectReference: {fileID: 0}
     - target: {fileID: 5325460945011871675, guid: 5e85c18eb0ad63b41856406c8c6714e1, type: 3}
       propertyPath: m_Name

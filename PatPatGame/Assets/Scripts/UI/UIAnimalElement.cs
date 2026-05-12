@@ -99,8 +99,7 @@ public class UIAnimalElement
 
     void OnClickTakeIn(ClickEvent evt)
     {
-        registerManager.AnimalTakeInClicked(animalData);
-        //_animalElement.RemoveFromHierarchy();
+        registerManager.AnimalTakeInClicked(animalData, _animalElement);
         OnDisable();
     }
 

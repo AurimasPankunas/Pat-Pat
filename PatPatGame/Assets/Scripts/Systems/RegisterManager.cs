@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RegisterManager : MonoBehaviour
 {
@@ -83,10 +84,10 @@ public class RegisterManager : MonoBehaviour
     /// Function to execute when an animal is taken in
     /// </summary>
     /// <param name="animal">Animal that was clicked</param>
-    public void AnimalTakeInClicked(AnimalData animal)
+    public void AnimalTakeInClicked(AnimalData animal, TemplateContainer _animalElement)
     {
         Debug.Log("Take in");
-        animalRegister.RemoveAnimal(animal, miniAnimalSpawnPoint);
+        animalRegister.RemoveAnimal(animal, miniAnimalSpawnPoint, _animalElement);
     }
 
     /// <summary>
@@ -96,7 +97,7 @@ public class RegisterManager : MonoBehaviour
     public void AnimalTurnAwayClicked(AnimalData animal)
     {
         Debug.Log("Turn away");
-        animalRegister.RemoveAnimal(animal, null);
+        animalRegister.RemoveAnimal(animal, null, null);
     }
 
     public void OnChestBuyClicked()

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class AnimalRegister : MonoBehaviour
@@ -14,6 +15,7 @@ public class AnimalRegister : MonoBehaviour
     public List<AnimalData> registerAnimals;
     public int maxRegisterAnimals = 5;
     public event Action OnRegisterAnimalChanged;
+    private UIAnimalElement uIAnimalElement;
 
     void Start()
     {
@@ -50,16 +52,20 @@ public class AnimalRegister : MonoBehaviour
     /// Removes animal from the register list. If spawnPoint is given and there are free spots, spawns a mini animal
     /// </summary>
     /// <param name="animal"></param>
-    public void RemoveAnimal(AnimalData animal, Transform spawnPoint)
+    public void RemoveAnimal(
+        AnimalData animal,
+        Transform spawnPoint,
+        TemplateContainer _animalElement
+    )
     {
         int freeSpots = animalManager.spots.Count(s => s.isBought && !s.isOccupied);
-        if (freeSpots != 0)
+        if (freeSpots != 0 || (spawnPoint == null && _animalElement == null))
         {
             registerAnimals.Remove(animal);
-            UIAnimalElement.RemoveAnimalFromHierarchy();
             OnRegisterAnimalChanged?.Invoke();
             if (spawnPoint != null)
             {
+                _animalElement.RemoveFromHierarchy();
                 animalManager.CreateMiniAnimal(animal, spawnPoint.position, spawnPoint.rotation);
             }
         }

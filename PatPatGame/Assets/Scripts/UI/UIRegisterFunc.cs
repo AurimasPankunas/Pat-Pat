@@ -125,7 +125,7 @@ public class UIRegisterFunc : MonoBehaviour
     {
         foreach (UIAnimalElement animal in registerUIAnimals)
         {
-            _ListContainer.RemoveAt(0);
+            animal.RemoveAnimalFromHierarchy();
             animal.OnDisable();
         }
         registerUIAnimals.Clear();
