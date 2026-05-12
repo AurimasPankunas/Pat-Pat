@@ -31,6 +31,7 @@ public class UIRegisterFunc : MonoBehaviour
 
     private List<UIAnimalElement> registerUIAnimals;
     private string[] rarityColors = { "#460505", "#A15505", "#727D8E", "#BF9304", "#A42DCB" };
+
     void Awake()
     {
         // Gets the document on the gameObject that has the UI elements
@@ -53,7 +54,6 @@ public class UIRegisterFunc : MonoBehaviour
         _epicChance = _document.rootVisualElement.Q<Label>("EpicChance");
         _legendaryChance = _document.rootVisualElement.Q<Label>("LegendaryChance");
 
-
         _ListContainer = _document.rootVisualElement.Q<VisualElement>("ListContainer");
         AnimalElement = Resources.Load<VisualTreeAsset>("RegisterAnimalElement");
         registerUIAnimals = new List<UIAnimalElement>();
@@ -68,13 +68,16 @@ public class UIRegisterFunc : MonoBehaviour
     /// <param name="chestLvl"></param>
     public void SetChest(int chestLvl)
     {
-        int levelUpPrice = shopItemDatabase.chestOpensToLevelUp[chestLvl-1] -
-            GameManager.Instance.playerBalance.levelChestsOpened;
+        int levelUpPrice =
+            shopItemDatabase.chestOpensToLevelUp[chestLvl - 1]
+            - GameManager.Instance.playerBalance.levelChestsOpened;
         BuyPrice = shopItemDatabase.chestOpenCost;
-        if(levelUpPrice > 0) {
+        if (levelUpPrice > 0)
+        {
             _levelUpPrice.text = $"{levelUpPrice}";
         }
-        else{
+        else
+        {
             _levelUpPrice.style.visibility = Visibility.Hidden;
             _levelUpLabel.style.visibility = Visibility.Hidden;
         }
@@ -92,8 +95,9 @@ public class UIRegisterFunc : MonoBehaviour
 
     public void SetOpenedChests(int chestLvl)
     {
-        int levelUpPrice = shopItemDatabase.chestOpensToLevelUp[chestLvl - 1] -
-            GameManager.Instance.playerBalance.levelChestsOpened;
+        int levelUpPrice =
+            shopItemDatabase.chestOpensToLevelUp[chestLvl - 1]
+            - GameManager.Instance.playerBalance.levelChestsOpened;
         _levelUpPrice.text = $"{levelUpPrice}";
     }
 
@@ -103,7 +107,8 @@ public class UIRegisterFunc : MonoBehaviour
     /// <param name="animals"></param>
     public void GenerateList(List<AnimalData> animals)
     {
-        if (animals == null) return;
+        if (animals == null)
+            return;
         ClearList();
         foreach (AnimalData animal in animals)
         {
@@ -112,6 +117,7 @@ public class UIRegisterFunc : MonoBehaviour
             _ListContainer.Add(element._animalElement);
         }
     }
+
     /// <summary>
     /// Clears out the animal list
     /// </summary>
@@ -130,7 +136,8 @@ public class UIRegisterFunc : MonoBehaviour
         registerManager.OnChestBuyClicked();
     }
 
-    public void SetLikes(int likes){
+    public void SetLikes(int likes)
+    {
         string price = likes.ToString();
         if (_likesAmount.text != price)
         {
@@ -142,7 +149,8 @@ public class UIRegisterFunc : MonoBehaviour
     public void SetAnimalsAmount(int amount, int max)
     {
         _animalsAmount.text = $"{amount}/{max}";
-        if (amount >= max){
+        if (amount >= max)
+        {
             isMaxAnimals = true;
         }
         else
@@ -164,13 +172,19 @@ public class UIRegisterFunc : MonoBehaviour
         _likesSpentAnim.AddToClassList("MoneySpent");
         _likesAmount.Add(_likesSpentAnim);
         // So that MoneySpent is added before MoneySpentAnimation is
-        _likesSpentAnim.schedule.Execute(() => {
-            _likesSpentAnim.AddToClassList("MoneySpentAnimation");
-        }).ExecuteLater(10);
+        _likesSpentAnim
+            .schedule.Execute(() =>
+            {
+                _likesSpentAnim.AddToClassList("MoneySpentAnimation");
+            })
+            .ExecuteLater(10);
 
-        _likesSpentAnim.schedule.Execute(() => {
-            _likesSpentAnim.RemoveFromHierarchy();
-        }).ExecuteLater(700);
+        _likesSpentAnim
+            .schedule.Execute(() =>
+            {
+                _likesSpentAnim.RemoveFromHierarchy();
+            })
+            .ExecuteLater(700);
     }
 
     public void SetRegisterManager(RegisterManager registerManager)
