@@ -29,6 +29,8 @@ public class AnimalManager : MonoBehaviour
 
         foreach (Spot spot in spots)
         {
+            ValidateSpot(spot);
+
             spot.Initialize(this);
             Animal spotAnimal = spot.animal;
 
@@ -189,32 +191,112 @@ public class AnimalManager : MonoBehaviour
         return spot;
     }
 
-    public AnimalManagerSaveData Save()
+    public bool Save(out AnimalManagerSaveData animalManagerSaveData)
     {
-        miniAnimals = FindObjectsByType<MiniAnimal>(FindObjectsSortMode.None).ToList();
+        List<MiniAnimal> currentMiniAnimals = FindObjectsByType<MiniAnimal>(FindObjectsSortMode.None).ToList();
 
-        AnimalManagerSaveData data = new AnimalManagerSaveData
+        bool hasErrors = false;
+        List<SpotAnimalSaveData> spotAnimalData = new();
+
+        foreach (Animal animal in spotAnimals)
         {
-            miniAnimals = miniAnimals
-                .Select(m => new MiniAnimalSaveData(
-                    m.data,
-                    m.transform.position,
-                    m.transform.rotation
-                ))
-                .ToList(),
-            spotAnimals = this
-                .spotAnimals.Select(s => new SpotAnimalSaveData(s.data, spotAnimalLookup[s].id))
-                .ToList(),
-            spots = this.spots.Select(s => new SpotData(s.id, s.isBought)).ToList(),
+            if (ValidateAnimal(animal, out Spot spot) == false)
+            {
+                hasErrors = true;
+                continue;
+            }
+
+            spotAnimalData.Add(new SpotAnimalSaveData(animal.data, spot.id));
+        }
+
+        List<SpotData> spotData = new();
+
+        foreach (Spot spot in spots)
+        {
+            if (ValidateSpot(spot) == false)
+            {
+                hasErrors = true;
+                continue;
+            }
+
+            spotData.Add(new SpotData(spot.id,spot.isBought));
+        }
+
+        animalManagerSaveData = new AnimalManagerSaveData
+        {
+            miniAnimals = currentMiniAnimals.Where(m => m != null).Select(m => new MiniAnimalSaveData(m.data, m.transform.position, m.transform.rotation)).ToList(),
+            spotAnimals = spotAnimalData,
+            spots = spotData,
         };
-        return data;
+        return !hasErrors;
     }
 
     public void Load(AnimalManagerSaveData data)
     {
-        data.spots.ForEach(s => spotLookup[s.spotID].UpdateSpotBought(s.isBought));
+        data.spots.ForEach(s =>
+        {
+            if (string.IsNullOrWhiteSpace(s.spotID))
+            {
+                Debug.LogError("Save data contains empty spotID");
+                return;
+            }
+
+            if (!spotLookup.TryGetValue(s.spotID, out Spot spot))
+            {
+                Debug.LogError($"Spot ID '{s.spotID}' not found during load");
+                return;
+            }
+
+            spot.UpdateSpotBought(s.isBought);
+        });
+
         data.spotAnimals.ForEach(s => AddAnimalToSpot(s.animalData, GetSpot(s.spotID)));
         data.miniAnimals.ForEach(m => CreateMiniAnimal(m.animalData, m.position, m.rotation));
+    }
+
+    private bool ValidateSpot(Spot spot)
+    {
+        if (spot == null)
+        {
+            Debug.LogWarning("Null spot found in spots list");
+            return false;
+        }
+
+        if (string.IsNullOrWhiteSpace(spot.id))
+        {
+            Debug.LogError($"Spot '{spot.gameObject.name}' has invalid ID");
+            return false;
+        }
+        return true;
+    }
+
+    private bool ValidateAnimal(Animal animal, out Spot spot)
+    {
+        spot = null;
+        if (animal == null)
+        {
+            Debug.LogWarning("Null animal found in spotAnimals list");
+            return false;
+        }
+
+        if (!spotAnimalLookup.TryGetValue(animal, out spot))
+        {
+            Debug.LogError($"Animal '{animal.name}' missing from spotAnimalLookup");
+            return false;
+        }
+
+        if (spot == null)
+        {
+            Debug.LogError($"Animal '{animal.name}' mapped to null spot");
+            return false;
+        }
+
+        if (string.IsNullOrWhiteSpace(spot.id))
+        {
+            Debug.LogError($"Spot '{spot.gameObject.name}' has invalid ID");
+            return false;
+        }
+        return true;
     }
 }
 
