@@ -12,6 +12,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992fa0928842bdf4cb6d892f255531e2, type: 3}
   m_Name: ShopItemDatabase
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemDatabase
+  dailyMissions:
+  - missionName: Log in daily
+    rewardMoney: 1000
+    rewardLikes: 0
+    targetGoal: 1
+  - missionName: Buy food and water
+    rewardMoney: 1000
+    rewardLikes: 0
+    targetGoal: 1
+  - missionName: Pet the animals 10 times
+    rewardMoney: 0
+    rewardLikes: 1
+    targetGoal: 10
+  - missionName: Feed an animal with food and water
+    rewardMoney: 1000
+    rewardLikes: 0
+    targetGoal: 1
+  - missionName: Level up an animal
+    rewardMoney: 1000
+    rewardLikes: 0
+    targetGoal: 1
+  - missionName: Complete all the missions
+    rewardMoney: 0
+    rewardLikes: 1
+    targetGoal: 5
+  weeklyMissions:
+  - missionName: Log in 5 days
+    rewardMoney: 3000
+    rewardLikes: 2
+    targetGoal: 5
+  - missionName: Open the chest one time
+    rewardMoney: 3000
+    rewardLikes: 1
+    targetGoal: 1
+  - missionName: Give away an animal
+    rewardMoney: 3000
+    rewardLikes: 2
+    targetGoal: 1
+  - missionName: Pet the animals 100 times total
+    rewardMoney: 3000
+    rewardLikes: 1
+    targetGoal: 100
+  chestOpenCost: 10
+  chestOpensToLevelUp: 0a000000140000001e00000028000000ffffffff
+  dailyAnimalProbabilities:
+  - 0.7
+  - 0.25
+  - 0.05
+  - 0
+  - 0
   glovePrices:
   - gameObjectId: 1001
     price: 1000
@@ -45,35 +95,35 @@ MonoBehaviour:
     imageTint: {r: 1, g: 0.9764706, b: 0.4745098, a: 1}
   foodPrices:
   - gameObjectId: 2001
-    price: 25
+    price: 60
     name: Kibble
     rarity: 1
     foodAmount: 0.1
     image: {fileID: 2800000, guid: bc1a15c8d2a163145883a8ac88394758, type: 3}
     obj: {fileID: 5947992764154085807, guid: e316cd64676dc6d44b8c4c9a34a78c30, type: 3}
   - gameObjectId: 2002
-    price: 36
+    price: 150
     name: Snack
     rarity: 2
     foodAmount: 0.1
     image: {fileID: 2800000, guid: 53aecde8974d3004abdb790cd84e4c22, type: 3}
     obj: {fileID: 5947992764154085807, guid: c022abf761b5a9845b5e8b6d0babfbad, type: 3}
   - gameObjectId: 2003
-    price: 58
+    price: 300
     name: Meal
     rarity: 3
     foodAmount: 0.1
     image: {fileID: 2800000, guid: 7c68fa34845cca540a4a5da322f3077e, type: 3}
     obj: {fileID: 5947992764154085807, guid: 08154c48c4e9f8740ac1b08869a566c8, type: 3}
   - gameObjectId: 2004
-    price: 92
+    price: 560
     name: Feast
     rarity: 4
     foodAmount: 0.1
     image: {fileID: 2800000, guid: eb6a321f94cf1994096c65cd3a6667a9, type: 3}
     obj: {fileID: 5947992764154085807, guid: b0eaf677719fa0a47bbe11dbfab82ef2, type: 3}
   - gameObjectId: 2005
-    price: 150
+    price: 1030
     name: Delicacy
     rarity: 5
     foodAmount: 0.1
@@ -81,35 +131,35 @@ MonoBehaviour:
     obj: {fileID: 1027504390973873576, guid: 7bf9ae9a0ba73004c88fe7ea2d9d8641, type: 3}
   waterPrices:
   - gameObjectId: 3001
-    price: 25
+    price: 60
     name: Puddle
     rarity: 1
     waterAmount: 0.1
     image: {fileID: 2800000, guid: cf8bd7230a85ad74b8b84a5f27a74d9b, type: 3}
     obj: {fileID: 2653841085286044188, guid: c143d046d1a85654db8db4356ffeb7a4, type: 3}
   - gameObjectId: 3002
-    price: 36
+    price: 150
     name: Cup
     rarity: 2
     waterAmount: 0.1
     image: {fileID: 2800000, guid: 82e4f36cbebd79d4db62cb6891f591ef, type: 3}
     obj: {fileID: 2653841085286044188, guid: a90ad23e7b9ee7e48aa3665b694fbc8d, type: 3}
   - gameObjectId: 3003
-    price: 58
+    price: 300
     name: Bottle
     rarity: 3
     waterAmount: 0.1
     image: {fileID: 2800000, guid: 2c2ac5a8ec87daf40baf297de579d4ac, type: 3}
     obj: {fileID: 2653841085286044188, guid: 6064abb1fa662e74e8102bfeaffcbc1d, type: 3}
   - gameObjectId: 3004
-    price: 92
+    price: 560
     name: Jug
     rarity: 4
     waterAmount: 0.1
     image: {fileID: 2800000, guid: 15483df8bd422814c89d8bc3c27a05f0, type: 3}
     obj: {fileID: 2653841085286044188, guid: ad8dfc9a4a964234f8bc2bad1e500fec, type: 3}
   - gameObjectId: 3005
-    price: 150
+    price: 1030
     name: Spring
     rarity: 5
     waterAmount: 0.1
@@ -117,591 +167,611 @@ MonoBehaviour:
     obj: {fileID: 2653841085286044188, guid: 1cb966ecd8c079743b955304d6679508, type: 3}
   levelUpPrices:
   - gameObjectId: 4201
-    price: 680
+    price: 350
     rarity: 1
     level: 1
   - gameObjectId: 4202
-    price: 1570
+    price: 580
     rarity: 1
     level: 2
   - gameObjectId: 4203
-    price: 2550
+    price: 790
     rarity: 1
     level: 3
   - gameObjectId: 4204
-    price: 3600
+    price: 1000
     rarity: 1
     level: 4
   - gameObjectId: 4205
-    price: 4700
+    price: 1220
     rarity: 1
     level: 5
   - gameObjectId: 4206
-    price: 5860
+    price: 1440
     rarity: 1
     level: 6
   - gameObjectId: 4207
-    price: 7040
+    price: 1670
     rarity: 1
     level: 7
   - gameObjectId: 4208
-    price: 8270
+    price: 1910
     rarity: 1
     level: 8
   - gameObjectId: 4209
-    price: 9520
+    price: 2150
     rarity: 1
     level: 9
   - gameObjectId: 4210
-    price: 10810
+    price: 2400
     rarity: 1
     level: 10
   - gameObjectId: 4211
-    price: 12120
+    price: 3540
     rarity: 1
     level: 11
   - gameObjectId: 4212
-    price: 13450
+    price: 3890
     rarity: 1
     level: 12
   - gameObjectId: 4213
-    price: 14810
+    price: 4250
     rarity: 1
     level: 13
   - gameObjectId: 4214
-    price: 16180
+    price: 4620
     rarity: 1
     level: 14
   - gameObjectId: 4215
-    price: 17580
+    price: 4990
     rarity: 1
     level: 15
   - gameObjectId: 4216
-    price: 19000
+    price: 5350
     rarity: 1
     level: 16
   - gameObjectId: 4217
-    price: 20430
+    price: 5700
     rarity: 1
     level: 17
   - gameObjectId: 4218
-    price: 21880
+    price: 6030
     rarity: 1
     level: 18
   - gameObjectId: 4219
-    price: 23350
+    price: 6330
     rarity: 1
     level: 19
   - gameObjectId: 4220
-    price: 24830
+    price: 6610
     rarity: 1
     level: 20
   - gameObjectId: 4221
-    price: 26330
+    price: 8510
     rarity: 1
     level: 21
   - gameObjectId: 4222
-    price: 27840
+    price: 8750
     rarity: 1
     level: 22
   - gameObjectId: 4223
-    price: 29360
+    price: 8990
     rarity: 1
     level: 23
   - gameObjectId: 4224
-    price: 30900
+    price: 9220
     rarity: 1
     level: 24
   - gameObjectId: 4225
-    price: 32460
+    price: 9450
     rarity: 1
     level: 25
   - gameObjectId: 4226
-    price: 34020
+    price: 9670
     rarity: 1
     level: 26
   - gameObjectId: 4227
-    price: 35600
+    price: 9900
     rarity: 1
     level: 27
   - gameObjectId: 4228
-    price: 37180
+    price: 10110
     rarity: 1
     level: 28
   - gameObjectId: 4229
-    price: 38780
+    price: 10330
     rarity: 1
     level: 29
+  - gameObjectId: 4230
+    price: 10540
+    rarity: 1
+    level: 30
   - gameObjectId: 4301
-    price: 1090
+    price: 570
     rarity: 2
     level: 1
   - gameObjectId: 4302
-    price: 2510
+    price: 930
     rarity: 2
     level: 2
   - gameObjectId: 4303
-    price: 4080
+    price: 1270
     rarity: 2
     level: 3
   - gameObjectId: 4304
-    price: 5760
+    price: 1610
     rarity: 2
     level: 4
   - gameObjectId: 4305
-    price: 7530
+    price: 1960
     rarity: 2
     level: 5
   - gameObjectId: 4306
-    price: 9370
+    price: 2310
     rarity: 2
     level: 6
   - gameObjectId: 4307
-    price: 11270
+    price: 2680
     rarity: 2
     level: 7
   - gameObjectId: 4308
-    price: 13230
+    price: 3050
     rarity: 2
     level: 8
   - gameObjectId: 4309
-    price: 15240
+    price: 3440
     rarity: 2
     level: 9
   - gameObjectId: 4310
-    price: 17290
+    price: 3840
     rarity: 2
     level: 10
   - gameObjectId: 4311
-    price: 19390
+    price: 5670
     rarity: 2
     level: 11
   - gameObjectId: 4312
-    price: 21520
+    price: 6230
     rarity: 2
     level: 12
   - gameObjectId: 4313
-    price: 23690
+    price: 6810
     rarity: 2
     level: 13
   - gameObjectId: 4314
-    price: 25900
+    price: 7390
     rarity: 2
     level: 14
   - gameObjectId: 4315
-    price: 28130
+    price: 7980
     rarity: 2
     level: 15
   - gameObjectId: 4316
-    price: 30400
+    price: 8560
     rarity: 2
     level: 16
   - gameObjectId: 4317
-    price: 32690
+    price: 9120
     rarity: 2
     level: 17
   - gameObjectId: 4318
-    price: 35010
+    price: 9650
     rarity: 2
     level: 18
   - gameObjectId: 4319
-    price: 37360
+    price: 10130
     rarity: 2
     level: 19
   - gameObjectId: 4320
-    price: 39730
+    price: 10580
     rarity: 2
     level: 20
   - gameObjectId: 4321
-    price: 42120
+    price: 13620
     rarity: 2
     level: 21
   - gameObjectId: 4322
-    price: 44540
+    price: 14010
     rarity: 2
     level: 22
   - gameObjectId: 4323
-    price: 46980
+    price: 14380
     rarity: 2
     level: 23
   - gameObjectId: 4324
-    price: 49450
+    price: 14760
     rarity: 2
     level: 24
   - gameObjectId: 4325
-    price: 51930
+    price: 15120
     rarity: 2
     level: 25
   - gameObjectId: 4326
-    price: 54430
+    price: 15480
     rarity: 2
     level: 26
   - gameObjectId: 4327
-    price: 56950
+    price: 15840
     rarity: 2
     level: 27
   - gameObjectId: 4328
-    price: 59490
+    price: 16190
     rarity: 2
     level: 28
   - gameObjectId: 4329
-    price: 62050
+    price: 16530
     rarity: 2
     level: 29
+  - gameObjectId: 4330
+    price: 16870
+    rarity: 2
+    level: 30
   - gameObjectId: 4401
-    price: 1750
+    price: 910
     rarity: 3
     level: 1
   - gameObjectId: 4402
-    price: 4010
+    price: 1490
     rarity: 3
     level: 2
   - gameObjectId: 4403
-    price: 6520
+    price: 2030
     rarity: 3
     level: 3
   - gameObjectId: 4404
-    price: 9210
+    price: 2580
     rarity: 3
     level: 4
   - gameObjectId: 4405
-    price: 12040
+    price: 3130
     rarity: 3
     level: 5
   - gameObjectId: 4406
-    price: 14990
+    price: 3700
     rarity: 3
     level: 6
   - gameObjectId: 4407
-    price: 18030
+    price: 4290
     rarity: 3
     level: 7
   - gameObjectId: 4408
-    price: 21170
+    price: 4890
     rarity: 3
     level: 8
   - gameObjectId: 4409
-    price: 24380
+    price: 5510
     rarity: 3
     level: 9
   - gameObjectId: 4410
-    price: 27670
+    price: 6150
     rarity: 3
     level: 10
   - gameObjectId: 4411
-    price: 31020
+    price: 9080
     rarity: 3
     level: 11
   - gameObjectId: 4412
-    price: 34440
+    price: 9980
     rarity: 3
     level: 12
   - gameObjectId: 4413
-    price: 37910
+    price: 10890
     rarity: 3
     level: 13
   - gameObjectId: 4414
-    price: 41430
+    price: 11830
     rarity: 3
     level: 14
   - gameObjectId: 4415
-    price: 45010
+    price: 12770
     rarity: 3
     level: 15
   - gameObjectId: 4416
-    price: 48630
+    price: 13700
     rarity: 3
     level: 16
   - gameObjectId: 4417
-    price: 52300
+    price: 14600
     rarity: 3
     level: 17
   - gameObjectId: 4418
-    price: 56020
+    price: 15440
     rarity: 3
     level: 18
   - gameObjectId: 4419
-    price: 59770
+    price: 16210
     rarity: 3
     level: 19
   - gameObjectId: 4420
-    price: 63570
+    price: 16930
     rarity: 3
     level: 20
   - gameObjectId: 4421
-    price: 67400
+    price: 21790
     rarity: 3
     level: 21
   - gameObjectId: 4422
-    price: 71270
+    price: 22410
     rarity: 3
     level: 22
   - gameObjectId: 4423
-    price: 75170
+    price: 23020
     rarity: 3
     level: 23
   - gameObjectId: 4424
-    price: 79110
+    price: 23610
     rarity: 3
     level: 24
   - gameObjectId: 4425
-    price: 83080
+    price: 24200
     rarity: 3
     level: 25
   - gameObjectId: 4426
-    price: 87090
+    price: 24780
     rarity: 3
     level: 26
   - gameObjectId: 4427
-    price: 91120
+    price: 25340
     rarity: 3
     level: 27
   - gameObjectId: 4428
-    price: 95190
+    price: 25900
     rarity: 3
     level: 28
   - gameObjectId: 4429
-    price: 99280
+    price: 26450
     rarity: 3
     level: 29
+  - gameObjectId: 4430
+    price: 27000
+    rarity: 3
+    level: 30
   - gameObjectId: 4501
-    price: 2790
+    price: 1460
     rarity: 4
     level: 1
   - gameObjectId: 4502
-    price: 6420
+    price: 2380
     rarity: 4
     level: 2
   - gameObjectId: 4503
-    price: 10440
+    price: 3260
     rarity: 4
     level: 3
   - gameObjectId: 4504
-    price: 14740
+    price: 4130
     rarity: 4
     level: 4
   - gameObjectId: 4505
-    price: 19270
+    price: 5020
     rarity: 4
     level: 5
   - gameObjectId: 4506
-    price: 23980
+    price: 5920
     rarity: 4
     level: 6
   - gameObjectId: 4507
-    price: 28860
+    price: 6860
     rarity: 4
     level: 7
   - gameObjectId: 4508
-    price: 33870
+    price: 7820
     rarity: 4
     level: 8
   - gameObjectId: 4509
-    price: 39010
+    price: 8820
     rarity: 4
     level: 9
   - gameObjectId: 4510
-    price: 44270
+    price: 9840
     rarity: 4
     level: 10
   - gameObjectId: 4511
-    price: 49630
+    price: 14520
     rarity: 4
     level: 11
   - gameObjectId: 4512
-    price: 55100
+    price: 15960
     rarity: 4
     level: 12
   - gameObjectId: 4513
-    price: 60650
+    price: 17430
     rarity: 4
     level: 13
   - gameObjectId: 4514
-    price: 66290
+    price: 18930
     rarity: 4
     level: 14
   - gameObjectId: 4515
-    price: 72020
+    price: 20440
     rarity: 4
     level: 15
   - gameObjectId: 4516
-    price: 77810
+    price: 21930
     rarity: 4
     level: 16
   - gameObjectId: 4517
-    price: 83690
+    price: 23360
     rarity: 4
     level: 17
   - gameObjectId: 4518
-    price: 89630
+    price: 24710
     rarity: 4
     level: 18
   - gameObjectId: 4519
-    price: 95640
+    price: 25940
     rarity: 4
     level: 19
   - gameObjectId: 4520
-    price: 101710
+    price: 27090
     rarity: 4
     level: 20
   - gameObjectId: 4521
-    price: 107840
+    price: 34870
     rarity: 4
     level: 21
   - gameObjectId: 4522
-    price: 114030
+    price: 35860
     rarity: 4
     level: 22
   - gameObjectId: 4523
-    price: 120280
+    price: 36830
     rarity: 4
     level: 23
   - gameObjectId: 4524
-    price: 126580
+    price: 37780
     rarity: 4
     level: 24
   - gameObjectId: 4525
-    price: 132940
+    price: 38720
     rarity: 4
     level: 25
   - gameObjectId: 4526
-    price: 139340
+    price: 39640
     rarity: 4
     level: 26
   - gameObjectId: 4527
-    price: 145800
+    price: 40550
     rarity: 4
     level: 27
   - gameObjectId: 4528
-    price: 152300
+    price: 41450
     rarity: 4
     level: 28
   - gameObjectId: 4529
-    price: 158850
+    price: 42330
     rarity: 4
     level: 29
+  - gameObjectId: 4530
+    price: 43200
+    rarity: 4
+    level: 30
   - gameObjectId: 4601
-    price: 4470
+    price: 2330
     rarity: 5
     level: 1
   - gameObjectId: 4602
-    price: 10270
+    price: 3810
     rarity: 5
     level: 2
   - gameObjectId: 4603
-    price: 16700
+    price: 5210
     rarity: 5
     level: 3
   - gameObjectId: 4604
-    price: 23590
+    price: 6610
     rarity: 5
     level: 4
   - gameObjectId: 4605
-    price: 30830
+    price: 8030
     rarity: 5
     level: 5
   - gameObjectId: 4606
-    price: 38370
+    price: 9480
     rarity: 5
     level: 6
   - gameObjectId: 4607
-    price: 46170
+    price: 10980
     rarity: 5
     level: 7
   - gameObjectId: 4608
-    price: 54190
+    price: 12520
     rarity: 5
     level: 8
   - gameObjectId: 4609
-    price: 62420
+    price: 14110
     rarity: 5
     level: 9
   - gameObjectId: 4610
-    price: 70830
+    price: 15740
     rarity: 5
     level: 10
   - gameObjectId: 4611
-    price: 79420
+    price: 23240
     rarity: 5
     level: 11
   - gameObjectId: 4612
-    price: 88160
+    price: 25550
     rarity: 5
     level: 12
   - gameObjectId: 4613
-    price: 97040
+    price: 27900
     rarity: 5
     level: 13
   - gameObjectId: 4614
-    price: 106070
+    price: 30290
     rarity: 5
     level: 14
   - gameObjectId: 4615
-    price: 115220
+    price: 32700
     rarity: 5
     level: 15
   - gameObjectId: 4616
-    price: 124500
+    price: 35090
     rarity: 5
     level: 16
   - gameObjectId: 4617
-    price: 133900
+    price: 37380
     rarity: 5
     level: 17
   - gameObjectId: 4618
-    price: 143400
+    price: 39540
     rarity: 5
     level: 18
   - gameObjectId: 4619
-    price: 153020
+    price: 41510
     rarity: 5
     level: 19
   - gameObjectId: 4620
-    price: 162730
+    price: 43350
     rarity: 5
     level: 20
   - gameObjectId: 4621
-    price: 172540
+    price: 55800
     rarity: 5
     level: 21
   - gameObjectId: 4622
-    price: 182450
+    price: 57380
     rarity: 5
     level: 22
   - gameObjectId: 4623
-    price: 192450
+    price: 58930
     rarity: 5
     level: 23
   - gameObjectId: 4624
-    price: 202530
+    price: 60460
     rarity: 5
     level: 24
   - gameObjectId: 4625
-    price: 212700
+    price: 61960
     rarity: 5
     level: 25
   - gameObjectId: 4626
-    price: 222950
+    price: 63430
     rarity: 5
     level: 26
   - gameObjectId: 4627
-    price: 233280
+    price: 64880
     rarity: 5
     level: 27
   - gameObjectId: 4628
-    price: 243680
+    price: 66320
     rarity: 5
     level: 28
   - gameObjectId: 4629
-    price: 254160
+    price: 67730
     rarity: 5
     level: 29
+  - gameObjectId: 4630
+    price: 69120
+    rarity: 5
+    level: 30
   spotPrices:
   - gameObjectId: 5001
     price: 0
     spot: 1
   - gameObjectId: 5002
-    price: 5000
+    price: 1000
     spot: 2
   - gameObjectId: 5003
     price: 5000

@@ -68,8 +68,8 @@ public class ShopItemDatabase : ScriptableObject
         new Mission { missionName = "Log in daily", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1 },
         new Mission { missionName = "Buy food and water", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1 },
         new Mission { missionName = "Pet the animals 10 times", rewardMoney = 0, rewardLikes = 1, targetGoal = 10 },
-        new Mission { missionName = "Feed the animal with water and food", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1 },
-        new Mission { missionName = "Level up the animal", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1 },
+        new Mission { missionName = "Feed an animal with food and water", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1 },
+        new Mission { missionName = "Level up an animal", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1 },
         new Mission { missionName = "Complete all the missions", rewardMoney = 0, rewardLikes = 1, targetGoal = 5 }
     };
 
@@ -78,7 +78,7 @@ public class ShopItemDatabase : ScriptableObject
     {
         new Mission { missionName = "Log in 5 days", rewardMoney = 3000, rewardLikes = 2, targetGoal = 5 },
         new Mission { missionName = "Open the chest one time", rewardMoney = 3000, rewardLikes = 1, targetGoal = 1 },
-        new Mission { missionName = "Give away the animal", rewardMoney = 3000, rewardLikes = 2, targetGoal = 1 },
+        new Mission { missionName = "Give away an animal", rewardMoney = 3000, rewardLikes = 2, targetGoal = 1 },
         new Mission { missionName = "Pet the animals 100 times total", rewardMoney = 3000, rewardLikes = 1, targetGoal = 100 }
     };
 
