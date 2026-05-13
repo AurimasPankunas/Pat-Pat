@@ -22,6 +22,11 @@ public class SoundManager : MonoBehaviour
     private int currentSourceIndex = 0;
     public bool isTesting = false;
 
+    void Awake()
+    {
+        Initialize();
+    }
+
     public void Initialize()
     {
         InitializeMixerGroups();
@@ -47,6 +52,8 @@ public class SoundManager : MonoBehaviour
 
     private void InitializeMusicSource()
     {
+        if (musicSource != null)
+            return;
         GameObject musicObj = new GameObject("Music_Source");
         musicObj.transform.parent = transform;
 
@@ -72,6 +79,7 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource getMusicSource()
     {
+        InitializeMusicSource();
         return musicSource;
     }
 
