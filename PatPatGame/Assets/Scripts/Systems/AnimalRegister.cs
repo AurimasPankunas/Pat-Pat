@@ -59,7 +59,9 @@ public class AnimalRegister : MonoBehaviour
     )
     {
         int freeSpots = animalManager.spots.Count(s => s.isBought && !s.isOccupied);
-        if (freeSpots != 0 || (spawnPoint == null && _animalElement == null))
+        int miniAnimals = animalManager.miniAnimals.Count();
+        Debug.Log(spawnPoint == null && _animalElement == null);
+        if (freeSpots - miniAnimals > 0 || (spawnPoint == null && _animalElement == null))
         {
             registerAnimals.Remove(animal);
             OnRegisterAnimalChanged?.Invoke();
