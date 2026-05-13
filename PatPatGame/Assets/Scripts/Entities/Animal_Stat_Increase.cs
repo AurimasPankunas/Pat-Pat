@@ -32,7 +32,7 @@ public class Animal_Stat_Increase : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Collider entered: {other.gameObject.name}, Tag: {other.tag}");
+        // Debug.Log($"Collider entered: {other.gameObject.name}, Tag: {other.tag}");
         
         if(other.CompareTag("Food"))
         {
@@ -40,7 +40,7 @@ public class Animal_Stat_Increase : MonoBehaviour
             if(food != null)
             {
                 foodData = shopItemDatabase.GetFood(food.foodItemID);
-                if(foodData.foodAmount + animal.data.food >= 1.0) {
+                if(animal.data.food > 0.98) {
                     Message = "Not hungry!";
                 } else if(foodData.rarity == animal.data.rarity)
                 {
@@ -68,7 +68,7 @@ public class Animal_Stat_Increase : MonoBehaviour
             if(drink != null)
             {
                 waterData = shopItemDatabase.GetWater(drink.drinkItemID);
-                if(waterData.waterAmount + animal.data.water >= 1.0) {
+                if(animal.data.water > 0.98) {
                     Message = "Not thirsty!";
                 } else if(waterData.rarity == animal.data.rarity)
                 {
@@ -100,7 +100,7 @@ public class Animal_Stat_Increase : MonoBehaviour
             }
         } else
         {
-            Debug.Log("Something that wasn't food or a hand has entered the animal collider");
+            // Debug.Log("Something that wasn't food or a hand has entered the animal collider");
         }
     }
 }
