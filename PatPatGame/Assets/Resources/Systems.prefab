@@ -92,7 +92,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc407f4b78bb0fbab9058279184993aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectPlayer
-  ps: {fileID: 8575474578855544277, guid: 116880afc94dfbcd0a8484177f2e1715, type: 3}
 --- !u!1 &1747239723235956827
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,9 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8984a1b733e0777098cb12c75e6d4589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBalance
-  <money>k__BackingField: 0
+  <money>k__BackingField: 5000
   earnedMoneyOffline: 0
-  <likes>k__BackingField: 0
+  <likes>k__BackingField: 20
   <chestLevel>k__BackingField: 0
   <levelChestsOpened>k__BackingField: 0
   MAX_AFK_HOURS: 360
