@@ -161,6 +161,10 @@ MonoBehaviour:
   type: {fileID: 0}
   rarity: 1
   idleSound: {fileID: 8300000, guid: bd7548b74c60c8448b1a3572174f7d4c, type: 3}
+  drinkSound: {fileID: 8300000, guid: 74e8b8185b8e14ae58b1a22583e00259, type: 3}
+  eatingSound: {fileID: 8300000, guid: 712bab8cc909dfdbfbf7cf1d9a226ccb, type: 3}
+  patSound: {fileID: 8300000, guid: 804b2aff81fa279d38ff0470a4e88b8e, type: 3}
+  statSound: {fileID: 8300000, guid: c2511f1aef809d0fd949ee2c3c530bf4, type: 3}
   <statParticleSystem>k__BackingField: {fileID: 8106863431475474885, guid: 644d85b13c74367ea837006d4d1e3cc1, type: 3}
 --- !u!114 &-6026240903082377067
 MonoBehaviour:

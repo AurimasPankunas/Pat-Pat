@@ -94,6 +94,7 @@ public class SoundManager : MonoBehaviour
         source.outputAudioMixerGroup = sfxGroup;
         source.clip = clip;
         source.volume = volume;
+        source.pitch = Random.Range(0.95f, 1.05f);
         source.Play();
     }
 
