@@ -1,15 +1,21 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class AnimalRegister : MonoBehaviour
 {
-    [SerializeField] private AnimalManager animalManager;
-    [SerializeField] private ShopItemDatabase shopItemDatabase;
+    [SerializeField]
+    private AnimalManager animalManager;
+
+    [SerializeField]
+    private ShopItemDatabase shopItemDatabase;
     public List<AnimalData> registerAnimals;
     public int maxRegisterAnimals = 5;
     public event Action OnRegisterAnimalChanged;
+    private UIAnimalElement uIAnimalElement;
 
     void Start()
     {
@@ -41,18 +47,29 @@ public class AnimalRegister : MonoBehaviour
         OnRegisterAnimalChanged?.Invoke();
         return removedAnimal;
     }
-    
+
     /// <summary>
-    /// Removes animal from the register list. If spawnPoint is given, spawns a mini animal
+    /// Removes animal from the register list. If spawnPoint is given and there are free spots, spawns a mini animal
     /// </summary>
     /// <param name="animal"></param>
-    public void RemoveAnimal(AnimalData animal, Transform spawnPoint)
+    public void RemoveAnimal(
+        AnimalData animal,
+        Transform spawnPoint,
+        TemplateContainer _animalElement
+    )
     {
-        registerAnimals.Remove(animal);
-        OnRegisterAnimalChanged?.Invoke();
-        if (spawnPoint != null)
+        int freeSpots = animalManager.spots.Count(s => s.isBought && !s.isOccupied);
+        int miniAnimals = animalManager.miniAnimals.Count();
+        Debug.Log(spawnPoint == null && _animalElement == null);
+        if (freeSpots - miniAnimals > 0 || (spawnPoint == null && _animalElement == null))
         {
-            animalManager.CreateMiniAnimal(animal, spawnPoint.position, spawnPoint.rotation);
+            registerAnimals.Remove(animal);
+            OnRegisterAnimalChanged?.Invoke();
+            if (spawnPoint != null)
+            {
+                _animalElement.RemoveFromHierarchy();
+                animalManager.CreateMiniAnimal(animal, spawnPoint.position, spawnPoint.rotation);
+            }
         }
     }
 
@@ -86,15 +103,14 @@ public class AnimalRegister : MonoBehaviour
         int typeCount = animalManager.types.Count;
         int typeChoice = Random.Range(0, typeCount);
         AnimalType type = animalManager.types[typeChoice];
-        string name = $"Chest Lvl." +
-            $"{chestLvl} Bober";
+        string name = $"Chest Lvl." + $"{chestLvl} Bober";
         int rarity = shopItemDatabase.RollAnimalRarity(chestLvl);
         int level = Random.Range(1, 5);
         double happiness = Random.Range(0f, 1f);
         double food = Random.Range(0f, 1f);
         double water = Random.Range(0f, 1f);
 
-    AnimalData animal = new AnimalData(type.id, name, rarity,level,happiness,food,water);
+        AnimalData animal = new AnimalData(type.id, name, rarity, level, happiness, food, water);
         AddAnimalToRegister(animal);
 
         return animal;
@@ -103,7 +119,7 @@ public class AnimalRegister : MonoBehaviour
     // Daily animal spawning test
     private void TestDailyFunc()
     {
-        if(registerAnimals.Count < maxRegisterAnimals)
+        if (registerAnimals.Count < maxRegisterAnimals)
         {
             CreateRandomAnimal();
         }
@@ -111,7 +127,7 @@ public class AnimalRegister : MonoBehaviour
 
     public AnimalRegisterSaveData Save()
     {
-        AnimalRegisterSaveData data = new AnimalRegisterSaveData{ animals = registerAnimals };
+        AnimalRegisterSaveData data = new AnimalRegisterSaveData { animals = registerAnimals };
         return data;
     }
 

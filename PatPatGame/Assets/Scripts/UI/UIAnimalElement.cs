@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UIElements;
 
-
 public class UIAnimalElement
 {
     public AnimalData animalData;
@@ -17,7 +16,12 @@ public class UIAnimalElement
     private ProgressBar _happinessBar;
 
     private string[] rarityColors = { "#000000", "#A15505", "#727D8E", "#BF9304", "#A42DCB" };
-    public UIAnimalElement(VisualTreeAsset templateContainer, AnimalData animalData, RegisterManager registerManager)
+
+    public UIAnimalElement(
+        VisualTreeAsset templateContainer,
+        AnimalData animalData,
+        RegisterManager registerManager
+    )
     {
         this.registerManager = registerManager;
         this.animalData = animalData;
@@ -38,9 +42,12 @@ public class UIAnimalElement
         _turnAwayButton.RegisterCallback<ClickEvent>(OnClickTurnAway);
 
         // Set the rest of the UI
-        if(animalData != null){
+        if (animalData != null)
+        {
             _animalName.text = animalData.animalName;
-            _animalImage.image = Resources.Load<Texture2D>($"Textures/Animals/{animalData.typeID}Icon");
+            _animalImage.image = Resources.Load<Texture2D>(
+                $"Textures/Animals/{animalData.typeID}Icon"
+            );
             _happinessBar.value = (float)animalData.happiness;
             _animalLevel.text = animalData.level.ToString();
             SetRarity(animalData.rarity);
@@ -68,7 +75,7 @@ public class UIAnimalElement
     /// <summary>
     /// Changes name color according to rarity
     /// </summary>
-    /// <param name="rarity">rarity from 1 to 5. If too high or low will 
+    /// <param name="rarity">rarity from 1 to 5. If too high or low will
     /// be set to rarity 1 color (black)</param>
     public void SetRarity(int rarity)
     {
@@ -92,10 +99,15 @@ public class UIAnimalElement
 
     void OnClickTakeIn(ClickEvent evt)
     {
-        registerManager.AnimalTakeInClicked(animalData);
-        _animalElement.RemoveFromHierarchy();
+        registerManager.AnimalTakeInClicked(animalData, _animalElement);
         OnDisable();
     }
+
+    public void RemoveAnimalFromHierarchy()
+    {
+        _animalElement.RemoveFromHierarchy();
+    }
+
     void OnClickTurnAway(ClickEvent evt)
     {
         registerManager.AnimalTurnAwayClicked(animalData);
@@ -109,4 +121,3 @@ public class UIAnimalElement
         _turnAwayButton.UnregisterCallback<ClickEvent>(OnClickTurnAway);
     }
 }
-
