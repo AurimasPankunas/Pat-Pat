@@ -1,0 +1,26 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/PatPatStyle.uss?fileID=7433441132597879392&amp;guid=f5985b321d282874f97bacc2e9998abc&amp;type=3#PatPatStyle"/>
+    <Style src="project://database/Assets/UI/QuestBar.uss?fileID=7433441132597879392&amp;guid=691533bc9f48fd84b8708ba3fe53497b&amp;type=3#QuestBar"/>
+    <ui:VisualElement name="QuestListElement" class="ElementBackground SmallElementSize" style="justify-content: space-between; flex-direction: column; padding-right: 10px; padding-left: 10px; flex-grow: 0; flex-shrink: 1; height: auto; width: 355px;">
+        <ui:Label text="Quest name woah so much money " name="NameLabel" style="-unity-text-align: upper-left; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-Bold.ttf?fileID=12800000&amp;guid=a408a2f38d08b2a429d13a1db7e7460e&amp;type=3#Livvic-Bold&quot;); font-size: 16px; white-space: pre-wrap; padding-bottom: 0; margin-bottom: 0; flex-grow: 1; width: initial; max-width: 356px; min-width: 332px;"/>
+        <ui:Label text="7d" name="TimeLabel" style="-unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-Medium.ttf?fileID=12800000&amp;guid=c17b6ee01c40d454e83c8c402f195778&amp;type=3#Livvic-Medium&quot;); font-size: 12px; min-width: 80%; max-width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-bottom: 0; -unity-text-align: upper-right;"/>
+        <ui:VisualElement name="" style="flex-grow: 0; flex-direction: row; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-Medium.ttf?fileID=12800000&amp;guid=c17b6ee01c40d454e83c8c402f195778&amp;type=3#Livvic-Medium&quot;); justify-content: flex-start; font-size: 16px; align-items: center;">
+            <ui:Label text="Reward:" name="" style="margin-right: 16px;"/>
+            <ui:VisualElement name="MoneyImg" style="aspect-ratio: 1; background-image: resource(&quot;Textures/Coin&quot;); width: 25px; -unity-background-scale-mode: scale-to-fit;"/>
+            <ui:Label text="-1" name="MoneyAmount" style="margin-right: 16px;"/>
+            <ui:VisualElement name="LikesImg" style="aspect-ratio: 1; background-image: resource(&quot;Textures/Like&quot;); width: 25px; margin-bottom: 4px; -unity-background-scale-mode: scale-to-fit;"/>
+            <ui:Label text="-1" name="LikesAmount"/>
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-direction: row; justify-content: space-between;">
+            <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                <ui:Label text="1" name="ProgressValue" style="-unity-text-align: upper-right; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-SemiBold.ttf?fileID=12800000&amp;guid=6bbaee6b38702c3458ef4774312cb6b0&amp;type=3#Livvic-SemiBold&quot;); font-size: 16px; white-space: normal; height: 20px; margin-right: 0; padding-right: 0;"/>
+                <ui:Label text="/1" name="TargetGoal" style="-unity-text-align: upper-right; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-SemiBold.ttf?fileID=12800000&amp;guid=6bbaee6b38702c3458ef4774312cb6b0&amp;type=3#Livvic-SemiBold&quot;); font-size: 16px; white-space: normal; height: 20px; margin-left: 0;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="HappyBarContainer" class="SmallBar" style="flex-direction: row-reverse; align-items: center; align-content: flex-start; justify-content: center; flex-shrink: 1; flex-grow: 0; padding-left: 5px;">
+                <ui:ProgressBar value="0" title="" name="ProgressBar" high-value="1" class="happy" style="width: 236px;">
+                    <ui:VisualElement style="width: 100%; height: 100%; position: absolute; background-image: resource(&quot;Textures/Border&quot;); -unity-slice-scale: 0.2px; display: flex; -unity-background-image-tint-color: rgb(163, 115, 11);"/>
+                </ui:ProgressBar>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

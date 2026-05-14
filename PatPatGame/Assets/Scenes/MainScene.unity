@@ -3626,7 +3626,7 @@ Transform:
   m_GameObject: {fileID: 2114899629}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.17, y: 1.487, z: -4.514}
+  m_LocalPosition: {x: 0.17, y: 1.487, z: -2.475}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3843,7 +3843,7 @@ Transform:
   m_GameObject: {fileID: 3565307769147563091}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6997987, y: 0, z: -8.801324}
+  m_LocalPosition: {x: -1.8, y: 0, z: -8.801324}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4084,10 +4084,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aff895b5b13a43e43ad371dd910e3aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConveyorBelt
-  speed: 150
+  speed: 170
   direction: {x: 0, y: 0, z: 1}
   spawnPosition: {fileID: 2114899630}
   onBelt: []
+--- !u!1001 &6793778532734311495
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2966669787707623986, guid: cdc6f4507ecaa9c4db5c73788c8ec0bf, type: 3}
+      propertyPath: m_Name
+      value: UIQuestTV
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650786083886022447, guid: cdc6f4507ecaa9c4db5c73788c8ec0bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650786083886022447, guid: cdc6f4507ecaa9c4db5c73788c8ec0bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650786083886022447, guid: cdc6f4507ecaa9c4db5c73788c8ec0bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650786083886022447, guid: cdc6f4507ecaa9c4db5c73788c8ec0bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650786083886022447, guid: cdc6f4507ecaa9c4db5c73788c8ec0bf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650786083886022447, guid: cdc6f4507ecaa9c4db5c73788c8ec0bf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650786083886022447, guid: cdc6f4507ecaa9c4db5c73788c8ec0bf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650786083886022447, guid: cdc6f4507ecaa9c4db5c73788c8ec0bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650786083886022447, guid: cdc6f4507ecaa9c4db5c73788c8ec0bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650786083886022447, guid: cdc6f4507ecaa9c4db5c73788c8ec0bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8661835418983712127, guid: cdc6f4507ecaa9c4db5c73788c8ec0bf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: cdc6f4507ecaa9c4db5c73788c8ec0bf, type: 3}
 --- !u!1001 &6875675030878153729
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4307,3 +4367,4 @@ SceneRoots:
   - {fileID: 1026294249}
   - {fileID: 5494759203850906815}
   - {fileID: 2075832838}
+  - {fileID: 6793778532734311495}
