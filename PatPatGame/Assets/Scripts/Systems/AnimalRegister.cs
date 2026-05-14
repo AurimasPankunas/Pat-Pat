@@ -15,11 +15,14 @@ public class AnimalRegister : MonoBehaviour
     public List<AnimalData> registerAnimals;
     public int maxRegisterAnimals = 5;
     public event Action OnRegisterAnimalChanged;
+    private TimeKeeper timeKeeper;
     private UIAnimalElement uIAnimalElement;
 
     void Start()
     {
-        InvokeRepeating(nameof(TestDailyFunc), 6f, 12f);
+        timeKeeper = FindFirstObjectByType<TimeKeeper>();
+        GetDailyAnimals();
+        // InvokeRepeating(nameof(GetDailyAnimals), 6f, 12f);
     }
 
     /// <summary>
@@ -118,11 +121,19 @@ public class AnimalRegister : MonoBehaviour
     }
 
     // Daily animal spawning test
-    private void TestDailyFunc()
+    private void GetDailyAnimals()
     {
         if (registerAnimals.Count < maxRegisterAnimals)
         {
-            CreateRandomAnimal();
+            var timePassed = DateTime.Now - timeKeeper.lastLogin;
+            for (int i = 0; i < timePassed.Days; i++)
+            {
+                if (registerAnimals.Count == maxRegisterAnimals)
+                {
+                    return;
+                }
+                CreateRandomAnimal();
+            }
         }
     }
 

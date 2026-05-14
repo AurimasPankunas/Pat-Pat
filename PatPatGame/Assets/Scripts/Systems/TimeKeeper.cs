@@ -1,11 +1,12 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 
 public class TimeKeeper : MonoBehaviour
 {
-    public DateTime firstLogin {get; private set;}
-    public DateTime lastLogin {get; private set;}
-    public double totalPlayTime {get; private set;}
+    public DateTime firstLogin { get; private set; }
+    public DateTime lastLogin { get; private set; }
+    public double totalPlayTime { get; private set; }
+
     void Start()
     {
         if (firstLogin == DateTime.MinValue)
@@ -29,7 +30,7 @@ public class TimeKeeper : MonoBehaviour
     {
         return (DateTime.Now - lastLogin).TotalSeconds;
     }
-    
+
     public double GetHoursSinceLastSave()
     {
         return (DateTime.Now - lastLogin).TotalHours;
