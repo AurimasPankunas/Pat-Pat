@@ -161,6 +161,7 @@ MonoBehaviour:
   type: {fileID: 0}
   rarity: 1
   idleSound: {fileID: 8300000, guid: bd7548b74c60c8448b1a3572174f7d4c, type: 3}
+  <statParticleSystem>k__BackingField: {fileID: 8106863431475474885, guid: 644d85b13c74367ea837006d4d1e3cc1, type: 3}
 --- !u!114 &-6026240903082377067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,4 +176,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   shopItemDatabase: {fileID: 0}
   foodParticleSystem: {fileID: 8575474578855544277, guid: 116880afc94dfbcd0a8484177f2e1715, type: 3}
+  particleParentTransform: {fileID: 0}
+  particleDuration: 0
   floatingTextCooldown: 0.5

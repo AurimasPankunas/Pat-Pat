@@ -13,12 +13,16 @@ public class Animal : MonoBehaviour
     [SerializeField] private AnimalType type;
     [SerializeField] private int rarity = 1;
     [SerializeField] private AudioClip idleSound;
+    [field:SerializeField] public ParticleSystem statParticleSystem { get; private set; }
+    private double minStatDifferenceForParticles = 0.02;
     private SoundManager soundManager;
+    private EffectPlayer effectPlayer;
 
 
-    void Start()
+    void Awake()
     {
         soundManager = GameManager.Instance.soundManager;
+        effectPlayer = GameManager.Instance.effectPlayer;
     }
     // play idle sound randomly (example + testing)
     void FixedUpdate()
@@ -59,6 +63,7 @@ public class Animal : MonoBehaviour
     {
         double increase = 0.00001 * dt * Math.Pow(data.happiness, 1.5);
         data.bond = Math.Min(4.0, data.bond + increase);
+        // PlayStatsParticleEffect(data.bond / 4.0, Color.red);
     }
     public void UpdateNeeds(double dt = 1)
     {
@@ -68,11 +73,13 @@ public class Animal : MonoBehaviour
     public void UpdateFood(double foodAmount)
     {
         data.food = Math.Clamp(data.food + foodAmount, 0.0, 1.0);
+        PlayStatsParticleEffect(data.food, Color.sandyBrown);
     }
 
     public void UpdateWater(double waterAmount)
     {
         data.water = Math.Clamp(data.water + waterAmount, 0.0, 1.0);
+        PlayStatsParticleEffect(data.water, Color.lightBlue);
     }
 
     public double IncomeCalculation(bool isOnline, double @base = 0.01, double afkProgress = 0)
@@ -91,8 +98,13 @@ public class Animal : MonoBehaviour
 
     public void PettingHappinessIncrease(int gloveRarity)
     {
+        double difference = data.happiness;
+
         double bonus = 0.20 + 0.10 * (gloveRarity - 1);
         data.happiness = Math.Min(data.happiness + bonus, 1.0);
+
+        difference = data.happiness - difference;
+        PlayStatsParticleEffect(data.happiness, difference, Color.yellow);
     }
 
     public double PettingIncome(int gloveRarity)
@@ -119,5 +131,23 @@ public class Animal : MonoBehaviour
     public void SetAnimalName(string name)
     {
         data.animalName = name;
+    }
+
+    private void PlayStatsParticleEffect(double value, double difference, Color color)
+    {
+        if (value > 0.99 && difference > minStatDifferenceForParticles && statParticleSystem != null && effectPlayer != null)
+        {
+            EffectOptions options = new EffectOptions { color = color };
+            effectPlayer.Play(statParticleSystem, transform.position, Quaternion.identity, options);
+        }
+    }
+
+    private void PlayStatsParticleEffect(double value, Color color)
+    {
+        if (value > 0.99 && statParticleSystem != null && effectPlayer != null)
+        {
+            EffectOptions options = new EffectOptions { color = color };
+            effectPlayer.Play(statParticleSystem, transform.position, Quaternion.identity, options);
+        }
     }
 }

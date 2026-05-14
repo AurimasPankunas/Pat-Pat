@@ -78,6 +78,5 @@ public class GameManager : MonoBehaviour
             animalManager.Initialize(true);
             playerBalance.Initialize();
         }
-        soundManager.Initialize();
     }
 }

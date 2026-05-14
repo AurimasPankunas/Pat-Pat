@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RegisterManager : MonoBehaviour
 {
@@ -9,8 +8,12 @@ public class RegisterManager : MonoBehaviour
     private AnimalManager animalManager;
     private PlayerBalance playerBalance;
     private UIRegisterFunc registerUI;
-    [SerializeField] private ShopItemDatabase shopItemDatabase;
-    [SerializeField] private Transform miniAnimalSpawnPoint;
+
+    [SerializeField]
+    private ShopItemDatabase shopItemDatabase;
+
+    [SerializeField]
+    private Transform miniAnimalSpawnPoint;
 
     public float buyCooldownTime = 0.3f;
     private float buyCooldown = 0.3f;
@@ -22,10 +25,12 @@ public class RegisterManager : MonoBehaviour
         animalRegister = GameManager.Instance.animalRegister;
         animalManager = GameManager.Instance.animalManager;
         playerBalance = GameManager.Instance.playerBalance;
-        if (shopItemDatabase == null){
+        if (shopItemDatabase == null)
+        {
             Debug.Log("ShopItemDatabase is missing");
         }
-        else{
+        else
+        {
             registerUI.SetShopDatabase(shopItemDatabase);
             if (playerBalance.chestLevel > 0)
                 registerUI.SetChest(playerBalance.chestLevel);
@@ -36,10 +41,14 @@ public class RegisterManager : MonoBehaviour
         // Gets in the way of testing but good to have in build?
         //playerBalance.OnLikesChanged += registerUI.SetLikes;
         registerUI.SetLikes(playerBalance.likes);
-        registerUI.SetAnimalsAmount(animalRegister.registerAnimals.Count, animalRegister.maxRegisterAnimals);
+        registerUI.SetAnimalsAmount(
+            animalRegister.registerAnimals.Count,
+            animalRegister.maxRegisterAnimals
+        );
 
         List<AnimalData> animalList = animalRegister.registerAnimals;
-        if (animalList != null){
+        if (animalList != null)
+        {
             registerUI.GenerateList(animalList);
         }
     }
@@ -56,6 +65,7 @@ public class RegisterManager : MonoBehaviour
             registerUI.SetLikes(playerBalance.likes);
         }
     }
+
     public AnimalType GetType(string typeID)
     {
         return animalManager.GetType(typeID);
@@ -64,17 +74,20 @@ public class RegisterManager : MonoBehaviour
     private void HandleRegisterAnimalChanged()
     {
         registerUI.GenerateList(animalRegister.registerAnimals);
-        registerUI.SetAnimalsAmount(animalRegister.registerAnimals.Count, animalRegister.maxRegisterAnimals);
+        registerUI.SetAnimalsAmount(
+            animalRegister.registerAnimals.Count,
+            animalRegister.maxRegisterAnimals
+        );
     }
 
     /// <summary>
     /// Function to execute when an animal is taken in
     /// </summary>
     /// <param name="animal">Animal that was clicked</param>
-    public void AnimalTakeInClicked(AnimalData animal)
+    public void AnimalTakeInClicked(AnimalData animal, TemplateContainer _animalElement)
     {
         Debug.Log("Take in");
-        animalRegister.RemoveAnimal(animal, miniAnimalSpawnPoint);
+        animalRegister.RemoveAnimal(animal, miniAnimalSpawnPoint, _animalElement);
     }
 
     /// <summary>
@@ -84,7 +97,7 @@ public class RegisterManager : MonoBehaviour
     public void AnimalTurnAwayClicked(AnimalData animal)
     {
         Debug.Log("Turn away");
-        animalRegister.RemoveAnimal(animal, null);
+        animalRegister.RemoveAnimal(animal, null, null);
     }
 
     public void OnChestBuyClicked()
@@ -96,7 +109,8 @@ public class RegisterManager : MonoBehaviour
                 return;
             registerUI.SubtractLikesAnimation(openCost);
             playerBalance.SubtractLikes(openCost);
-            if (playerBalance.chestLevel < 1) playerBalance.IncrementChestLevel();
+            if (playerBalance.chestLevel < 1)
+                playerBalance.IncrementChestLevel();
             int chestLvl = playerBalance.chestLevel;
             animalRegister.CreateChestAnimal();
             playerBalance.AddChestsOpened(1);
@@ -110,6 +124,7 @@ public class RegisterManager : MonoBehaviour
             }
         }
     }
+
     private void OnDisable()
     {
         animalRegister.OnRegisterAnimalChanged -= HandleRegisterAnimalChanged;
