@@ -36,12 +36,15 @@ public class SaveManager : MonoBehaviour
     }
 
     // Use this to call the save method for every class instance
-    public void HandleSaveData() 
+    public bool HandleSaveData() 
     {
+        bool hasErrors = false;
         saveData.timeKeeperData = GameManager.Instance.timeKeeper.Save();
-        saveData.animalManagerData = GameManager.Instance.animalManager.Save();
+        if (!GameManager.Instance.animalManager.Save(out saveData.animalManagerData))
+            hasErrors = true;
         saveData.animalRegisterData = GameManager.Instance.animalRegister.Save();
         saveData.playerBalanceData = GameManager.Instance.playerBalance.Save();
+        return !hasErrors;
     }
 
 
@@ -60,7 +63,11 @@ public class SaveManager : MonoBehaviour
     }
     public void Save()
     {
-        HandleSaveData();
+        if (!HandleSaveData())
+        {
+            Debug.LogError("Saving encountered errors, aborting");
+            return;
+        }
         string json = JsonUtility.ToJson(saveData, true);
         File.WriteAllText(SaveFileName(), json);
     }
