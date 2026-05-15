@@ -11,8 +11,9 @@ public class AnimalIdleRandomizer : MonoBehaviour
 
         while (true)
         {
-            yield return new WaitForSeconds(0.5f);
-            animator.SetInteger("IdleIndex", Random.Range(0, 4));
+            yield return new WaitForSeconds(Random.Range(10f, 20f));
+            animator.SetTrigger("ChangeIdle");
+            animator.SetInteger("IdleIndex", Random.Range(0, 3));
         }
     }
 }
