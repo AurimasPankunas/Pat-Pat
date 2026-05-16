@@ -36,6 +36,8 @@ public class SoundManager : MonoBehaviour
 
     private void InitializeAudioPool()
     {
+        if (sfxSources != null)
+            return;
         sfxSources = new List<AudioSource>();
 
         for (int i = 0; i < poolSize; i++)
@@ -74,6 +76,8 @@ public class SoundManager : MonoBehaviour
     private AudioSource GetNextSource()
     {
         currentSourceIndex = (currentSourceIndex + 1) % poolSize;
+        if (sfxSources == null)
+            InitializeAudioPool();
         return sfxSources[currentSourceIndex];
     }
 
@@ -94,6 +98,7 @@ public class SoundManager : MonoBehaviour
         source.outputAudioMixerGroup = sfxGroup;
         source.clip = clip;
         source.volume = volume;
+        source.pitch = Random.Range(0.95f, 1.05f);
         source.Play();
     }
 

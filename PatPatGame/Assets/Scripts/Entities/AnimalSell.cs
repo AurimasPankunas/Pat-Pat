@@ -100,8 +100,7 @@ public class AnimalSell : MonoBehaviour
         grab.selectExited.RemoveListener(OnItemReleased);
         _itemsInZone.Remove(grab);
 
-        GameManager.Instance.animalManager.miniAnimals.Remove(miniAnimal);
-        Destroy(grab.gameObject);
+        GameManager.Instance.animalManager.RemoveMiniAnimal(miniAnimal);
 
         RefreshPrice();
     }

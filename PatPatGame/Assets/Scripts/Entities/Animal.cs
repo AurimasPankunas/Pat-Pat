@@ -13,8 +13,12 @@ public class Animal : MonoBehaviour
     [SerializeField] private AnimalType type;
     [SerializeField] private int rarity = 1;
     [SerializeField] private AudioClip idleSound;
+    [SerializeField] private AudioClip drinkSound;
+    [SerializeField] private AudioClip eatingSound;
+    [SerializeField] private AudioClip patSound;
+    [SerializeField] private AudioClip statSound;
     [field:SerializeField] public ParticleSystem statParticleSystem { get; private set; }
-    private double minStatDifferenceForParticles = 0.02;
+    private double minStatDifferenceForParticles = 0.01;
     private SoundManager soundManager;
     private EffectPlayer effectPlayer;
 
@@ -74,12 +78,18 @@ public class Animal : MonoBehaviour
     {
         data.food = Math.Clamp(data.food + foodAmount, 0.0, 1.0);
         PlayStatsParticleEffect(data.food, Color.sandyBrown);
+        
+        if (eatingSound != null)
+            soundManager.PlaySoundAtPosition(eatingSound, transform.position);
     }
 
     public void UpdateWater(double waterAmount)
     {
         data.water = Math.Clamp(data.water + waterAmount, 0.0, 1.0);
         PlayStatsParticleEffect(data.water, Color.lightBlue);
+        
+        if (drinkSound != null)
+            soundManager.PlaySoundAtPosition(drinkSound, transform.position);
     }
 
     public double IncomeCalculation(bool isOnline, double @base = 0.01, double afkProgress = 0)
@@ -105,6 +115,9 @@ public class Animal : MonoBehaviour
 
         difference = data.happiness - difference;
         PlayStatsParticleEffect(data.happiness, difference, Color.yellow);
+        
+        if (patSound != null)
+            soundManager.PlaySoundAtPosition(patSound, transform.position);
     }
 
     public double PettingIncome(int gloveRarity)
@@ -139,6 +152,7 @@ public class Animal : MonoBehaviour
         {
             EffectOptions options = new EffectOptions { color = color };
             effectPlayer.Play(statParticleSystem, transform.position, Quaternion.identity, options);
+            PlayStatsSound();
         }
     }
 
@@ -148,6 +162,13 @@ public class Animal : MonoBehaviour
         {
             EffectOptions options = new EffectOptions { color = color };
             effectPlayer.Play(statParticleSystem, transform.position, Quaternion.identity, options);
+            PlayStatsSound();
         }
+    }
+
+    private void PlayStatsSound()
+    {
+        if (statSound != null)
+            soundManager.PlaySoundAtPosition(statSound, transform.position);
     }
 }

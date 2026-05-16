@@ -66,16 +66,18 @@ public class AnimalManager : MonoBehaviour
         MiniAnimal spawnedAnimal = spawnedObject.GetComponent<MiniAnimal>();
         spawnedAnimal.data = animalData;
         miniAnimals.Add(spawnedAnimal);
+        spawnedAnimal.PlaySpawnSound();
         return spawnedAnimal;
     }
 
     /// <summary>
     /// Destroys the mini animal game GameObject
     /// </summary>
-    private AnimalData RemoveMiniAnimal(MiniAnimal miniAnimal)
+    public AnimalData RemoveMiniAnimal(MiniAnimal miniAnimal)
     {
         miniAnimals.Remove(miniAnimal);
         AnimalData data = miniAnimal.data;
+        miniAnimal.PlaySpawnSound();
         Destroy(miniAnimal.gameObject);
         return data;
     }

@@ -105,6 +105,7 @@ MonoBehaviour:
     food: 0
     water: 0
     bond: 0
+  spawnSound: {fileID: 8300000, guid: d0cd4ce80ede7b83a9a7db669a8448e6, type: 3}
 --- !u!114 &6052460836529685782
 MonoBehaviour:
   m_ObjectHideFlags: 0
