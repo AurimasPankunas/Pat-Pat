@@ -87,7 +87,7 @@ public class RegisterManager : MonoBehaviour
     public void AnimalTakeInClicked(AnimalData animal, TemplateContainer _animalElement)
     {
         Debug.Log("Take in");
-        animalRegister.RemoveAnimal(animal, miniAnimalSpawnPoint, _animalElement);
+        animalRegister.TakeInCheckAndRemove(animal, miniAnimalSpawnPoint, _animalElement);
     }
 
     /// <summary>
@@ -97,7 +97,7 @@ public class RegisterManager : MonoBehaviour
     public void AnimalTurnAwayClicked(AnimalData animal)
     {
         Debug.Log("Turn away");
-        animalRegister.RemoveAnimal(animal, null, null);
+        animalRegister.RemoveAnimal(animal, null);
     }
 
     public void OnChestBuyClicked()

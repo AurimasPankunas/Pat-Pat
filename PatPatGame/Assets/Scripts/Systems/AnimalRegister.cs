@@ -15,7 +15,6 @@ public class AnimalRegister : MonoBehaviour
     public List<AnimalData> registerAnimals;
     public int maxRegisterAnimals = 5;
     public event Action OnRegisterAnimalChanged;
-    private UIAnimalElement uIAnimalElement;
 
     void Start()
     {
@@ -49,27 +48,52 @@ public class AnimalRegister : MonoBehaviour
     }
 
     /// <summary>
-    /// Removes animal from the register list. If spawnPoint is given and there are free spots, spawns a mini animal
+    /// Checks whether an animal can be taken in. 
+    /// If there's enough spots - true, if not - false
+    /// </summary>
+    /// <returns></returns>
+    public bool CanBeTakenIn()
+    {
+        int freeSpots = animalManager.spots.Count(s => s.isBought && !s.isOccupied);
+        int miniAnimals = animalManager.miniAnimals.Count();
+        if (freeSpots - miniAnimals > 0) 
+            return true;
+        return false;
+    }
+
+    /// <summary>
+    /// Checks if an animal can be taken in and if it can removes it from the register and UI
+    /// </summary>
+    /// <param name="animal"></param>
+    public void TakeInCheckAndRemove(
+        AnimalData animal,
+        Transform spawnPoint,
+        TemplateContainer _UIanimalElement
+    )
+    {
+        if(CanBeTakenIn())
+        {
+            _UIanimalElement.RemoveFromHierarchy();
+            RemoveAnimal(animal, spawnPoint);
+        }
+    }
+
+
+
+    /// <summary>
+    /// Removes animal from the register list. If spawnPoint is given, spawns a mini animal
     /// </summary>
     /// <param name="animal"></param>
     public void RemoveAnimal(
         AnimalData animal,
-        Transform spawnPoint,
-        TemplateContainer _animalElement
+        Transform spawnPoint
     )
     {
-        int freeSpots = animalManager.spots.Count(s => s.isBought && !s.isOccupied);
-        int miniAnimals = animalManager.miniAnimals.Count();
-        Debug.Log(spawnPoint == null && _animalElement == null);
-        if (freeSpots - miniAnimals > 0 || (spawnPoint == null && _animalElement == null))
+        registerAnimals.Remove(animal);
+        OnRegisterAnimalChanged?.Invoke();
+        if (spawnPoint != null)
         {
-            registerAnimals.Remove(animal);
-            OnRegisterAnimalChanged?.Invoke();
-            if (spawnPoint != null)
-            {
-                _animalElement.RemoveFromHierarchy();
-                animalManager.CreateMiniAnimal(animal, spawnPoint.position, spawnPoint.rotation);
-            }
+            animalManager.CreateMiniAnimal(animal, spawnPoint.position, spawnPoint.rotation);
         }
     }
 
@@ -103,8 +127,7 @@ public class AnimalRegister : MonoBehaviour
         int typeCount = animalManager.types.Count;
         int typeChoice = Random.Range(0, typeCount);
         AnimalType type = animalManager.types[typeChoice];
-        string generatedName = AnimalNameGenerator.GenerateName();
-        string name = $"Chest Lvl." + $"{chestLvl} {generatedName}";
+        string name = AnimalNameGenerator.GenerateName();
         int rarity = shopItemDatabase.RollAnimalRarity(chestLvl);
         int level = Random.Range(1, 5);
         double happiness = Random.Range(0f, 1f);
