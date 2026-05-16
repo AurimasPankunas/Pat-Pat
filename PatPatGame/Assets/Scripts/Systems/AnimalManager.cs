@@ -66,6 +66,7 @@ public class AnimalManager : MonoBehaviour
         MiniAnimal spawnedAnimal = spawnedObject.GetComponent<MiniAnimal>();
         spawnedAnimal.data = animalData;
         miniAnimals.Add(spawnedAnimal);
+        spawnedAnimal.PlaySpawnSound();
         return spawnedAnimal;
     }
 
@@ -76,6 +77,7 @@ public class AnimalManager : MonoBehaviour
     {
         miniAnimals.Remove(miniAnimal);
         AnimalData data = miniAnimal.data;
+        miniAnimal.PlaySpawnSound();
         Destroy(miniAnimal.gameObject);
         return data;
     }

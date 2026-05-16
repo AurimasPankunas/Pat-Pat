@@ -8,15 +8,10 @@ public class MiniAnimal : MonoBehaviour
     private SoundManager soundManager;
     [SerializeField] private AudioClip spawnSound;
 
-    void Awake()
+    public void PlaySpawnSound()
     {
-        soundManager = GameManager.Instance.soundManager;
-        if (spawnSound != null)
-            soundManager.PlaySoundAtPosition(spawnSound, transform.position);
-    }
-
-    void OnDestroy()
-    {
+        if (soundManager == null)
+            soundManager = GameManager.Instance.soundManager;
         if (spawnSound != null)
             soundManager.PlaySoundAtPosition(spawnSound, transform.position);
     }
