@@ -34,10 +34,10 @@
                 <ui:VisualElement style="flex-grow: 0; flex-direction: row; width: 100%; padding-right: 10px; padding-left: 10px; justify-content: center; margin-top: -10px;">
                     <ui:VisualElement style="flex-grow: 0; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-SemiBold.ttf?fileID=12800000&amp;guid=6bbaee6b38702c3458ef4774312cb6b0&amp;type=3#Livvic-SemiBold&quot;); justify-content: space-around; width: 106px;">
                         <ui:Label text="Common " style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
-                        <ui:Label text="Uncommon" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
-                        <ui:Label text="Rare " style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
-                        <ui:Label text="Epic " style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
-                        <ui:Label text="Legendary " style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
+                        <ui:Label text="Uncommon" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; color: rgb(161, 85, 5);"/>
+                        <ui:Label text="Rare " style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; color: rgb(114, 125, 142);"/>
+                        <ui:Label text="Epic " style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; color: rgb(191, 147, 4);"/>
+                        <ui:Label text="Legendary " style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; color: rgb(164, 45, 203);"/>
                     </ui:VisualElement>
                     <ui:VisualElement style="flex-grow: 0; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-SemiBold.ttf?fileID=12800000&amp;guid=6bbaee6b38702c3458ef4774312cb6b0&amp;type=3#Livvic-SemiBold&quot;); justify-content: space-around; align-items: flex-end;">
                         <ui:Label text="20% " name="CommonChance" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>

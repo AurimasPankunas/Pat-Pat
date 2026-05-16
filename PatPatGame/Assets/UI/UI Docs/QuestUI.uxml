@@ -1,0 +1,16 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/PatPatStyle.uss?fileID=7433441132597879392&amp;guid=f5985b321d282874f97bacc2e9998abc&amp;type=3#PatPatStyle"/>
+    <Style src="project://database/Assets/UI/Pre-madeElementsStyles.uss?fileID=7433441132597879392&amp;guid=05a60a23150ba5f45b4e854efe011372&amp;type=3#Pre-madeElementsStyles"/>
+    <ui:VisualElement name="ShopContainer" class="PanelBackground" style="flex-grow: 0; flex-direction: column; display: flex; background-image: url(&quot;project://database/Assets/UI/Resources/Textures/GradientDownwards.png?fileID=2800000&amp;guid=50759faa553ddcc449dad8d8cc170baf&amp;type=3#GradientDownwards&quot;); width: 400px; height: 500px;">
+        <ui:VisualElement name="Header" class="HeaderStyle" style="flex-direction: row;">
+            <ui:Label text="Quests" name="HeaderLabel"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-shrink: 1; flex-direction: row;">
+            <ui:VisualElement style="flex-grow: 0; width: 100%;">
+                <ui:ScrollView horizontal-scroller-visibility="Hidden" style="flex-shrink: 1;">
+                    <ui:VisualElement name="ListContainer" style="flex-grow: 1; flex-shrink: 1; padding-top: 5px; padding-right: 0; padding-bottom: 5px; padding-left: 0; flex-direction: row; flex-wrap: wrap; justify-content: center; align-content: flex-start; visibility: visible; display: flex;"/>
+                </ui:ScrollView>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
