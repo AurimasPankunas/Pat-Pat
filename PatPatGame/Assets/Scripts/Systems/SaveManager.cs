@@ -6,8 +6,10 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
-    [SerializeField] private int autosaveTimeSeconds;
+    [SerializeField]
+    private int autosaveTimeSeconds;
     private static SaveData saveData;
+
     // [SerializeField] private TimeKeeper timeKeeper;
     // [SerializeField] private PlayerBalance playerBalance;
     // private AnimalManager animalManager;
@@ -18,7 +20,7 @@ public class SaveManager : MonoBehaviour
 
     // Populate this with save data structs
     [System.Serializable]
-    public struct SaveData 
+    public struct SaveData
     {
         public TimeKeeperData timeKeeperData;
         public PlayerBalanceData playerBalanceData;
@@ -32,7 +34,10 @@ public class SaveManager : MonoBehaviour
         GameManager.Instance.timeKeeper.Load(saveData.timeKeeperData);
         GameManager.Instance.animalManager.Load(saveData.animalManagerData);
         GameManager.Instance.animalRegister.Load(saveData.animalRegisterData);
-        GameManager.Instance.playerBalance.Load(saveData.playerBalanceData, GameManager.Instance.timeKeeper.GetHoursSinceLastSave());
+        GameManager.Instance.playerBalance.Load(
+            saveData.playerBalanceData,
+            GameManager.Instance.timeKeeper.GetHoursSinceLastSave()
+        );
     }
 
     // Use this to call the save method for every class instance
@@ -47,12 +52,11 @@ public class SaveManager : MonoBehaviour
         return !hasErrors;
     }
 
-
     //---------------------------------------------------------------------------
     // Save Manager internal logic
     //---------------------------------------------------------------------------
 
-    public static string SaveFileName() 
+    public static string SaveFileName()
     {
         return Application.persistentDataPath + "/save.json";
     }
@@ -61,6 +65,7 @@ public class SaveManager : MonoBehaviour
     {
         return File.Exists(SaveFileName());
     }
+
     public void Save()
     {
         if (!HandleSaveData())
@@ -86,13 +91,13 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    public void DeleteSave() 
+    public void DeleteSave()
     {
         if (File.Exists(SaveFileName()))
             File.Delete(SaveFileName());
     }
 
-    void Awake() 
+    void Awake()
     {
         // if (File.Exists(SaveFileName()))
         // {
