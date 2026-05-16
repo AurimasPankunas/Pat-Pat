@@ -73,7 +73,7 @@ public class AnimalManager : MonoBehaviour
     /// <summary>
     /// Destroys the mini animal game GameObject
     /// </summary>
-    private AnimalData RemoveMiniAnimal(MiniAnimal miniAnimal)
+    public AnimalData RemoveMiniAnimal(MiniAnimal miniAnimal)
     {
         miniAnimals.Remove(miniAnimal);
         AnimalData data = miniAnimal.data;
