@@ -169,7 +169,7 @@ public class PlayerBalance : MonoBehaviour
         return Math.Round(totalIncome, 2);
     }
 
-    private double SimulateShelter(List<Animal> pets, double hours, bool isOnline, double baseIncome = 0.01)
+    public double SimulateShelter(List<Animal> pets, double hours, bool isOnline, double baseIncome = 0.01)
     {
         double totalIncome = 0;
         foreach (Animal pet in pets)
