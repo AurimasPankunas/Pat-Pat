@@ -69,7 +69,6 @@ public class SkippingDayButton : MonoBehaviour
     private void OnButtonPressed()
     {
         GameManager gameManager = GameManager.Instance;
-        gameManager.timeKeeper.AdvanceTimeByADay();
         double income = gameManager.playerBalance.SimulateShelter(
             gameManager.animalManager.spotAnimals,
             24,

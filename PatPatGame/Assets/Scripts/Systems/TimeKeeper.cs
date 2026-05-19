@@ -21,10 +21,6 @@ public class TimeKeeper : MonoBehaviour
         totalPlayTime += Time.deltaTime;
     }
 
-    public void AdvanceTimeByADay()
-    {
-        lastLogin = DateTime.Now.AddHours(-24);
-    }
     public string GetTimeString()
     {
         return TimeSpan.FromSeconds(Math.Floor(totalPlayTime)).ToString();
