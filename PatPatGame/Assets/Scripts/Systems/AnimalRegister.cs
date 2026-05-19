@@ -145,7 +145,7 @@ public class AnimalRegister : MonoBehaviour
     }
 
     // Daily animal spawning test
-    private void GetDailyAnimals()
+    public void GetDailyAnimals()
     {
         if (registerAnimals.Count < maxRegisterAnimals)
         {
