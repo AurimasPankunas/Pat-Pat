@@ -15,6 +15,9 @@ public class RegisterManager : MonoBehaviour
     [SerializeField]
     private Transform miniAnimalSpawnPoint;
 
+    [SerializeField]
+    private AnimatedChest chest;
+
     public float buyCooldownTime = 0.3f;
     private float buyCooldown = 0.3f;
 
@@ -112,7 +115,8 @@ public class RegisterManager : MonoBehaviour
             if (playerBalance.chestLevel < 1)
                 playerBalance.IncrementChestLevel();
             int chestLvl = playerBalance.chestLevel;
-            animalRegister.CreateChestAnimal();
+            AnimalData animalData = animalRegister.CreateChestAnimal();
+            chest.OpenChest(animalData);
             playerBalance.AddChestsOpened(1);
             registerUI.SetOpenedChests(chestLvl);
             int toLevelUp = shopItemDatabase.chestOpensToLevelUp[chestLvl - 1];

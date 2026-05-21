@@ -11,7 +11,7 @@ public class EffectPlayer : MonoBehaviour
     {
         ParticleSystem ps = Instantiate(prefab, position, rotation);
 
-        SetupAndPlay(ps, options);
+        SetupAndPlay(ps, options, true);
     }
 
     /// <summary>
@@ -22,8 +22,16 @@ public class EffectPlayer : MonoBehaviour
         var ps = Instantiate(prefab, parent);
         ps.transform.localPosition = Vector3.zero;
 
-        SetupAndPlay(ps, options);
+        SetupAndPlay(ps, options, true);
         
+    }
+
+    /// <summary>
+    /// Play an existing particle effect with custom options
+    /// </summary>
+    public void PlayExisting(ParticleSystem particleSystem, EffectOptions options)
+    {
+        SetupAndPlay(particleSystem, options, false);
     }
 
     private void ApplyOptions(ParticleSystem ps, EffectOptions options)
@@ -37,10 +45,12 @@ public class EffectPlayer : MonoBehaviour
             // main.duration = options.duration.Value;
     }
 
-    private void SetupAndPlay(ParticleSystem ps, EffectOptions options)
+    private void SetupAndPlay(ParticleSystem ps, EffectOptions options, bool destroyAfterPlay)
     {
         var main = ps.main;
-        main.stopAction = ParticleSystemStopAction.Destroy;
+
+        if (destroyAfterPlay)
+            main.stopAction = ParticleSystemStopAction.Destroy;
 
         ApplyOptions(ps, options);
 
