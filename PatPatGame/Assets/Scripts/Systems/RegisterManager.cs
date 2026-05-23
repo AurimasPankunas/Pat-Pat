@@ -63,6 +63,7 @@ public class RegisterManager : MonoBehaviour
         {
             buyCooldown -= Time.deltaTime;
         }
+
         if (playerBalance)
         {
             registerUI.SetLikes(playerBalance.likes);
@@ -126,6 +127,7 @@ public class RegisterManager : MonoBehaviour
                 playerBalance.IncrementChestLevel();
                 registerUI.SetChest(playerBalance.chestLevel);
             }
+            buyCooldown = buyCooldownTime;
         }
     }
 

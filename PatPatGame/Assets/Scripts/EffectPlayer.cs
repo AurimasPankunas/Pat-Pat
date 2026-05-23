@@ -1,9 +1,12 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class EffectPlayer : MonoBehaviour
 {
+    [SerializeField] private GameObject textPrefab;
+
     /// <summary>
     /// Spawn a temporary particle effect (detached from parent) with custom options
     /// </summary>
@@ -32,6 +35,20 @@ public class EffectPlayer : MonoBehaviour
     public void PlayExisting(ParticleSystem particleSystem, EffectOptions options)
     {
         SetupAndPlay(particleSystem, options, false);
+    }
+
+    public void SpawnText(Transform transform, string text, Color color, float duration)
+    {
+        GameObject obj = Instantiate(textPrefab, transform);
+
+        TMP_Text tmp = obj.GetComponentInChildren<TMP_Text>();
+        tmp.text = text;
+        tmp.color = color;
+        
+        // tmp.fontMaterial.SetColor("_OutlineColor", Color.black);
+        // tmp.fontMaterial.SetFloat("_OutlineWidth", 0.3f);
+
+        StartCoroutine(FadeAndDestroy(tmp, duration));
     }
 
     private void ApplyOptions(ParticleSystem ps, EffectOptions options)
@@ -66,6 +83,48 @@ public class EffectPlayer : MonoBehaviour
         
         ps.Stop();
     }
+
+    private IEnumerator FadeAndDestroy(TMP_Text tmp, float duration)
+{
+    Color color = tmp.color;
+
+    float fadeInTime = 0.2f;
+    float fadeOutTime = 0.2f;
+
+    // Start invisible
+    tmp.color = new Color(color.r, color.g, color.b, 0f);
+
+    // Fade in
+    float time = 0f;
+
+    while (time < fadeInTime)
+    {
+        time += Time.deltaTime;
+
+        float alpha = Mathf.Lerp(0f, 1f, time / fadeInTime);
+        tmp.color = new Color(color.r, color.g, color.b, alpha);
+
+        yield return null;
+    }
+
+    // Wait
+    yield return new WaitForSeconds(duration);
+
+    // Fade out
+    time = 0f;
+
+    while (time < fadeOutTime)
+    {
+        time += Time.deltaTime;
+
+        float alpha = Mathf.Lerp(1f, 0f, time / fadeOutTime);
+        tmp.color = new Color(color.r, color.g, color.b, alpha);
+
+        yield return null;
+    }
+
+    Destroy(tmp.gameObject);
+}
 }
 
 public struct EffectOptions
