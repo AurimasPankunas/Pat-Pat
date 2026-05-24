@@ -87,13 +87,13 @@ public class ShopItemDatabase : ScriptableObject
         new Mission { id = "d_pat", missionName = "Pet the animals 10 times", rewardMoney = 0, rewardLikes = 1, targetGoal = 10, type = MissionType.PatAnimal },
         new Mission { id = "d_give_food", missionName = "Give an animal food or water", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1, type = MissionType.FeedAnimal },
         new Mission { id = "d_level", missionName = "Level up an animal", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1, type = MissionType.LevelAnimal },
-        new Mission { id = "d_complete", missionName = "Complete all the missions", rewardMoney = 0, rewardLikes = 1, targetGoal = 5, type = MissionType.CompleteDaily }
+        new Mission { id = "d_complete", missionName = "Complete all daily quests", rewardMoney = 0, rewardLikes = 1, targetGoal = 5, type = MissionType.CompleteDaily }
     };
 
     [Header("Weekly Missions")]
     public List<Mission> weeklyMissions = new List<Mission>()
     {
-        new Mission { id = "w_login", missionName = "Log in for 5 days", rewardMoney = 3000, rewardLikes = 2, targetGoal = 5, type = MissionType.LogIn },
+        new Mission { id = "w_login", missionName = "Log in daily 5 times", rewardMoney = 3000, rewardLikes = 2, targetGoal = 5, type = MissionType.LogIn },
         new Mission { id = "w_chest", missionName = "Open the chest one time", rewardMoney = 3000, rewardLikes = 1, targetGoal = 1, type = MissionType.OpenChest },
         new Mission { id = "w_sell_animal", missionName = "Give away an animal", rewardMoney = 3000, rewardLikes = 2, targetGoal = 1, type = MissionType.SellAnimal },
         new Mission { id = "w_pat", missionName = "Pet the animals 100 times total", rewardMoney = 3000, rewardLikes = 1, targetGoal = 100, type = MissionType.PatAnimal }

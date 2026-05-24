@@ -10,12 +10,14 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private ConveyorBelt conveyorBelt;
     [SerializeField] private ShopItemDatabase shopItemDatabase;
     private List<ShopItem> shopList;
+    private QuestsManager questsManager;
 
     public float buyCooldownTime = 0.5f;
     private float buyCooldown = 0.5f;
 
     void Start()
     {
+        questsManager = GameManager.Instance.questsManager;
         shopUI = GetComponent<UIShopFunc>();
         shopUI.SetShopManager(this);
         if(!(playerBalance = GameManager.Instance.playerBalance)){
@@ -65,6 +67,7 @@ public class ShopManager : MonoBehaviour
             {
                 case FoodItem:
                     FoodItem fitem = (FoodItem)shopItem;
+                    questsManager.CaptureProgress(MissionType.BuyFoodWater, 1);
                     //Debug.Log(fitem.name);
                     // Do thing for food item
                     if (fitem.obj != null){
@@ -74,6 +77,7 @@ public class ShopManager : MonoBehaviour
                     break;
                 case WaterItem:
                     WaterItem witem = (WaterItem)shopItem;
+                    questsManager.CaptureProgress(MissionType.BuyFoodWater, 1);
                     //Debug.Log(witem.name);
                     // Do thing for water item
                     if (witem.obj != null){

@@ -73,8 +73,6 @@ public class TimeKeeper : MonoBehaviour
         }
 
         TimeKeeperData data = new TimeKeeperData();
-        // data.firstLoginDate = firstLogin.ToString();
-        // data.saveDate = DateTime.Now.ToString();
         data.firstLoginDate = firstLogin.ToString("O");
         data.saveDate = DateTime.Now.ToString("O");
         data.playTime = GetTimeString();

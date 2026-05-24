@@ -26,11 +26,6 @@ public class QuestsManager : MonoBehaviour
         
         questsFunc = FindFirstObjectByType<UIQuestsFunc>();
         questsFunc.SetQuestsManager(this);
-
-        // Functions are available without TimeSpan as well
-        // TimeSpan currently does not have a countdown
-        // questsFunc.GenerateList(dailyMissions, new System.TimeSpan(24, 0, 0));
-        // questsFunc.GenerateList(weeklyMissions, new System.TimeSpan(7,0, 0, 0));
     }
 
     void Start()
@@ -63,6 +58,9 @@ public class QuestsManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Add progress amount to all missions of a given type
+    /// </summary>
     public void CaptureProgress(MissionType type, int amount)
     {
         if (!missionTypeLookup.TryGetValue(type, out var missions))
@@ -77,8 +75,8 @@ public class QuestsManager : MonoBehaviour
                 mission.progress = mission.targetGoal;
                 CompleteMission(mission);
             }
-
-            questsFunc.GetUIQuestElement(mission).SetProgress(mission.progress);
+            if (questsFunc.IsInitialized())
+                questsFunc.GetUIQuestElement(mission).SetProgress(mission.progress);
         }
     }
 
@@ -98,24 +96,35 @@ public class QuestsManager : MonoBehaviour
         }
     }
 
-    public void ApplyResets()
+    /// <summary>
+    /// Apply mission resets based on last login, with optional overrides
+    /// </summary>
+    public void ApplyResets(bool forceResetDaily = false, bool forceResetWeekly = false)
     {
-        if (timeKeeper.IsNewDay())
+        if (timeKeeper.IsNewWeek() || forceResetWeekly)
         {
-            foreach (var q in dailyMissions)
+            foreach (var m in weeklyMissions)
             {
-                q.progress = 0;
-                q.isCompleted = false;
+                m.progress = 0;
+                m.isCompleted = false;
+
+                if (forceResetWeekly)
+                    questsFunc.GetUIQuestElement(m).SetProgress(m.progress);
             }
         }
 
-        if (timeKeeper.IsNewWeek())
+        if (timeKeeper.IsNewDay() || forceResetDaily)
         {
-            foreach (var q in weeklyMissions)
+            foreach (var m in dailyMissions)
             {
-                q.progress = 0;
-                q.isCompleted = false;
+                m.progress = 0;
+                m.isCompleted = false;
+
+                if (forceResetDaily)
+                    questsFunc.GetUIQuestElement(m).SetProgress(m.progress);
             }
+
+            CaptureProgress(MissionType.LogIn, 1);
         }
     }
 

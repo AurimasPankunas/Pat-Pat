@@ -153,4 +153,9 @@ public class UIQuestsFunc : MonoBehaviour
     {
         this.questsManager = questsManager;
     }
+
+    public bool IsInitialized()
+    {
+        return questElements != null;
+    }
 }

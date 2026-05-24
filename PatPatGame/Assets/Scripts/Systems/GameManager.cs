@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
         {
             animalManager.Initialize(false);
             saveManager.Load();
+            timeKeeper.MarkWeeklyReset();
             playerBalance.Initialize();
         }
         else
