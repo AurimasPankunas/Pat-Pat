@@ -1,0 +1,28 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/PatPatStyle.uss?fileID=7433441132597879392&amp;guid=f5985b321d282874f97bacc2e9998abc&amp;type=3#PatPatStyle"/>
+    <Style src="project://database/Assets/UI/Pre-madeElementsStyles.uss?fileID=7433441132597879392&amp;guid=05a60a23150ba5f45b4e854efe011372&amp;type=3#Pre-madeElementsStyles"/>
+    <ui:VisualElement name="ShopContainer" class="PanelBackground" style="flex-grow: 0; flex-direction: column; display: flex; background-image: url(&quot;project://database/Assets/UI/Resources/Textures/GradientDownwards.png?fileID=2800000&amp;guid=50759faa553ddcc449dad8d8cc170baf&amp;type=3#GradientDownwards&quot;); width: 670px; height: 470px;">
+        <ui:VisualElement name="Header" class="HeaderStyle" style="flex-direction: row;">
+            <ui:Label text="Settings" name="HeaderLabel"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-shrink: 1; flex-direction: row; justify-content: flex-end;">
+            <ui:VisualElement style="flex-grow: 1;">
+                <ui:Toggle label="Hint screens" name="HintToggle" focusable="false" style="font-size: 18px; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-SemiBold.ttf?fileID=12800000&amp;guid=6bbaee6b38702c3458ef4774312cb6b0&amp;type=3#Livvic-SemiBold&quot;);"/>
+                <ui:RadioButtonGroup label="Movement type" focusable="false" style="flex-direction: column; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-Bold.ttf?fileID=12800000&amp;guid=a408a2f38d08b2a429d13a1db7e7460e&amp;type=3#Livvic-Bold&quot;); font-size: 20px;">
+                    <ui:RadioButton label="Teleportation" name="RadioTeleportation" style="-unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-SemiBold.ttf?fileID=12800000&amp;guid=6bbaee6b38702c3458ef4774312cb6b0&amp;type=3#Livvic-SemiBold&quot;); font-size: 18px;"/>
+                    <ui:RadioButton label="Continuous" name="RadioContinuous" style="font-size: 18px; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-SemiBold.ttf?fileID=12800000&amp;guid=6bbaee6b38702c3458ef4774312cb6b0&amp;type=3#Livvic-SemiBold&quot;);"/>
+                </ui:RadioButtonGroup>
+            </ui:VisualElement>
+            <ui:VisualElement name="Line" style="flex-grow: 0; background-color: rgb(255, 255, 255); width: 3px; flex-direction: column-reverse; margin-bottom: 13px;">
+                <ui:VisualElement style="flex-grow: 0; width: 24px; height: 14px; align-self: center; background-image: url(&quot;project://database/Assets/UI/Resources/Textures/Curve.svg?fileID=6192944022281365145&amp;guid=62c39823787588e4c8e497e7f5b2e4e0&amp;type=3#Curve&quot;); -unity-background-scale-mode: scale-to-fit; margin-bottom: -13px; -unity-background-image-tint-color: rgb(255, 255, 255); margin-right: 1px;"/>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 0; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-SemiBold.ttf?fileID=12800000&amp;guid=6bbaee6b38702c3458ef4774312cb6b0&amp;type=3#Livvic-SemiBold&quot;); font-size: 18px; width: 460px; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
+                <ui:Label text="Audio" style="-unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-Bold.ttf?fileID=12800000&amp;guid=a408a2f38d08b2a429d13a1db7e7460e&amp;type=3#Livvic-Bold&quot;); font-size: 20px; -unity-text-align: upper-center; margin-top: 0;"/>
+                <ui:Slider label="Master" value="42" high-value="100" name="SliderMaster"/>
+                <ui:Slider label="Music" value="42" high-value="100" name="SliderMusic"/>
+                <ui:Slider label="SFX" value="42" high-value="100" name="SliderSFX"/>
+                <ui:Slider label="UI" value="42" high-value="100" name="SliderUI"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
