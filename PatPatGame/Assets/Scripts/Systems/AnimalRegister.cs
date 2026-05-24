@@ -139,7 +139,7 @@ public class AnimalRegister : MonoBehaviour
         double water = Random.Range(0f, 1f);
 
         AnimalData animal = new AnimalData(type.id, name, rarity, level, happiness, food, water);
-        AddAnimalToRegister(animal);
+        // AddAnimalToRegister(animal);
 
         return animal;
     }

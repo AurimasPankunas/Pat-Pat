@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc407f4b78bb0fbab9058279184993aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectPlayer
+  textPrefab: {fileID: 7720744842779172023, guid: 4bf79e1f459a8c91bab74c1dbd5f6855, type: 3}
 --- !u!1 &1747239723235956827
 GameObject:
   m_ObjectHideFlags: 0
