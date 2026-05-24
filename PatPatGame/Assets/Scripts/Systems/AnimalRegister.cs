@@ -106,6 +106,11 @@ public class AnimalRegister : MonoBehaviour
     /// </summary>
     public AnimalData CreateRandomAnimal()
     {
+        Debug.Log("RandomAnimal");
+        if (registerAnimals.Count >= maxRegisterAnimals)
+        {
+            return null;
+        }
         int typeCount = animalManager.types.Count;
         int typeChoice = Random.Range(0, typeCount);
         AnimalType type = animalManager.types[typeChoice];
@@ -152,10 +157,6 @@ public class AnimalRegister : MonoBehaviour
             var timePassed = DateTime.Now - timeKeeper.lastLogin;
             for (int i = 0; i < timePassed.Days; i++)
             {
-                if (registerAnimals.Count == maxRegisterAnimals)
-                {
-                    return;
-                }
                 CreateRandomAnimal();
             }
         }

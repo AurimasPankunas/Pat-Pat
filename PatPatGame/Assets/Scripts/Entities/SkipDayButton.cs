@@ -75,7 +75,7 @@ public class SkippingDayButton : MonoBehaviour
             false
         );
         gameManager.playerBalance.AddMoney(income);
-        gameManager.animalRegister.GetDailyAnimals();
+        gameManager.animalRegister.CreateRandomAnimal();
     }
 
     // Update is called once per frame
