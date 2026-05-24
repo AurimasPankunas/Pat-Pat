@@ -18,10 +18,11 @@ public class AnimalVisualFeedback : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("Hand entered trigger");
+        // Debug.Log("Hand entered trigger");
         if(collider.CompareTag("Hand") && !isBeingPatted)
         {
             isBeingPatted = true;
+            GameManager.Instance.questsManager.CaptureProgress(MissionType.PatAnimal, 1);
             StartCoroutine(SquishEffect());
         }
     }

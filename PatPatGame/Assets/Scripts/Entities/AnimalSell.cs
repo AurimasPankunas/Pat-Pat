@@ -102,6 +102,8 @@ public class AnimalSell : MonoBehaviour
 
         GameManager.Instance.animalManager.RemoveMiniAnimal(miniAnimal);
 
+        GameManager.Instance.questsManager.CaptureProgress(MissionType.SellAnimal, 1);
+
         RefreshPrice();
     }
 
