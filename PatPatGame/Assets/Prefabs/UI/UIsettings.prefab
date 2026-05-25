@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1011912479695912119}
   - component: {fileID: 8450653130252219147}
   - component: {fileID: 5344896261353342370}
+  - component: {fileID: 1915024812342185696}
   m_Layer: 5
   m_Name: UIsettings
   m_TagString: Untagged
@@ -175,3 +176,16 @@ MonoBehaviour:
       m_EnablePokeAngleThreshold: 1
       m_PokeAngleThreshold: 45
     m_Variable: {fileID: 0}
+--- !u!114 &1915024812342185696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3492333896445796466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61858b1af00b3b147aac6cbd9fdcbc72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UISettingsController
+  audioMixer: {fileID: 0}

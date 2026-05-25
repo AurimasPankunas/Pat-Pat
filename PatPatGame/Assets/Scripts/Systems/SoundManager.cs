@@ -176,6 +176,28 @@ public class SoundManager : MonoBehaviour
 
         audioMixer.SetFloat(parameter, db);
     }
+    /// <summary>
+    /// Get volume as value from 0 to 1
+    /// </summary>
+    public float GetVolume(string parameter, float volume)
+    {
+        // float minDb = -80f;
+        // float maxDb = 0f;
+        // float db = Mathf.Lerp(minDb, maxDb, volume);
+
+        volume = Mathf.Pow(volume, 4f); // tweak exponent for volume curve (2–4 works well)
+        float db = Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * 20;
+
+        //Mathf.Pow(10, volume / 20);
+        //Mathf.Log()
+        //audioMixer.SetFloat(parameter, db);
+
+    }
+    private float MixerToSlider(float mixerValue)
+    {
+        //Mathf.InverseLerp(-80, 0, mixerValue);
+        return Mathf.Pow(10, mixerValue / 20);
+    }
 
     private static IEnumerator FadeOut (AudioSource audioSource, float FadeTime) {
         float startVolume = audioSource.volume;
