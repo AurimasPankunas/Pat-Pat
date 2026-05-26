@@ -26,7 +26,6 @@ public class UIRegisterFunc : MonoBehaviour
     private VisualTreeAsset AnimalElement;
 
     private int BuyPrice;
-    private bool isMaxAnimals = false;
     private ShopItemDatabase shopItemDatabase;
 
     private List<UIAnimalElement> registerUIAnimals;
@@ -149,18 +148,11 @@ public class UIRegisterFunc : MonoBehaviour
     public void SetAnimalsAmount(int amount, int max)
     {
         _animalsAmount.text = $"{amount}/{max}";
-        if (amount >= max)
-        {
-            isMaxAnimals = true;
-        }
-        else
-            isMaxAnimals = false;
-        UpdateBuyButton();
     }
 
     public void UpdateBuyButton()
     {
-        if (GameManager.Instance.playerBalance.likes >= BuyPrice && !isMaxAnimals)
+        if (GameManager.Instance.playerBalance.likes >= BuyPrice)
             _buyChest.SetEnabled(true);
         else
             _buyChest.SetEnabled(false);
