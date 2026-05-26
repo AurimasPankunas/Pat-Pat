@@ -11,6 +11,7 @@ public class Animal_Stat_Increase : MonoBehaviour
     [SerializeField] private float particleDuration;
     private FoodItem foodData;
     private WaterItem waterData;
+    private QuestsManager questsManager;
     
     [SerializeField] private float floatingTextCooldown = 0.5f;
     private float lastFloatingTextTime = -1f;
@@ -19,6 +20,7 @@ public class Animal_Stat_Increase : MonoBehaviour
     {
         animal = GetComponent<Animal>();
         graphicalFeedback = GetComponent<AnimalGraphicalFeedback>();
+        questsManager = GameManager.Instance.questsManager;
     }
 
     private void SpawnFloatingTextWithCooldown(string message)
@@ -55,6 +57,8 @@ public class Animal_Stat_Increase : MonoBehaviour
                         effectPlayer.PlayAttached(foodParticleSystem, particleParentTransform, options);
                     }
 
+                    questsManager.CaptureProgress(MissionType.FeedAnimal, 1);
+
                     Destroy(other.gameObject.transform.parent.gameObject);
                 } else
                 {
@@ -75,6 +79,9 @@ public class Animal_Stat_Increase : MonoBehaviour
                     animal.UpdateWater(waterData.waterAmount);
                     animal.GetComponent<Animator>().SetTrigger("Eat");
                     Message = null;
+
+                    questsManager.CaptureProgress(MissionType.FeedAnimal, 1);
+
                     // To deal with Cup water smh
                     GameObject parent = other.gameObject.transform.parent.gameObject;
                     if (parent.transform.parent != null)

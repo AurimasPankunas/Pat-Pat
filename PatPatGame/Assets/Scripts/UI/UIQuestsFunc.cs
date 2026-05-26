@@ -12,7 +12,7 @@ public class UIQuestsFunc : MonoBehaviour
     [SerializeField] private VisualTreeAsset QuestElement;
     private List<UIQuestElement> questElements;
 
-    void Awake()
+    private void Initialize()
     {
         // Gets the document on the gameObject that has the UI elements
         _document = GetComponent<UIDocument>();
@@ -21,6 +21,14 @@ public class UIQuestsFunc : MonoBehaviour
         _ListContainer = _document.rootVisualElement.Q<VisualElement>("ListContainer");
 
         questElements = new List<UIQuestElement>();
+
+        GenerateList(questsManager.dailyMissions, new System.TimeSpan(24, 0, 0));
+        GenerateList(questsManager.weeklyMissions, new System.TimeSpan(7,0, 0, 0));
+    }
+
+    void Start()
+    {
+        Initialize();
     }
 
     /// <summary>
@@ -36,6 +44,7 @@ public class UIQuestsFunc : MonoBehaviour
             element.HideTime(true);
             questElements.Add(element);
             _ListContainer.Add(element._questElement);
+            element.SetProgress(item.progress);
         }
     }
 
@@ -54,6 +63,7 @@ public class UIQuestsFunc : MonoBehaviour
             element.SetTime(time);
             questElements.Add(element);
             _ListContainer.Add(element._questElement);
+            element.SetProgress(item.progress);
         }
     }
 
@@ -142,5 +152,10 @@ public class UIQuestsFunc : MonoBehaviour
     public void SetQuestsManager(QuestsManager questsManager)
     {
         this.questsManager = questsManager;
+    }
+
+    public bool IsInitialized()
+    {
+        return questElements != null;
     }
 }

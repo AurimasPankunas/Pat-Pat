@@ -15,6 +15,7 @@ public class AnimatedChest : MonoBehaviour
     private AnimalManager animalManager;
     private EffectPlayer effectPlayer;
     private SoundManager soundManager;
+    private QuestsManager questsManager;
     private string[] rarityColors = {"#000000", "#A15505", "#727D8E", "#BF9304", "#A42DCB" };
     private string[] rarities = {"Common", "Uncommon", "Rare", "Epic", "Legendary" };
     
@@ -24,6 +25,7 @@ public class AnimatedChest : MonoBehaviour
         animalManager = GameManager.Instance.animalManager;
         effectPlayer = GameManager.Instance.effectPlayer;
         soundManager = GameManager.Instance.soundManager;
+        questsManager = GameManager.Instance.questsManager;
     }
 
     private IEnumerator OpenClose(AnimalData animalData)
@@ -52,6 +54,8 @@ public class AnimatedChest : MonoBehaviour
         string size =  "Size: " + animalManager.GetType(animalData.typeID).size.ToString();
         string text = rarities[animalData.rarity - 1] + " " + animalData.animalName + "\n" + size;
         effectPlayer.SpawnText(textSpawnPoint, text, color, 3f);
+
+        questsManager.CaptureProgress(MissionType.OpenChest, 1);
     }
 
     public void OpenChest(AnimalData animalData)

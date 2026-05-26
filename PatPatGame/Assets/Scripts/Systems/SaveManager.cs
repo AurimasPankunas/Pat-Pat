@@ -26,6 +26,7 @@ public class SaveManager : MonoBehaviour
         public PlayerBalanceData playerBalanceData;
         public AnimalManagerSaveData animalManagerData;
         public AnimalRegisterSaveData animalRegisterData;
+        public QuestManagerSaveData questManagerSaveData;
     }
 
     // Use this to call the load method(s) for every class instance
@@ -38,6 +39,7 @@ public class SaveManager : MonoBehaviour
             saveData.playerBalanceData,
             GameManager.Instance.timeKeeper.GetHoursSinceLastSave()
         );
+        GameManager.Instance.questsManager.Load(saveData.questManagerSaveData);
     }
 
     // Use this to call the save method for every class instance
@@ -49,6 +51,7 @@ public class SaveManager : MonoBehaviour
             hasErrors = true;
         saveData.animalRegisterData = GameManager.Instance.animalRegister.Save();
         saveData.playerBalanceData = GameManager.Instance.playerBalance.Save();
+        saveData.questManagerSaveData = GameManager.Instance.questsManager.Save();
         return !hasErrors;
     }
 

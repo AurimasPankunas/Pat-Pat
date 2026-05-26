@@ -150,10 +150,16 @@ public class AnimalRegister : MonoBehaviour
     }
 
     // Daily animal spawning test
-    public void GetDailyAnimals()
+    public void GetDailyAnimals(bool isDaySkip = false)
     {
         if (registerAnimals.Count < maxRegisterAnimals)
         {
+            if (isDaySkip)
+            {
+                CreateRandomAnimal();
+                return;
+            }
+            
             var timePassed = DateTime.Now - timeKeeper.lastLogin;
             for (int i = 0; i < timePassed.Days; i++)
             {

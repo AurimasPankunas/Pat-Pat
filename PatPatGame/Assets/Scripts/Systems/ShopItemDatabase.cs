@@ -53,33 +53,50 @@ public class SpotItem : ShopItem
 [System.Serializable]
 public class Mission
 {
+    public string id;
     public string missionName;
+    public MissionType type;
     public int rewardMoney;
     public int rewardLikes;
     //[HideInInspector] public int currentProgress; 
     public int targetGoal; 
+    public int progress = 0;
+    public bool isCompleted = false;
 }
+
+public enum MissionType
+{
+    LogIn,
+    BuyFoodWater,
+    PatAnimal,
+    FeedAnimal,
+    LevelAnimal,
+    OpenChest,
+    SellAnimal,
+    CompleteDaily
+}
+
 [CreateAssetMenu(fileName = "ShopItemDatabase", menuName = "Shop/Item Database")]
 public class ShopItemDatabase : ScriptableObject
 {
     [Header("Daily Missions")]
     public List<Mission> dailyMissions = new List<Mission>()
     {
-        new Mission { missionName = "Log in daily", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1 },
-        new Mission { missionName = "Buy food and water", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1 },
-        new Mission { missionName = "Pet the animals 10 times", rewardMoney = 0, rewardLikes = 1, targetGoal = 10 },
-        new Mission { missionName = "Feed an animal with food and water", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1 },
-        new Mission { missionName = "Level up an animal", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1 },
-        new Mission { missionName = "Complete all the missions", rewardMoney = 0, rewardLikes = 1, targetGoal = 5 }
+        new Mission { id = "d_login", missionName = "Log in", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1, type = MissionType.LogIn },
+        new Mission { id = "d_buy_food", missionName = "Buy food or water", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1, type = MissionType.BuyFoodWater },
+        new Mission { id = "d_pat", missionName = "Pet the animals 10 times", rewardMoney = 0, rewardLikes = 1, targetGoal = 10, type = MissionType.PatAnimal },
+        new Mission { id = "d_give_food", missionName = "Give an animal food or water", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1, type = MissionType.FeedAnimal },
+        new Mission { id = "d_level", missionName = "Level up an animal", rewardMoney = 1000, rewardLikes = 0, targetGoal = 1, type = MissionType.LevelAnimal },
+        new Mission { id = "d_complete", missionName = "Complete all daily quests", rewardMoney = 0, rewardLikes = 1, targetGoal = 5, type = MissionType.CompleteDaily }
     };
 
     [Header("Weekly Missions")]
     public List<Mission> weeklyMissions = new List<Mission>()
     {
-        new Mission { missionName = "Log in 5 days", rewardMoney = 3000, rewardLikes = 2, targetGoal = 5 },
-        new Mission { missionName = "Open the chest one time", rewardMoney = 3000, rewardLikes = 1, targetGoal = 1 },
-        new Mission { missionName = "Give away an animal", rewardMoney = 3000, rewardLikes = 2, targetGoal = 1 },
-        new Mission { missionName = "Pet the animals 100 times total", rewardMoney = 3000, rewardLikes = 1, targetGoal = 100 }
+        new Mission { id = "w_login", missionName = "Log in daily 5 times", rewardMoney = 3000, rewardLikes = 2, targetGoal = 5, type = MissionType.LogIn },
+        new Mission { id = "w_chest", missionName = "Open the chest one time", rewardMoney = 3000, rewardLikes = 1, targetGoal = 1, type = MissionType.OpenChest },
+        new Mission { id = "w_sell_animal", missionName = "Give away an animal", rewardMoney = 3000, rewardLikes = 2, targetGoal = 1, type = MissionType.SellAnimal },
+        new Mission { id = "w_pat", missionName = "Pet the animals 100 times total", rewardMoney = 3000, rewardLikes = 1, targetGoal = 100, type = MissionType.PatAnimal }
     };
 
 
