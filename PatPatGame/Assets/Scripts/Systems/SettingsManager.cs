@@ -1,17 +1,24 @@
 using System;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Movement;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 
 public class SettingsManager : MonoBehaviour
 {
     private SoundManager soundManager;
     private UISettingsFunc settingsFunc;
     public event Action<bool> OnHintToggleChanged;
-    public event Action<int> OnMovementTypeChanged;
+    private ContinuousMoveProvider continuousMoveProvider;
+    private TeleportationProvider teleportationProvider;
+    [SerializeField] private XRRayInteractor XRRayInteractor;
 
     void Start()
     {
         soundManager = GameManager.Instance.soundManager;
+        continuousMoveProvider = FindFirstObjectByType<ContinuousMoveProvider>();
+        teleportationProvider = FindFirstObjectByType<TeleportationProvider>();
         settingsFunc = FindFirstObjectByType<UISettingsFunc>();
         if(settingsFunc != null)
         {
@@ -36,11 +43,16 @@ public class SettingsManager : MonoBehaviour
                 OnHintToggleChanged?.Invoke(false);
             }
         }
-        if (PlayerPrefs.HasKey("MovementType"))
+        if (PlayerPrefs.HasKey("MovementType") && XRRayInteractor != null)
         {
             int val = PlayerPrefs.GetInt("MovementType");
-            settingsFunc.SetMovementType(val);
-            OnMovementTypeChanged?.Invoke(val);
+            MovementTypeChanged(val);
+        }
+        else if (XRRayInteractor != null)
+        {
+            continuousMoveProvider.enabled = false;
+            teleportationProvider.enabled = true;
+            XRRayInteractor.enabled = true;
         }
 
         if (PlayerPrefs.HasKey("MasterVolume"))
@@ -110,8 +122,19 @@ public class SettingsManager : MonoBehaviour
 
     public void MovementTypeChanged(int value)
     {
-        Debug.Log("MovementType: " + value);
-        OnMovementTypeChanged?.Invoke(value);
-        //PlayerPrefs.SetInt("MovementType", value);
+        if (XRRayInteractor == null) return;
+        settingsFunc.SetMovementType(value);
+        if (value == 0)
+        {
+            continuousMoveProvider.enabled = false;
+            teleportationProvider.enabled = true;
+            XRRayInteractor.enabled = true;
+        }else if(value == 1)
+        {
+            continuousMoveProvider.enabled = true;
+            teleportationProvider.enabled = false;
+            XRRayInteractor.enabled = false;
+        }
+        PlayerPrefs.SetInt("MovementType", value);
     }
 }

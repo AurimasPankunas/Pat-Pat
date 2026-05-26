@@ -790,6 +790,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2040109202462055809, guid: 6ba37659dbc651e8286d4f6b334e248b, type: 3}
+      propertyPath: XRRayInteractor
+      value: 
+      objectReference: {fileID: 611465230}
     - target: {fileID: 8047763040432634985, guid: 6ba37659dbc651e8286d4f6b334e248b, type: 3}
       propertyPath: m_Name
       value: Systems
@@ -844,6 +848,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2797252696557256997, guid: 5886d8bdd566bee4d9be95d8a90644c3, type: 3}
   m_PrefabInstance: {fileID: 1470563079}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &611465230 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8834854098976865756, guid: 5886d8bdd566bee4d9be95d8a90644c3, type: 3}
+  m_PrefabInstance: {fileID: 1470563079}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6803edce0201f574f923fd9d10e5b30a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &616743950 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2653759991062743542, guid: 4f7d48c8cd7b3984f8e78d5e561fca9a, type: 3}
@@ -2811,6 +2826,10 @@ PrefabInstance:
     - target: {fileID: 8803924696971961490, guid: 5886d8bdd566bee4d9be95d8a90644c3, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834854098976865744, guid: 5886d8bdd566bee4d9be95d8a90644c3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8834854098976865756, guid: 5886d8bdd566bee4d9be95d8a90644c3, type: 3}
       propertyPath: m_HitDetectionType
