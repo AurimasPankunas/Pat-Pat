@@ -32,7 +32,7 @@ public class Animal_Stat_Increase : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    public void OnChildTriggerEntered(Collider other)
     {
         // Debug.Log($"Collider entered: {other.gameObject.name}, Tag: {other.tag}");
         
