@@ -109,7 +109,6 @@ GameObject:
   - component: {fileID: 7678159196388884289}
   - component: {fileID: 6353283276409289030}
   - component: {fileID: 7022450009553068076}
-  - component: {fileID: 6917243955275587017}
   m_Layer: 0
   m_Name: UIQuests
   m_TagString: Untagged
@@ -285,15 +284,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIQuestsFunc
   QuestElement: {fileID: 9197481963319205126, guid: 737efa528a8566e45b0b2e3b6c72b675, type: 3}
---- !u!114 &6917243955275587017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8661835418983712127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a8b83b44ca9b20458e85fc246a2fd77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuestsManager

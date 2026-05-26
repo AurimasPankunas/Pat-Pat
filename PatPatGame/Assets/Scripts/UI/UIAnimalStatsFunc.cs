@@ -24,6 +24,7 @@ public class UIAnimalStatsFunc : MonoBehaviour
     [SerializeField] private Spot spot;
     [SerializeField] private PlayerBalance playerBalance;
     [SerializeField] private ShopItemDatabase shopItemDatabase;
+    private QuestsManager questsManager;
     private double levelUpPrice = 50;
     private double spotPrice = 50;
     private bool isBoughtSpot = false;
@@ -31,6 +32,8 @@ public class UIAnimalStatsFunc : MonoBehaviour
     private string[] rarityColors = {"#000000", "#A15505", "#727D8E", "#BF9304", "#A42DCB" };
     void Start()
     {
+        questsManager = GameManager.Instance.questsManager;
+
         // Gets the document on the gameObject that has the UI elements 
         _document = GetComponent<UIDocument>();
 
@@ -342,6 +345,7 @@ public class UIAnimalStatsFunc : MonoBehaviour
             animal.LevelUp();
             int animalLvl = animal.data.level;
             SetLevel(animalLvl);
+            questsManager.CaptureProgress(MissionType.LevelAnimal, 1);
             levelUpPrice = shopItemDatabase.GetLevelUp(animal.data.rarity,animalLvl).price;
             _buttonLevelUpPrice.text = levelUpPrice.ToString("N0");
         }
