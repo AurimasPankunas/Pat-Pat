@@ -14,7 +14,7 @@ public class QuestsManager : MonoBehaviour
     private PlayerBalance playerBalance;
     private TimeKeeper timeKeeper;
 
-    public void Initialize()
+    public void Initialize(bool isNewSave)
     {
         itemDatabase = GameManager.Instance.shopItemDatabase;
         playerBalance = GameManager.Instance.playerBalance;
@@ -26,11 +26,14 @@ public class QuestsManager : MonoBehaviour
         
         questsFunc = FindFirstObjectByType<UIQuestsFunc>();
         questsFunc.SetQuestsManager(this);
+
+        if (isNewSave)
+            CaptureProgress(MissionType.LogIn, 1);
     }
 
     void Start()
     {
-        Initialize();
+        // Initialize();
         // Setting progress examples
         // Pet animal 10 times mission
         // questsFunc.GetUIQuestElement(dailyMissions[2]).SetProgress(7);

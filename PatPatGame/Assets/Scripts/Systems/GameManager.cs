@@ -69,10 +69,9 @@ public class GameManager : MonoBehaviour
     {
         shopItemDatabase = ScriptableObject.CreateInstance<ShopItemDatabase>();
         
-        questsManager.Initialize();
-        
         if (SaveManager.SaveFileExists())
         {
+            questsManager.Initialize(false);
             animalManager.Initialize(false);
             saveManager.Load();
             timeKeeper.MarkWeeklyReset();
@@ -80,6 +79,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            questsManager.Initialize(true);
             animalManager.Initialize(true);
             playerBalance.Initialize();
         }
