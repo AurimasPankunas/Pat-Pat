@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     public ShopItemDatabase shopItemDatabase;
     public SoundManager soundManager;
     public EffectPlayer effectPlayer;
+    public SettingsManager settingsManager;
 
     // Setting execution order in project settings can ensure
     // GameManager's Awake() runs before all other scripts.

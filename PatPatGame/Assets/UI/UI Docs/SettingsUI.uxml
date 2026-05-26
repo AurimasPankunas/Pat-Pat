@@ -7,8 +7,8 @@
         </ui:VisualElement>
         <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-shrink: 1; flex-direction: row; justify-content: flex-end;">
             <ui:VisualElement style="flex-grow: 1;">
-                <ui:Toggle label="Hint screens" name="HintToggle" focusable="false" style="font-size: 18px; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-SemiBold.ttf?fileID=12800000&amp;guid=6bbaee6b38702c3458ef4774312cb6b0&amp;type=3#Livvic-SemiBold&quot;);"/>
-                <ui:RadioButtonGroup label="Movement type" focusable="false" name="MovementTypeGroup" style="flex-direction: column; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-Bold.ttf?fileID=12800000&amp;guid=a408a2f38d08b2a429d13a1db7e7460e&amp;type=3#Livvic-Bold&quot;); font-size: 20px;">
+                <ui:Toggle label="Hint screens" name="HintToggle" focusable="false" value="true" style="font-size: 18px; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-SemiBold.ttf?fileID=12800000&amp;guid=6bbaee6b38702c3458ef4774312cb6b0&amp;type=3#Livvic-SemiBold&quot;);"/>
+                <ui:RadioButtonGroup label="Movement type" focusable="false" name="MovementTypeGroup" value="0" style="flex-direction: column; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-Bold.ttf?fileID=12800000&amp;guid=a408a2f38d08b2a429d13a1db7e7460e&amp;type=3#Livvic-Bold&quot;); font-size: 20px;">
                     <ui:RadioButton label="Teleportation" name="RadioTeleportation" style="-unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-SemiBold.ttf?fileID=12800000&amp;guid=6bbaee6b38702c3458ef4774312cb6b0&amp;type=3#Livvic-SemiBold&quot;); font-size: 18px;"/>
                     <ui:RadioButton label="Continuous" name="RadioContinuous" style="font-size: 18px; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-SemiBold.ttf?fileID=12800000&amp;guid=6bbaee6b38702c3458ef4774312cb6b0&amp;type=3#Livvic-SemiBold&quot;);"/>
                 </ui:RadioButtonGroup>
@@ -18,10 +18,10 @@
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 0; -unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-SemiBold.ttf?fileID=12800000&amp;guid=6bbaee6b38702c3458ef4774312cb6b0&amp;type=3#Livvic-SemiBold&quot;); font-size: 18px; width: 460px; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
                 <ui:Label text="Volume" style="-unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Livvic/Livvic-Bold.ttf?fileID=12800000&amp;guid=a408a2f38d08b2a429d13a1db7e7460e&amp;type=3#Livvic-Bold&quot;); font-size: 20px; -unity-text-align: upper-center; margin-top: 0;"/>
-                <ui:Slider label="Master" value="42" high-value="100" name="SliderMaster"/>
-                <ui:Slider label="Music" value="42" high-value="100" name="SliderMusic"/>
-                <ui:Slider label="SFX" value="42" high-value="100" name="SliderSFX"/>
-                <ui:Slider label="UI" value="42" high-value="100" name="SliderUI"/>
+                <ui:Slider label="Master" value="42" high-value="1" name="SliderMaster"/>
+                <ui:Slider label="Music" value="42" high-value="1" name="SliderMusic"/>
+                <ui:Slider label="SFX" value="42" high-value="1" name="SliderSFX"/>
+                <ui:Slider label="UI" value="42" high-value="1" name="SliderUI"/>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
