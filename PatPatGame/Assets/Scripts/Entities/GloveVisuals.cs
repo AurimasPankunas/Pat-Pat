@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GloveVisuals : MonoBehaviour
 {
-    [SerializeField] private PlayerBalance playerBalance;
+    private PlayerBalance playerBalance;
     [SerializeField] private GameObject leftHand;
     [SerializeField] private GameObject rightHand;
     [SerializeField] private Texture gloveTexture;
@@ -29,6 +29,7 @@ public class GloveVisuals : MonoBehaviour
 
     void Awake()
     {
+        playerBalance = GameManager.Instance.playerBalance;
         playerBalance.OnGloveRarityChanged += HandleOnGloveRarityChanged;
 
         // sync in case playerBalance load method runs before this object's awake
