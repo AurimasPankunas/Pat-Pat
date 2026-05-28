@@ -1,0 +1,186 @@
+{
+    "timeKeeperData": {
+        "firstLoginDate": "2026-05-01T23:32:13.0000000",
+        "saveDate": "2026-05-28T08:00:00.9003837+03:00",
+        "playTime": "01:52:08",
+        "lastWeeklyResetWeek": 22,
+        "lastWeeklyResetYear": 2026
+    },
+    "playerBalanceData": {
+        "money": 1500,
+        "likes": 0,
+        "chestLevel": 1,
+        "levelChestsOpened": 0,
+        "gloveRarity": 0
+    },
+    "animalManagerData": {
+        "miniAnimals": [],
+        "spotAnimals": [
+            {
+                "spotID": "S1",
+                "animalData": {
+                    "typeID": "frog",
+                    "instanceID": "5d0d80fc-c675-4d62-80ea-70bca034e8b9",
+                    "animalName": "Jenie",
+                    "rarity": 1,
+                    "level": 1,
+                    "happiness": 1,
+                    "food": 0.2,
+                    "water": 0.2,
+                    "bond": 1.2940298386422076
+                }
+            }
+        ],
+        "spots": [
+            {
+                "spotID": "L2",
+                "isBought": false
+            },
+            {
+                "spotID": "M3",
+                "isBought": false
+            },
+            {
+                "spotID": "S3",
+                "isBought": false
+            },
+            {
+                "spotID": "L1",
+                "isBought": true
+            },
+            {
+                "spotID": "M1",
+                "isBought": true
+            },
+            {
+                "spotID": "S4",
+                "isBought": false
+            },
+            {
+                "spotID": "M2",
+                "isBought": false
+            },
+            {
+                "spotID": "S2",
+                "isBought": true
+            },
+            {
+                "spotID": "S1",
+                "isBought": true
+            }
+        ]
+    },
+    "animalRegisterData": {
+        "animals": [
+            {
+                "typeID": "Stag",
+                "instanceID": "d2e29bc6-7e9c-4baa-b9b7-0de779397e46",
+                "animalName": "Putino",
+                "rarity": 1,
+                "level": 1,
+                "happiness": 0.06244504451751709,
+                "food": 0.1613614559173584,
+                "water": 0.927993416786194,
+                "bond": 0.0
+            },
+            {
+                "typeID": "Stag",
+                "instanceID": "d1b6bb86-2f61-4b3d-82a2-e1b0ec7779ad",
+                "animalName": "Lo",
+                "rarity": 1,
+                "level": 1,
+                "happiness": 0.6136588454246521,
+                "food": 0.8859957456588745,
+                "water": 0.3978671431541443,
+                "bond": 0.0
+            },
+            {
+                "typeID": "Wolf",
+                "instanceID": "b1fd000c-1a89-41b4-b101-f48caa5421bc",
+                "animalName": "Fimie",
+                "rarity": 2,
+                "level": 1,
+                "happiness": 0.25438934564590456,
+                "food": 0.5832540392875671,
+                "water": 0.4915347695350647,
+                "bond": 0.0
+            },
+            {
+                "typeID": "frog",
+                "instanceID": "31ca246e-46c3-416f-8f9f-14446606cac8",
+                "animalName": "Zepu",
+                "rarity": 3,
+                "level": 1,
+                "happiness": 0.6171230673789978,
+                "food": 0.030631065368652345,
+                "water": 0.2963315844535828,
+                "bond": 0.0
+            },
+            {
+                "typeID": "ghost",
+                "instanceID": "16a3d5e9-3be1-455d-96bd-7c9787af8426",
+                "animalName": "Cack",
+                "rarity": 1,
+                "level": 1,
+                "happiness": 0.9311845302581788,
+                "food": 0.1405789852142334,
+                "water": 0.712912917137146,
+                "bond": 0.0
+            }
+        ]
+    },
+    "questManagerSaveData": {
+        "quests": [
+            {
+                "id": "d_login",
+                "progress": 1,
+                "isCompleted": true
+            },
+            {
+                "id": "d_buy_food",
+                "progress": 0,
+                "isCompleted": false
+            },
+            {
+                "id": "d_pat",
+                "progress": 0,
+                "isCompleted": false
+            },
+            {
+                "id": "d_give_food",
+                "progress": 0,
+                "isCompleted": false
+            },
+            {
+                "id": "d_level",
+                "progress": 0,
+                "isCompleted": false
+            },
+            {
+                "id": "d_complete",
+                "progress": 0,
+                "isCompleted": false
+            },
+            {
+                "id": "w_login",
+                "progress": 0,
+                "isCompleted": false
+            },
+            {
+                "id": "w_chest",
+                "progress": 0,
+                "isCompleted": false
+            },
+            {
+                "id": "w_sell_animal",
+                "progress": 0,
+                "isCompleted": false
+            },
+            {
+                "id": "w_pat",
+                "progress": 0,
+                "isCompleted": false
+            }
+        ]
+    }
+}
