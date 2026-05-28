@@ -2381,6 +2381,22 @@ PrefabInstance:
       propertyPath: <AnimalName>k__BackingField
       value: Dog
       objectReference: {fileID: 0}
+    - target: {fileID: 4418364741498102142, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: m_Size.x
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418364741498102142, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: m_Size.y
+      value: 2.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418364741498102142, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: m_Size.z
+      value: 3.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418364741498102142, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: m_Center.y
+      value: 1.42
+      objectReference: {fileID: 0}
     - target: {fileID: 4833184270127717505, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_Size.x
       value: 2.25

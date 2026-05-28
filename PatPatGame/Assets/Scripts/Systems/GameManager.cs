@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     public ShopItemDatabase shopItemDatabase;
     public SoundManager soundManager;
     public EffectPlayer effectPlayer;
+    public SettingsManager settingsManager;
     public QuestsManager questsManager;
 
     // Setting execution order in project settings can ensure

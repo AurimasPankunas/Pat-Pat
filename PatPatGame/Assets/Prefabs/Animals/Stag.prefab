@@ -1980,6 +1980,22 @@ PrefabInstance:
       propertyPath: <AnimalName>k__BackingField
       value: Deary Deer
       objectReference: {fileID: 0}
+    - target: {fileID: 4418364741498102142, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: m_Size.x
+      value: 3.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418364741498102142, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: m_Size.y
+      value: 4.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418364741498102142, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: m_Size.z
+      value: 5.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418364741498102142, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
+      propertyPath: m_Center.y
+      value: 2.34
+      objectReference: {fileID: 0}
     - target: {fileID: 4833184270127717505, guid: d0832cc4a314aa2469a24ec7d599a135, type: 3}
       propertyPath: m_Size.x
       value: 3.26

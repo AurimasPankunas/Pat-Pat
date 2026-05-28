@@ -156,3 +156,8 @@
 .CategoryButtonSelected {
     background-color: rgb(255, 255, 255);
 }
+
+#unity-dragger {
+    margin-top: -12px;
+    width: 14px;
+}

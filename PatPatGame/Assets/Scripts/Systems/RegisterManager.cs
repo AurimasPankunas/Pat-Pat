@@ -90,7 +90,6 @@ public class RegisterManager : MonoBehaviour
     /// <param name="animal">Animal that was clicked</param>
     public void AnimalTakeInClicked(AnimalData animal, TemplateContainer _animalElement)
     {
-        Debug.Log("Take in");
         animalRegister.TakeInCheckAndRemove(animal, miniAnimalSpawnPoint, _animalElement);
     }
 
@@ -100,7 +99,6 @@ public class RegisterManager : MonoBehaviour
     /// <param name="animal">Animal that was clicked</param>
     public void AnimalTurnAwayClicked(AnimalData animal)
     {
-        Debug.Log("Turn away");
         animalRegister.RemoveAnimal(animal, null);
     }
 
@@ -109,8 +107,6 @@ public class RegisterManager : MonoBehaviour
         int openCost = shopItemDatabase.chestOpenCost;
         if (playerBalance.likes >= openCost && buyCooldown <= 0)
         {
-            if (animalRegister.registerAnimals.Count >= animalRegister.maxRegisterAnimals)
-                return;
             registerUI.SubtractLikesAnimation(openCost);
             playerBalance.SubtractLikes(openCost);
             if (playerBalance.chestLevel < 1)
