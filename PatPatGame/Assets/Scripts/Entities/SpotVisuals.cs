@@ -5,15 +5,20 @@ public class SpotVisuals : MonoBehaviour
 {
     [SerializeField] private Spot spot;
 
-    void Start()
+    void Awake()
     {
         spot.OnSpotBoughtUpdated += HandleOnSpotBought;
         spot.OnSpotBought += HandleOnSpotBought;
+    }
+
+    void Start()
+    {
         HandleOnSpotBought(spot.isBought);
     }
 
     private void ChangeMaterial(bool isBought)
     {
+        if (this == null || gameObject == null) return;
         Renderer[] renderers = GetComponentsInChildren<Renderer>();
 
         // Ensure the renderer and materials are not null
@@ -60,5 +65,16 @@ public class SpotVisuals : MonoBehaviour
     private void HandleOnSpotBought(bool value)
     {
         ChangeMaterial(value);
+    }
+
+
+    private void OnDestroy()
+    {
+        // Unsubscribe to prevent the destroyed object from receiving events
+        if (spot != null)
+        {
+            spot.OnSpotBoughtUpdated -= HandleOnSpotBought;
+            spot.OnSpotBought -= HandleOnSpotBought;
+        }
     }
 }

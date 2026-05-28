@@ -1,5 +1,6 @@
 using NUnit.Framework.Constraints;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -57,12 +58,24 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
             Destroy(gameObject);
+            return;
         }
+
         InitializeManagers();
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Only re-initialize on a full reload (not when Environment loads additively)
+        if (mode == LoadSceneMode.Single)
+        {
+            InitializeManagers();
+        }
     }
 
     private void InitializeManagers()
