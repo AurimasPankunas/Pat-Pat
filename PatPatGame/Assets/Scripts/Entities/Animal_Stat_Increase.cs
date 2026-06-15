@@ -44,9 +44,9 @@ public class Animal_Stat_Increase : MonoBehaviour
                 foodData = shopItemDatabase.GetFood(food.foodItemID);
                 if(animal.data.food > 0.98) {
                     Message = "Not hungry!";
-                } else if(foodData.rarity == animal.data.rarity)
+                } else 
                 {
-                    animal.UpdateFood(foodData.foodAmount);
+                    animal.UpdateFood(foodData.foodAmount[animal.data.rarity-1]);
                     animal.GetComponent<Animator>().SetTrigger("Eat");
                     Message = null;
 
@@ -60,9 +60,6 @@ public class Animal_Stat_Increase : MonoBehaviour
                     questsManager.CaptureProgress(MissionType.FeedAnimal, 1);
 
                     Destroy(other.gameObject.transform.parent.gameObject);
-                } else
-                {
-                    Message = "Wrong rarity food!";
                 }
                 SpawnFloatingTextWithCooldown(Message);
             }
@@ -74,9 +71,9 @@ public class Animal_Stat_Increase : MonoBehaviour
                 waterData = shopItemDatabase.GetWater(drink.drinkItemID);
                 if(animal.data.water > 0.98) {
                     Message = "Not thirsty!";
-                } else if(waterData.rarity == animal.data.rarity)
+                } else
                 {
-                    animal.UpdateWater(waterData.waterAmount);
+                    animal.UpdateWater(waterData.waterAmount[animal.data.rarity - 1]);
                     animal.GetComponent<Animator>().SetTrigger("Eat");
                     Message = null;
 
@@ -99,9 +96,6 @@ public class Animal_Stat_Increase : MonoBehaviour
                     else{
                         Destroy(other.gameObject.transform.parent.gameObject);
                     }
-                } else
-                {
-                    Message = "Wrong rarity drink!";
                 }
                 SpawnFloatingTextWithCooldown(Message);
             }
