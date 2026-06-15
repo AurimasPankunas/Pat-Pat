@@ -13,47 +13,87 @@ MonoBehaviour:
   m_Name: ShopItemDatabase
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemDatabase
   dailyMissions:
-  - missionName: Log in daily
+  - id: d_login
+    missionName: Log in daily
+    type: 0
     rewardMoney: 1000
     rewardLikes: 0
     targetGoal: 1
-  - missionName: Buy food and water
+    progress: 0
+    isCompleted: 0
+  - id: d_buy_food
+    missionName: Buy food and water
+    type: 1
     rewardMoney: 1000
     rewardLikes: 0
     targetGoal: 1
-  - missionName: Pet the animals 10 times
+    progress: 0
+    isCompleted: 0
+  - id: d_pat
+    missionName: Pet the animals 10 times
+    type: 2
     rewardMoney: 0
     rewardLikes: 1
     targetGoal: 10
-  - missionName: Feed an animal with food and water
+    progress: 0
+    isCompleted: 0
+  - id: d_give_food
+    missionName: Feed an animal with food and water
+    type: 3
     rewardMoney: 1000
     rewardLikes: 0
     targetGoal: 1
-  - missionName: Level up an animal
+    progress: 0
+    isCompleted: 0
+  - id: d_level
+    missionName: Level up an animal
+    type: 4
     rewardMoney: 1000
     rewardLikes: 0
     targetGoal: 1
-  - missionName: Complete all the missions
+    progress: 0
+    isCompleted: 0
+  - id: d_complete
+    missionName: Complete all the missions
+    type: 7
     rewardMoney: 0
     rewardLikes: 1
     targetGoal: 5
+    progress: 0
+    isCompleted: 0
   weeklyMissions:
-  - missionName: Log in 5 days
+  - id: w_login
+    missionName: Log in 5 days
+    type: 0
     rewardMoney: 3000
     rewardLikes: 2
     targetGoal: 5
-  - missionName: Open the chest one time
+    progress: 0
+    isCompleted: 0
+  - id: w_chest
+    missionName: Open the chest one time
+    type: 5
     rewardMoney: 3000
     rewardLikes: 1
     targetGoal: 1
-  - missionName: Give away an animal
+    progress: 0
+    isCompleted: 0
+  - id: w_sell_animal
+    missionName: Give away an animal
+    type: 6
     rewardMoney: 3000
     rewardLikes: 2
     targetGoal: 1
-  - missionName: Pet the animals 100 times total
+    progress: 0
+    isCompleted: 0
+  - id: w_pat
+    missionName: Pet the animals 100 times total
+    type: 2
     rewardMoney: 3000
     rewardLikes: 1
     targetGoal: 100
+    progress: 0
+    isCompleted: 0
   chestOpenCost: 10
   chestOpensToLevelUp: 0a000000140000001e00000028000000ffffffff
   dailyAnimalProbabilities:
@@ -97,36 +137,66 @@ MonoBehaviour:
   - gameObjectId: 2001
     price: 60
     name: Kibble
+    animalRarity: 1
     rarity: 1
-    foodAmount: 0.1
+    foodAmount:
+    - 0.1
+    - 0.024
+    - 0.012
+    - 0.006
+    - 0.003
     image: {fileID: 2800000, guid: bc1a15c8d2a163145883a8ac88394758, type: 3}
     obj: {fileID: 5947992764154085807, guid: e316cd64676dc6d44b8c4c9a34a78c30, type: 3}
   - gameObjectId: 2002
     price: 150
     name: Snack
+    animalRarity: 1
     rarity: 2
-    foodAmount: 0.1
+    foodAmount:
+    - 0.15
+    - 0.1
+    - 0.03
+    - 0.016
+    - 0.009
     image: {fileID: 2800000, guid: 53aecde8974d3004abdb790cd84e4c22, type: 3}
     obj: {fileID: 5947992764154085807, guid: c022abf761b5a9845b5e8b6d0babfbad, type: 3}
   - gameObjectId: 2003
     price: 300
     name: Meal
+    animalRarity: 1
     rarity: 3
-    foodAmount: 0.1
+    foodAmount:
+    - 0.3
+    - 0.12
+    - 0.1
+    - 0.032
+    - 0.017
     image: {fileID: 2800000, guid: 7c68fa34845cca540a4a5da322f3077e, type: 3}
     obj: {fileID: 5947992764154085807, guid: 08154c48c4e9f8740ac1b08869a566c8, type: 3}
   - gameObjectId: 2004
     price: 560
     name: Feast
+    animalRarity: 1
     rarity: 4
-    foodAmount: 0.1
+    foodAmount:
+    - 0.56
+    - 0.224
+    - 0.112
+    - 0.1
+    - 0.033
     image: {fileID: 2800000, guid: eb6a321f94cf1994096c65cd3a6667a9, type: 3}
     obj: {fileID: 5947992764154085807, guid: b0eaf677719fa0a47bbe11dbfab82ef2, type: 3}
   - gameObjectId: 2005
     price: 1030
     name: Delicacy
+    animalRarity: 1
     rarity: 5
-    foodAmount: 0.1
+    foodAmount:
+    - 1
+    - 0.412
+    - 0.206
+    - 0.11
+    - 0.1
     image: {fileID: 2800000, guid: 7638b5ef0bc21a246a670497eee486b5, type: 3}
     obj: {fileID: 1027504390973873576, guid: 7bf9ae9a0ba73004c88fe7ea2d9d8641, type: 3}
   waterPrices:
@@ -134,35 +204,65 @@ MonoBehaviour:
     price: 60
     name: Puddle
     rarity: 1
-    waterAmount: 0.1
+    animalRarity: 1
+    waterAmount:
+    - 0.1
+    - 0.024
+    - 0.012
+    - 0.006
+    - 0.003
     image: {fileID: 2800000, guid: cf8bd7230a85ad74b8b84a5f27a74d9b, type: 3}
     obj: {fileID: 2653841085286044188, guid: c143d046d1a85654db8db4356ffeb7a4, type: 3}
   - gameObjectId: 3002
     price: 150
     name: Cup
     rarity: 2
-    waterAmount: 0.1
+    animalRarity: 1
+    waterAmount:
+    - 0.15
+    - 0.1
+    - 0.03
+    - 0.016
+    - 0.009
     image: {fileID: 2800000, guid: 82e4f36cbebd79d4db62cb6891f591ef, type: 3}
     obj: {fileID: 2653841085286044188, guid: a90ad23e7b9ee7e48aa3665b694fbc8d, type: 3}
   - gameObjectId: 3003
     price: 300
     name: Bottle
     rarity: 3
-    waterAmount: 0.1
+    animalRarity: 1
+    waterAmount:
+    - 0.3
+    - 0.12
+    - 0.1
+    - 0.032
+    - 0.017
     image: {fileID: 2800000, guid: 2c2ac5a8ec87daf40baf297de579d4ac, type: 3}
     obj: {fileID: 2653841085286044188, guid: 6064abb1fa662e74e8102bfeaffcbc1d, type: 3}
   - gameObjectId: 3004
     price: 560
     name: Jug
     rarity: 4
-    waterAmount: 0.1
+    animalRarity: 1
+    waterAmount:
+    - 0.56
+    - 0.224
+    - 0.112
+    - 0.1
+    - 0.033
     image: {fileID: 2800000, guid: 15483df8bd422814c89d8bc3c27a05f0, type: 3}
     obj: {fileID: 2653841085286044188, guid: ad8dfc9a4a964234f8bc2bad1e500fec, type: 3}
   - gameObjectId: 3005
     price: 1030
     name: Spring
     rarity: 5
-    waterAmount: 0.1
+    animalRarity: 1
+    waterAmount:
+    - 1
+    - 0.412
+    - 0.206
+    - 0.11
+    - 0.1
     image: {fileID: 2800000, guid: f6347bdb3c009aa44941b82a1eccfde9, type: 3}
     obj: {fileID: 2653841085286044188, guid: 1cb966ecd8c079743b955304d6679508, type: 3}
   levelUpPrices:

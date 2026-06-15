@@ -21,8 +21,9 @@ public class GloveItem : ShopItem
 public class FoodItem : ShopItem
 {
     public string name;
+    public int animalRarity;   
     public int    rarity;
-    public float  foodAmount;
+    public float[]  foodAmount;
     public Texture2D image;
     public GameObject obj;
 }
@@ -32,7 +33,8 @@ public class WaterItem : ShopItem
 {
     public string name;
     public int    rarity;
-    public float  waterAmount;
+    public int animalRarity;   
+    public float[]  waterAmount;
     public Texture2D image;
     public GameObject obj;
 }
@@ -186,25 +188,33 @@ public class ShopItemDatabase : ScriptableObject
     };
 
     // Maisto kainos pagal rarity
-    public List<FoodItem> foodPrices = new List<FoodItem>
-    {
-        new FoodItem { gameObjectId = 2001, name = "Kibble",   rarity = 1, foodAmount = 0.10f, price =  60 },
-        new FoodItem { gameObjectId = 2002, name = "Snack",    rarity = 2, foodAmount = 0.10f, price =  150 },
-        new FoodItem { gameObjectId = 2003, name = "Meal",     rarity = 3, foodAmount = 0.10f, price =  300 },
-        new FoodItem { gameObjectId = 2004, name = "Feast",    rarity = 4, foodAmount = 0.10f, price =  560 },
-        new FoodItem { gameObjectId = 2005, name = "Delicacy", rarity = 5, foodAmount = 0.10f, price = 1030 },
-    };
-
-    // Vandens kainos pagal rarity
-    public List<WaterItem> waterPrices = new List<WaterItem>
-    {
-        new WaterItem { gameObjectId = 3001, name = "Puddle", rarity = 1, waterAmount = 0.10f, price =  60 },
-        new WaterItem { gameObjectId = 3002, name = "Cup",    rarity = 2, waterAmount = 0.10f, price =  150 },
-        new WaterItem { gameObjectId = 3003, name = "Bottle", rarity = 3, waterAmount = 0.10f, price =  300 },
-        new WaterItem { gameObjectId = 3004, name = "Jug",    rarity = 4, waterAmount = 0.10f, price =  560 },
-        new WaterItem { gameObjectId = 3005, name = "Spring", rarity = 5, waterAmount = 0.10f, price = 1030 },
-    };
-
+ public List<FoodItem> foodPrices = new List<FoodItem>
+{
+    new FoodItem { gameObjectId=2001, name="Kibble",   animalRarity=1, rarity=1, 
+        foodAmount=new float[]{0.100f, 0.024f, 0.012f, 0.006f, 0.003f} , price=60 },
+    new FoodItem { gameObjectId=2002, name="Snack",    animalRarity=1, rarity=2, 
+        foodAmount=new float[]{0.150f, 0.100f, 0.030f, 0.016f, 0.009f}, price=150 },
+    new FoodItem { gameObjectId=2003, name="Meal",     animalRarity=1, rarity=3, 
+        foodAmount=new float[]{0.300f, 0.120f, 0.100f, 0.032f, 0.017f}, price=300 },
+    new FoodItem { gameObjectId=2004, name="Feast",    animalRarity=1, rarity=4, 
+        foodAmount=new float[]{0.560f, 0.224f, 0.112f, 0.100f, 0.033f}, price=560 },
+    new FoodItem { gameObjectId=2005, name="Delicacy", animalRarity=1, rarity=5, 
+        foodAmount=new float[]{1.000f, 0.412f, 0.206f, 0.110f, 0.100f}, price=1030 }
+};
+  // Vandens kainos pagal rarity
+public List<WaterItem> waterPrices = new List<WaterItem>
+{
+    new WaterItem { gameObjectId=3001, name="Puddle",  animalRarity=1, rarity=1, 
+        waterAmount=new float[] { 0.100f, 0.024f, 0.012f, 0.006f, 0.003f}, price=60 },
+    new WaterItem { gameObjectId=3002, name="Cup",     animalRarity=1, rarity=2, 
+        waterAmount=new float[] { 0.150f, 0.100f, 0.030f, 0.016f, 0.009f}, price=150 },
+    new WaterItem { gameObjectId=3003, name="Bottle",  animalRarity=1, rarity=3, 
+        waterAmount=new float[] { 0.300f, 0.120f, 0.100f, 0.032f, 0.017f}, price=300 },
+    new WaterItem { gameObjectId=3004, name="Jug",     animalRarity=1, rarity=4, 
+        waterAmount=new float[] { 0.560f, 0.224f, 0.112f, 0.100f, 0.033f}, price=560 },
+    new WaterItem { gameObjectId=3005, name="Spring",  animalRarity=1, rarity=5, 
+        waterAmount=new float[] { 1.000f, 0.412f, 0.206f, 0.110f, 0.100f}, price=1030 }
+};
     // Gyvuno lygio kėlimo kainos pagal rarity ir lygi
     public List<LevelUpItem> levelUpPrices = new List<LevelUpItem>
 {
